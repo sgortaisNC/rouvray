@@ -39,7 +39,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 		              ->sort( 'created', 'DESC' )
 		              ->pager( 25 )
 		              ->execute();
-		
+
 
 		if ( count( $nids ) > 0 ) {
 			foreach ( $nids as $nid ) {
@@ -125,6 +125,11 @@ class ConsultationsProximiteBlock extends BlockBase {
 			'carte' => [
 				'#theme' => 'consultationmap',
 				'#data'  => $contents,
+				'#attached' => [
+					'library' => [
+						'nc_liste/leaflet',
+					],
+				],
 			],
 			'liste' => [
 				'#theme' => 'consultationsp',
