@@ -1,0 +1,26 @@
+{% include directory ~ '/templates/parts/header.html.twig' %}
+
+<main role="main">
+    <a id="main-content" tabindex="-1"></a>
+
+    <div class="layout-content">
+        {{ page.top_content }}
+        {{ page.home }}
+        {{ page.bottom_content }}
+    </div>
+
+    {% if page.sidebar_first %}
+        <aside class="layout-sidebar-first" role="complementary">
+            {{ page.sidebar_first }}
+        </aside>
+    {% endif %}
+
+    {% if page.sidebar_second %}
+        <aside class="layout-sidebar-second" role="complementary">
+            {{ page.sidebar_second }}
+        </aside>
+    {% endif %}
+
+</main>
+
+{% include directory ~ '/templates/parts/footer.html.twig' %}

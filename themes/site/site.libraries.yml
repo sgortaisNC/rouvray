@@ -1,0 +1,15 @@
+global-styling:
+  version: 1.0
+  css:
+    theme:
+      css/style.css: {}
+      css/print.css: { media: print}
+  js:
+    https://use.fontawesome.com/f05512e9af.js: { type: external }
+    js/app.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once

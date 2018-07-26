@@ -1,0 +1,27 @@
+name: Site
+type: theme
+description: 'Thème du site'
+base theme: false
+core: '8.x'
+project: 'site'
+datestamp: 1526626800
+
+libraries:
+  - site/global-styling
+
+regions:
+  header: 'Header'
+  primary_menu: 'Primary menu'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  breadcrumb: 'Breadcrumb'
+  top_content: 'Top Content'
+  home: 'Home'
+  content: 'Content'
+  bottom_content: 'Bottom Content'
+  sidebar_first: 'First sidebar'
+  sidebar_second: 'Second sidebar'
+  footer: 'Footer'
+  secondary_menu: 'Secondary menu'
+
+  hidden: 'Hidden'
