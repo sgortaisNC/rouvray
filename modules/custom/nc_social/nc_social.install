@@ -1,0 +1,41 @@
+<?php
+use Drupal\Core\Database\Database;
+/**
+ * Implements hook_schema().
+ */
+function nc_social_schema(){
+  $schema['nc_social'] = array(
+    'fields' => array(
+      'sn_id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'sn_label' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'sn_link' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'sn_icon' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'sn_order' => array(
+        'type' => 'int',
+        'length' => 2,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('sn_id'),
+  );
+
+  return $schema;
+}

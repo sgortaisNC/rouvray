@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function nc_resize_theme($existing, $type, $theme, $path) {
+    return [
+        'resize' => [
+            'template' => 'resize',
+            'variables' => [
+                'data' => NULL,
+            ],
+        ],
+    ];
+}

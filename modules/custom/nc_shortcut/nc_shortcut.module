@@ -1,0 +1,24 @@
+<?php
+
+function nc_shortcut_theme($existing, $type, $theme, $path) {
+    return array(
+        'shortcut' => array(
+            'template' => 'shortcut',
+            'variables' => array(
+                'data' => NULL,
+            )
+        ),
+        'scgallery' => array(
+            'template' => 'scgallery',
+            'variables' => array(
+                'data' => NULL,
+            )
+        ),
+        'lateral' => array(
+            'template' => 'lateral',
+            'variables' => array(
+                'data' => NULL,
+            )
+        ),
+    );
+}

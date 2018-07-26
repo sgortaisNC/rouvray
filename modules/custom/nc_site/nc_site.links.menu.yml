@@ -1,0 +1,18 @@
+multisite.admin:
+  title: "Configuration du bloc Multi Sites"
+  route_name: multisite.config
+  description: ''
+  menu_name: admin
+  parent: system.admin_content
+livret.admin:
+  title: "Configuration du bloc Livret"
+  route_name: livret.config
+  description: ''
+  menu_name: admin
+  parent: system.admin_content
+rejoindre.admin:
+  title: "Configuration du bloc Nous rejoindre"
+  route_name: rejoindre.config
+  description: ''
+  menu_name: admin
+  parent: system.admin_content
