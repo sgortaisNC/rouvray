@@ -26,16 +26,20 @@ class ConsultationsProximiteBlock extends BlockBase {
 		$query->condition( 'type', [ 'consultation' ], 'IN' )
 		      ->condition( 'status', 1 )
 		      ->condition( 'field_consultation', 728 ); //Consultation de proximité
-		if (!empty($_GET["type"])){
-			$query->condition("");
+		/**
+		 * @TODO affiner requete si GET
+		 */
+		if ( ! empty( $_GET["type"] ) ) {
+			$query->condition( "field_patients", $_GET["type"]);
+		}
+		if  ( ! empty( $_GET["ville"] ) ) {
+			$query->condition( "field_ville", $_GET["ville"]);
 		}
 		$nids = $query->sort( 'field_date', 'DESC' )
 		              ->sort( 'created', 'DESC' )
 		              ->pager( 25 )
 		              ->execute();
-
-
-
+		
 
 		if ( count( $nids ) > 0 ) {
 			foreach ( $nids as $nid ) {
@@ -46,6 +50,8 @@ class ConsultationsProximiteBlock extends BlockBase {
 						'adresse'   => $nodeContent->get( 'field_adresse' )->value,
 						'telephone' => $nodeContent->get( 'field_telephone' )->value,
 						'horaires'  => $nodeContent->get( 'field_horaires' )->value,
+						'lat'       => $nodeContent->get( 'field_gps_latitude' )->value,
+						'lng'       => $nodeContent->get( 'field_horaires' )->value,
 						'url'       => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
 					];
 				}
@@ -72,10 +78,10 @@ class ConsultationsProximiteBlock extends BlockBase {
 		//echo "-------------------<br>";
 		foreach ( $result as $record ) {
 			$hasZero = "";
-			if  (strlen($record->cp) == 4){
+			if ( strlen( $record->cp ) == 4 ) {
 				$hasZero = 0;
 			}
-			$tabVilles[ $record->id ] = $record->ville . ' (' . $hasZero  . $record->cp . ')';
+			$tabVilles[ $record->id ] = $record->ville . ' (' . $hasZero . $record->cp . ')';
 
 			//echo $record->id ."|".$record->ville . ' (' . $hasZero  .$record->cp . ')<br>';
 		}
@@ -86,7 +92,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 		 */
 
 
-		$form  = [
+		$form = [
 			'title'  => 'Où consulter ?',
 			'action' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/107' ),
 			'form'   => [
@@ -96,7 +102,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 					'#attribute' => [
 						'class' => 'form-control'
 					],
-					'#name'  => 'ville',
+					'#name'      => 'ville',
 					'#options'   => $tabVilles,
 				],
 				'type' => [
@@ -105,7 +111,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 					'#attribute' => [
 						'class' => 'form-control',
 					],
-					'#name'  => 'type',
+					'#name'      => 'type',
 					'#options'   => $tabPatients,
 				],
 			],
