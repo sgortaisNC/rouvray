@@ -4,6 +4,7 @@ namespace Drupal\nc_liste\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Database\Database;
 use Drupal\node\Entity\Node;
 
 /**
@@ -25,12 +26,16 @@ class ConsultationsProximiteBlock extends BlockBase {
 		$query->condition( 'type', [ 'consultation' ], 'IN' )
 		      ->condition( 'status', 1 )
 		      ->condition( 'field_consultation', 728 ); //Consultation de proximité
-		if (!empty($_GET[""]))
-		{$nids = $query->sort( 'field_date', 'DESC' )
-		               ->sort( 'created', 'DESC' )
-		               ->pager( 25 )
-		               ->execute();
-	}
+		if (!empty($_GET["type"])){
+			$query->condition("");
+		}
+		$nids = $query->sort( 'field_date', 'DESC' )
+		              ->sort( 'created', 'DESC' )
+		              ->pager( 25 )
+		              ->execute();
+
+
+
 
 		if ( count( $nids ) > 0 ) {
 			foreach ( $nids as $nid ) {
@@ -46,20 +51,86 @@ class ConsultationsProximiteBlock extends BlockBase {
 				}
 			}
 		}
-
-		if ( count( $contents ) > 0 ) {
-			$build = [
-				'liste' => [
-					'#theme' => 'consultationsp',
-					'#data'  => $contents,
-				],
-				'pager' => [
-					'#type' => 'pager',
-				],
-			];
-		} else {
-			$build = [];
+		$tabPatients = [];
+		$patients    = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'types_patient' );
+		foreach ( $patients as $patient ) {
+			$tabPatients[ $patient->tid ] = $patient->name;
 		}
+
+		$tabVilles  = [];
+		$connection = Database::getConnection();
+		$query      = $connection->select( 'nc_villes', 'v' )
+		                         ->fields( 'v', array( 'id', 'ville', 'cp' ) )
+		                         ->orderBy( 'ville', 'ASC' );
+		$result     = $query->execute();
+
+		/**
+		 * Décommenter pour affiché la liste clef|label utilisé dans le champ filed_ville des consultations.
+		 * Début zone commentaire
+		 */
+
+		//echo "-------------------<br>";
+		foreach ( $result as $record ) {
+			$hasZero = "";
+			if  (strlen($record->cp) == 4){
+				$hasZero = 0;
+			}
+			$tabVilles[ $record->id ] = $record->ville . ' (' . $hasZero  . $record->cp . ')';
+
+			//echo $record->id ."|".$record->ville . ' (' . $hasZero  .$record->cp . ')<br>';
+		}
+		//echo "-------------------<br>";
+
+		/**
+		 * Fin zone commentaire
+		 */
+
+
+		$form  = [
+			'title'  => 'Où consulter ?',
+			'action' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/107' ),
+			'form'   => [
+				'lieu' => [
+					'#type'      => 'select',
+					'#title'     => 'Choisir votre commune',
+					'#attribute' => [
+						'class' => 'form-control'
+					],
+					'#name'  => 'ville',
+					'#options'   => $tabVilles,
+				],
+				'type' => [
+					'#type'      => 'select',
+					'#title'     => 'Type de patient',
+					'#attribute' => [
+						'class' => 'form-control',
+					],
+					'#name'  => 'type',
+					'#options'   => $tabPatients,
+				],
+			],
+		];
+
+		$carte = [
+
+		];
+		$build = [
+			'form'  => [
+				'#theme' => 'formconsultation',
+				'#data'  => $form,
+			],
+			'carte' => [
+				'#theme' => 'consultationmap',
+				'#data'  => $carte,
+			],
+			'liste' => [
+				'#theme' => 'consultationsp',
+				'#data'  => $contents,
+			],
+			'pager' => [
+				'#type' => 'pager',
+			],
+		];
 
 		return $build;
 	}
