@@ -1,0 +1,22 @@
+<?php
+/**
+ * Implements hook_theme().
+ */
+function nc_social_theme($existing, $type, $theme, $path) {
+  return array(
+    'table-list' => array(
+      'template' => 'table-list',
+      'variables' => array(
+        'header' => NULL,
+        'rows' => NULL,
+        'empty' => NULL,
+      )
+    ),
+    'link-list' => array(
+      'template' => 'link-list',
+      'variables' => array(
+        'rows' => NULL,
+      )
+    ),
+  );
+}

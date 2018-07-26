@@ -1,0 +1,21 @@
+multisite.config:
+  path: '/admin/config/site/multisites'
+  defaults:
+    _title: 'Configuration - Multi Sites'
+    _form: '\Drupal\nc_site\Form\MultiSiteForm'
+  requirements:
+    _permission: administer_ncsite
+livret.config:
+  path: '/admin/config/site/livret'
+  defaults:
+    _title: 'Configuration - Livret'
+    _form: '\Drupal\nc_site\Form\LivretForm'
+  requirements:
+    _permission: administer_ncsite
+rejoindre.config:
+  path: '/admin/config/site/rejoindre'
+  defaults:
+    _title: 'Configuration - Nous rejoindre'
+    _form: '\Drupal\nc_site\Form\RejoindreForm'
+  requirements:
+    _permission: administer_ncsite

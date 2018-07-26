@@ -1,0 +1,3 @@
+administer_nchome:
+  title: 'Administrer le module Home by Net.Com'
+  description: 'Permission pour administrer les fonctionnalités du module'

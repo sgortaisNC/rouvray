@@ -1,0 +1,6 @@
+homevisuel.admin:
+  title: "Configuration visuel page d'accueil"
+  route_name: homevisuel.config
+  description: ''
+  menu_name: admin
+  parent: system.admin_content

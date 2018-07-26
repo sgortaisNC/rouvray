@@ -1,0 +1,3 @@
+administer_ncsite:
+  title: 'Administrer le module Site by Net.Com'
+  description: 'Permission pour administrer les fonctionnalités du module'

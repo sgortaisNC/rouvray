@@ -1,0 +1,19 @@
+<div>
+    <h3>{{ data.formation.title }}</h3>
+    <img src="{{ data.formation.image.url }}" alt="{{ data.formation.image.alt }}">
+    <p>{{ data.formation.summary | raw }}</p>
+    <a href="{{ data.formation.link }}" title="Lire la suite">Lire la suite</a>
+</div>
+
+<div>
+    <a href="{{ data.formation.url }}">Découvrez toutes nos formations</a>
+</div>
+
+<div>
+    <a href="{{ data.offre.url }}">Découvrez toutes nos offres d'emploi</a>
+    <p>Actuellement {{ data.offre.nb }} offre{% if data.offre.nb > 1 %}s{% endif %} d'emploi</p>
+</div>
+
+<div>
+    <a href="{{ data.candidature.url }}">Déposez votre candidature</a>
+</div>

@@ -1,0 +1,6 @@
+name: Bloc d'options de thème
+description: Fonctionnalité permettant d'ajouter un bloc d'options de thèmes - By Net.Com
+type: module
+core: 8.x
+version: 8.x-1.0
+package: Net.Com

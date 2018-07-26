@@ -1,0 +1,15 @@
+<?php 
+
+/**
+ * Implements hook_theme().
+ */
+function nc_same_tag_theme($existing, $type, $theme, $path) {
+	return array(
+		'sametag' => array(
+			'template' => 'sametag',
+			'variables' => array(
+				'data' => NULL,
+			)
+		),
+	);
+}

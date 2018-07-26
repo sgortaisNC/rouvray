@@ -1,0 +1,101 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function nc_options_theme($existing, $type, $theme, $path) {
+    return array(
+        'option' => array(
+            'template' => 'option',
+            'variables' => array(
+                'data' => NULL,
+                'type' => NULL,
+            )
+        ),
+    );
+}
+
+
+function nc_options_theme_suggestions_option_alter(array &$suggestions, array $variables) {
+    $type = str_replace('site_options.', '', $variables['type']);
+    $suggestions[] = 'option__'.$type;
+}
+
+//OPTIONS DE THEMES
+function nc_options_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $form_id = NULL) {
+    $form['site_options'] = [
+        '#type' => 'fieldset',
+        '#title' => "Options complèmentaires",
+        '#tree' => TRUE,
+    ];
+        $form['site_options']['telephone'] = [
+            '#type' => 'textfield',
+            '#title' => "Téléphone",
+            '#default_value' => theme_get_setting('site_options.telephone', 'site'),
+        ];
+
+        $form['site_options']['coordonnees'] = [
+            '#type' => 'text_format',
+            '#title' => "Coordonnées",
+            '#format' => 'full_html',
+            '#default_value' => theme_get_setting('site_options.coordonnees', 'site')['value'],
+        ];
+
+        $form['site_options']['geoloc'] = [
+            '#type' => 'fieldset',
+            '#title' => "Géolocalisation",
+            '#tree' => TRUE,
+        ];
+            $form['site_options']['geoloc']['lat'] = [
+                '#type' => 'textfield',
+                '#title' => "Latitude",
+                '#default_value' => theme_get_setting('site_options.geoloc.lat', 'site'),
+            ];
+            $form['site_options']['geoloc']['long'] = [
+                '#type' => 'textfield',
+                '#title' => "Longitude",
+                '#default_value' => theme_get_setting('site_options.geoloc.long', 'site'),
+            ];
+
+        $form['site_options']['logo_footer'] = [
+            '#type' => 'managed_file',
+            '#title' => "Logo du pied de page",
+            '#default_value' => theme_get_setting('site_options.logo_footer', 'site'),
+            '#upload_location' => 'public://options'
+        ];
+
+        $form['site_options']['urgence'] = [
+            '#type' => 'fieldset',
+            '#title' => "Bouton Urgence",
+            '#tree' => TRUE,
+        ];
+            $form['site_options']['urgence']['url'] = [
+                '#type' => 'textfield',
+                '#title' => "URL",
+                '#default_value' => theme_get_setting('site_options.urgence.url', 'site'),
+            ];
+
+        $form['site_options']['contact'] = [
+            '#type' => 'fieldset',
+            '#title' => "Bouton Contactez-nous",
+            '#tree' => TRUE,
+        ];
+            $form['site_options']['contact']['url'] = [
+                '#type' => 'textfield',
+                '#title' => "URL",
+                '#default_value' => theme_get_setting('site_options.contact.url', 'site'),
+            ];
+
+        $form['site_options']['copyright'] = [
+            '#type' => 'textfield',
+            '#title' => "Copyright",
+            '#default_value' => theme_get_setting('site_options.copyright', 'site'),
+        ];
+
+        $form['site_options']['cnil'] = [
+            '#type' => 'text_format',
+            '#title' => "Mention CNIL",
+            '#format' => 'full_html',
+            '#default_value' => theme_get_setting('site_options.cnil', 'site')['value'],
+        ];
+}

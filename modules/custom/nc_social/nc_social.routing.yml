@@ -1,0 +1,30 @@
+ncsocial.list:
+  path: '/admin/config/social-network'
+  defaults:
+    _title: 'Liste des réseaux sociaux'
+    _controller: '\Drupal\nc_social\Controller\NcSocialController::contentList'
+  requirements:
+    _permission: administer_ncsocial
+ncsocial.add:
+  path: '/admin/config/social-network/add'
+  defaults:
+    _title: 'Réseaux sociaux - Ajouter'
+    _form: '\Drupal\nc_social\Form\NcSocialAddForm'
+  requirements:
+    _permission: administer_ncsocial
+ncsocial.edit:
+  path: '/admin/config/social-network/edit/{param}'
+  defaults:
+    _title: 'Réseaux sociaux - Modifier'
+    _form: '\Drupal\nc_social\Form\NcSocialEditForm'
+    param: ''
+  requirements:
+    _permission: administer_ncsocial
+ncsocial.delete:
+  path: '/admin/config/social-network/delete/{param}'
+  defaults:
+    _title: 'Réseaux sociaux - Supprimer'
+    _controller: '\Drupal\nc_social\Controller\NcSocialController::delete'
+    param: ''
+  requirements:
+    _permission: administer_ncsocial

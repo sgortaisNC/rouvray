@@ -1,0 +1,7 @@
+<ul>
+    {% for link in data %}
+        <li>
+            <a href="{{ link.url }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a>
+        </li>
+    {% endfor %}
+</ul>

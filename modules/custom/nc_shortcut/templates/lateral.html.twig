@@ -1,0 +1,7 @@
+{% for key, link in data %}
+    <div>
+        <img src="{{ link.icon }}" alt="{{ link.title }}">
+        <h3>{{ link.title }}</h3>
+        <a href="{{ link.link }}" title="Lire la suite">Lire la suite</a>
+    </div>
+{% endfor %}

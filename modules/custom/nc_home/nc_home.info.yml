@@ -1,0 +1,6 @@
+name: Home
+description: Fonctionnalité permettant d'ajouter des blocs dédiés à la page d'accueil - By Net.Com
+type: module
+core: 8.x
+version: 8.x-1.0
+package: Net.Com

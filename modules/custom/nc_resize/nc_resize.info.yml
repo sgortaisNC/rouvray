@@ -1,0 +1,6 @@
+name: Resize
+description: Fonctionnalité permettant de diminuer la taille de la police du contenu - By Net.Com
+type: module
+core: 8.x
+version: 8.x-1.0
+package: Net.Com

@@ -1,0 +1,6 @@
+name: Accès rapide
+description: Fonctionnalité permettant d'ajouter des accès rapide - By Net.Com
+type: module
+core: 8.x
+version: 8.x-1.0
+package: Net.Com

@@ -1,0 +1,12 @@
+shortcut.admin:
+  title: "Configuration du bloc Accès rapide"
+  route_name: shortcut.config
+  description: ''
+  menu_name: admin
+  parent: system.admin_content
+scgallery.admin:
+  title: "Configuration du bloc Gallerie photos"
+  route_name: scgallery.config
+  description: ''
+  menu_name: admin
+  parent: system.admin_content

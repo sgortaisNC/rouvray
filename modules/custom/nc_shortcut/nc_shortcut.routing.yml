@@ -1,0 +1,14 @@
+shortcut.config:
+  path: '/admin/config/shortcut'
+  defaults:
+    _title: 'Configuration - Accès rapide'
+    _form: '\Drupal\nc_shortcut\Form\ShortcutForm'
+  requirements:
+    _permission: administer_ncshortcut
+scgallery.config:
+  path: '/admin/config/shortcut/gallery'
+  defaults:
+    _title: 'Configuration - Gallerie photos'
+    _form: '\Drupal\nc_shortcut\Form\GalleryForm'
+  requirements:
+    _permission: administer_ncshortcut

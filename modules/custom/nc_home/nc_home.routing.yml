@@ -1,0 +1,7 @@
+homevisuel.config:
+  path: '/admin/config/home/visuel'
+  defaults:
+    _title: 'Configuration - Home Visuel'
+    _form: '\Drupal\nc_home\Form\HomeVisuelForm'
+  requirements:
+    _permission: administer_nchome

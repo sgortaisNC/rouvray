@@ -1,0 +1,17 @@
+{% if data.image is not empty %}
+    <img src="{{ data.image }}" alt="{{ data.title }}">
+{% endif %}
+
+{% if data.title is not empty %}
+    <h1>{{ data.title }}</h1>
+{% endif %}
+
+{% if data.presentation is not empty %}
+    <p>
+        {{ data.presentation }}
+    </p>
+{% endif %}
+
+{% if data.link is not empty %}
+    <a href="{{ data.link }}" title="Lire la suite">Lire la suite</a>
+{% endif %}

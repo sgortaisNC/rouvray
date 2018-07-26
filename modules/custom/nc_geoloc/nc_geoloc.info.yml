@@ -1,0 +1,6 @@
+name: Géolocalisation
+description: Fonctionnalité permettant d'ajouter un bloc avec une carte (une seul point) - By Net.Com
+type: module
+core: 8.x
+version: 8.x-1.0
+package: Net.Com

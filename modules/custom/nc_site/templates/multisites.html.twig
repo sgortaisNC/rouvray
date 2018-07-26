@@ -1,0 +1,8 @@
+{% for key, site in data %}
+    <div>
+        <img src="{{ site.image }}" alt="{{ site.title }}">
+        <img src="{{ site.logo }}" alt="{{ site.title }}">
+        <h3>{{ site.title }}</h3>
+        <a href="{{ site.link }}" title="Lire la suite">Lire la suite</a>
+    </div>
+{% endfor %}

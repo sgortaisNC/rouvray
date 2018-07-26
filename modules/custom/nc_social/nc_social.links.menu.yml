@@ -1,0 +1,6 @@
+ncsocial.admin:
+  title: 'Réseaux sociaux'
+  route_name: ncsocial.list
+  description: 'Liste des réseaux sociaux'
+  menu_name: admin
+  parent: system.admin_content

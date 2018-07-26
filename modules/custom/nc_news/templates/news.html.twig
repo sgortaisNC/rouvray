@@ -1,0 +1,16 @@
+<ul>
+    {% for article in data %}
+        <li>
+            <h3>{{ article.title }}</h3>
+            {% if article.type == 'actualite' %}
+                <span>{{ article.date }}</span><br>
+            {% else %}
+                <span>Du {{ article.date }} au {{ article.dateFin }}</span><br>
+            {% endif %}
+            <img src="{{ article.image.url }}" alt="{{ article.image.alt }}"/><br>
+            <a href="{{ article.url }}" title="Lire la suite">Lire la suite</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url }}">Toutes les actualités</a>

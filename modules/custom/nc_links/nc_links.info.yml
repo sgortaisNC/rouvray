@@ -1,0 +1,6 @@
+name: Liens utiles
+description: Fonctionnalité permettant d'ajouter un bloc basé sur un champ de liens - By Net.Com
+type: module
+core: 8.x
+version: 8.x-1.0
+package: Net.Com

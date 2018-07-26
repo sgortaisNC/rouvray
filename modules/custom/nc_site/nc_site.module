@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function nc_site_theme($existing, $type, $theme, $path) {
+    return [
+        'consultationsform' => [
+            'template' => 'consultationsform',
+            'variables' => [
+                'data' => NULL,
+            ],
+        ],
+        'multisites' => [
+            'template' => 'multisites',
+            'variables' => [
+                'data' => NULL,
+            ],
+        ],
+        'livret' => [
+            'template' => 'livret',
+            'variables' => [
+                'data' => NULL,
+            ],
+        ],
+        'rejoindre' => [
+            'template' => 'rejoindre',
+            'variables' => [
+                'data' => NULL,
+            ],
+        ],
+    ];
+}

@@ -1,0 +1,18 @@
+LISTE
+<ul>
+    {% for consultation in data %}
+        <li>
+            <h3>{{ consultation.title }}</h3>
+            <div>
+                {{ consultation.adresse }}
+            </div>
+            <div>
+                {{ consultation.telephone }}
+            </div>
+            <div>
+                {{ consultation.horaires }}
+            </div>
+            <a href="{{ consultation.url }}" title="Lire la suite">Lire la suite</a>
+        </li>
+    {% endfor %}
+</ul>

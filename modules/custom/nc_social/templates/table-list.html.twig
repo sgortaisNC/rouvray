@@ -1,0 +1,32 @@
+<table>
+  {% if header %}
+    <thead>
+    <tr>
+      {% for cell in header %}
+        <th>
+          {{ cell }}
+        </th>
+      {% endfor %}
+    </tr>
+    </thead>
+  {% endif %}
+
+  {% if rows %}
+    <tbody>
+    {% for row in rows %}
+      <tr>
+        {% for cell in row %}
+          <td>{{ cell|raw }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  {% elseif empty %}
+    <tbody>
+    <tr>
+      <td colspan="{{ header_columns }}">{{ empty }}</td>
+    </tr>
+    </tbody>
+  {% endif %}
+
+</table>
