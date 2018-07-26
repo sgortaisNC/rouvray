@@ -111,9 +111,6 @@ class ConsultationsProximiteBlock extends BlockBase {
 			],
 		];
 
-		$carte = [
-
-		];
 		$build = [
 			'form'  => [
 				'#theme' => 'formconsultation',
@@ -121,7 +118,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 			],
 			'carte' => [
 				'#theme' => 'consultationmap',
-				'#data'  => $carte,
+				'#data'  => $contents,
 			],
 			'liste' => [
 				'#theme' => 'consultationsp',
