@@ -34,11 +34,10 @@ class ConsultationsProximiteBlock extends BlockBase {
 		}
 
 		$form['consultation'] = [
-			'#type'    => 'select',
-			'#title'   => 'Type de consultation',
-			'#name'    => 'ville',
-			'#options' => $tabType,
-			"#value"   => isset($this->configuration['consultation']) ? $this->configuration['consultation'] : null
+			'#type'          => 'select',
+			'#title'         => 'Type de consultation',
+			'#options'       => $tabType,
+			'#default_value' => isset( $config['consultation_type'] ) ? $config['consultation_type'] : '728',
 		];
 
 		return $form;
@@ -49,8 +48,8 @@ class ConsultationsProximiteBlock extends BlockBase {
 	 */
 	public function blockSubmit( $form, FormStateInterface $form_state ) {
 		parent::blockSubmit( $form, $form_state );
-		$values                              = $form_state->getValues();
-		$this->configuration['consultation'] = $values['consultation'];
+		$values                                   = $form_state->getValues();
+		$this->configuration['consultation_type'] = $values['consultation'];
 	}
 
 	/**
@@ -65,14 +64,26 @@ class ConsultationsProximiteBlock extends BlockBase {
 		$query = \Drupal::entityQuery( 'node' );
 		$query->condition( 'type', [ 'consultation' ], 'IN' )
 		      ->condition( 'status', 1 )
-		      ->condition( 'field_consultation', $config["consultation"] ); //Consultation de proximité
+		      ->condition( 'field_consultation', $config['consultation_type'] ); //Consultation de proximité
 
-		if ( ! empty( $_GET["type"] ) ) {
-			$query->condition( "field_patients", $_GET["type"] );
+		switch ( $config['consultation_type'] ) {
+			case "728":
+				if ( ! empty( $_GET["type"] ) ) {
+					$query->condition( "field_patients", $_GET["type"] );
+				}
+				if ( ! empty( $_GET["ville"] ) ) {
+					$query->condition( "field_ville", $_GET["ville"] );
+				}
+				break;
+			case "729":
+				if ( ! empty( $_GET["type"] ) ) {
+					$query->condition( "field_prestation", $_GET["type"] );
+				}
+				break;
+			default:
+				break;
 		}
-		if ( ! empty( $_GET["ville"] ) ) {
-			$query->condition( "field_ville", $_GET["ville"] );
-		}
+
 		$nids = $query->sort( 'field_date', 'DESC' )
 		              ->sort( 'created', 'DESC' )
 		              ->pager( 25 )
@@ -114,6 +125,12 @@ class ConsultationsProximiteBlock extends BlockBase {
 			$tabPatients[ $patient->tid ] = $patient->name;
 		}
 
+		$tabPatho = [];
+		$pathos    = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'types_prestation' );
+		foreach ( $pathos as $patho ) {
+			$tabPatho[ $patho->tid ] = $patho->name;
+		}
+
 		$tabVilles = [];
 		$query     = $connection->select( 'nc_villes', 'v' )
 		                        ->fields( 'v', array( 'id', 'ville', 'cp' ) )
@@ -144,31 +161,57 @@ class ConsultationsProximiteBlock extends BlockBase {
 
 		$form = [
 			'title'  => 'Où consulter ?',
-			'action' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/107' ),
-			'form'   => [
-				'lieu' => [
-					'#type'      => 'select',
-					'#title'     => 'Choisir votre commune',
-					'#attribute' => [
-						'class' => 'form-control'
-					],
-					'#name'      => 'ville',
-					'#options'   => $tabVilles,
-				],
-				'type' => [
-					'#type'      => 'select',
-					'#title'     => 'Type de patient',
-					'#attribute' => [
-						'class' => 'form-control',
-					],
-					'#name'      => 'type',
-					'#options'   => $tabPatients,
-				],
-			],
+
+
 		];
 
+		switch ( $config['consultation_type'] ) {
+			case "728":
+				$form['action'] = \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/107' );
+				$form['form'] = [
+					'lieu' => [
+						'#type'      => 'select',
+						'#title'     => 'Choisir votre commune',
+						'#attribute' => [
+							'class' => 'form-control'
+						],
+						'#name'      => 'ville',
+						'#options'   => $tabVilles,
+					],
+					'type' => [
+						'#type'      => 'select',
+						'#title'     => 'Type de patient',
+						'#attribute' => [
+							'class' => 'form-control',
+						],
+						'#name'      => 'type',
+						'#options'   => $tabPatients,
+					],
+				];
+				break;
+			case "729":
+				$form['action'] = \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/108' );
+				$form['form'] = [
+					'type' => [
+						'#type'      => 'select',
+						'#title'     => 'Pathologie / Type de prestation',
+						'#attribute' => [
+							'class' => 'form-control',
+						],
+						'#name'      => 'type',
+						'#options'   => $tabPatho,
+					]
+				];
+				break;
+			default:
+				break;
+		}
+
+
 		if ( ! empty( $_GET ) ) {
-			$form["form"]["lieu"]["#value"] = $_GET["ville"];
+			if (!empty($_GET["ville"])){
+				$form["form"]["lieu"]["#value"] = $_GET["ville"];
+			}
 			$form["form"]["type"]["#value"] = $_GET["type"];
 		}
 
@@ -198,7 +241,8 @@ class ConsultationsProximiteBlock extends BlockBase {
 		return $build;
 	}
 
-	public function getCacheTags() {
+	public
+	function getCacheTags() {
 		//With this when your node change your block will rebuild
 		if ( $node = \Drupal::routeMatch()->getParameter( 'node' ) ) {
 			//if there is node add its cachetag
@@ -209,7 +253,8 @@ class ConsultationsProximiteBlock extends BlockBase {
 		}
 	}
 
-	public function getCacheContexts() {
+	public
+	function getCacheContexts() {
 		//if you depends on \Drupal::routeMatch()
 		//you must set context of this block with 'route' context tag.
 		//Every new route this block will rebuild
