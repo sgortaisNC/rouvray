@@ -787,11 +787,11 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 }
 $config_directories['sync'] = '../config/sync';
 $databases['default']['default'] = array (
-  'database' => 'rouvray_preprod',
-  'username' => 'rouvray_prep_usr',
-  'password' => '3i_f7mS5',
+  'database' => 'ch-rouvray',
+  'username' => 'root',
+  'password' => 'netcom',
   'prefix' => '',
-  'host' => '94.23.200.70',
+  'host' => '172.16.5.21',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
