@@ -59,7 +59,7 @@ class SameTagBlock extends BlockBase {
                         }
                         $tabNodes[$countTags][$nid] = $nodeContent;
                     }
-                    arsort($tabNodes);
+                    krsort($tabNodes);
 
                     $result = [];
                     if (count($tabNodes) > 0) {
