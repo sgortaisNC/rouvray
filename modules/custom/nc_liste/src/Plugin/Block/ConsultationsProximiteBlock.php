@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Database\Database;
 use Drupal\node\Entity\Node;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\taxonomy\Entity\Term;
 
 /**
@@ -20,7 +21,43 @@ class ConsultationsProximiteBlock extends BlockBase {
 	/**
 	 * {@inheritdoc}
 	 */
+	public function blockForm( $form, FormStateInterface $form_state ) {
+
+		$form    = parent::blockForm( $form, $form_state );
+		$config  = $this->getConfiguration();
+		$tids    = [ 728, 729 ];
+		$terms   = Term::loadMultiple( $tids );
+		$tabType = [];
+
+		foreach ( $terms as $term ) {
+			$tabType[ $term->tid->value ] = $term->name->value;
+		}
+
+		$form['consultation'] = [
+			'#type'    => 'select',
+			'#title'   => 'Type de consultation',
+			'#name'    => 'ville',
+			'#options' => $tabType,
+			"#value"   => isset($this->configuration['consultation']) ? $this->configuration['consultation'] : null
+		];
+
+		return $form;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function blockSubmit( $form, FormStateInterface $form_state ) {
+		parent::blockSubmit( $form, $form_state );
+		$values                              = $form_state->getValues();
+		$this->configuration['consultation'] = $values['consultation'];
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
 	public function build() {
+		$config     = $this->getConfiguration();
 		$connection = Database::getConnection();
 
 		$contents = $nids = [];
@@ -28,13 +65,13 @@ class ConsultationsProximiteBlock extends BlockBase {
 		$query = \Drupal::entityQuery( 'node' );
 		$query->condition( 'type', [ 'consultation' ], 'IN' )
 		      ->condition( 'status', 1 )
-		      ->condition( 'field_consultation', 728 ); //Consultation de proximité
+		      ->condition( 'field_consultation', $config["consultation"] ); //Consultation de proximité
 
 		if ( ! empty( $_GET["type"] ) ) {
-			$query->condition( "field_patients", $_GET["type"]);
+			$query->condition( "field_patients", $_GET["type"] );
 		}
-		if  ( ! empty( $_GET["ville"] ) ) {
-			$query->condition( "field_ville", $_GET["ville"]);
+		if ( ! empty( $_GET["ville"] ) ) {
+			$query->condition( "field_ville", $_GET["ville"] );
 		}
 		$nids = $query->sort( 'field_date', 'DESC' )
 		              ->sort( 'created', 'DESC' )
@@ -46,17 +83,17 @@ class ConsultationsProximiteBlock extends BlockBase {
 			foreach ( $nids as $nid ) {
 				$nodeContent = Node::load( $nid );
 				if ( ! empty( $nodeContent ) ) {
-					$query      = $connection->select( 'nc_villes', 'v' )
-					                         ->fields( 'v', array( 'id', 'ville', 'cp' ) )
-					                         ->condition( 'id', $nodeContent->get( 'field_ville' )->value )
-					                         ->orderBy( 'ville', 'ASC' );
-					$result     = $query->execute();
-					foreach ($result as $ville){
+					$query  = $connection->select( 'nc_villes', 'v' )
+					                     ->fields( 'v', array( 'id', 'ville', 'cp' ) )
+					                     ->condition( 'id', $nodeContent->get( 'field_ville' )->value )
+					                     ->orderBy( 'ville', 'ASC' );
+					$result = $query->execute();
+					foreach ( $result as $ville ) {
 						$hasZero = "";
 						if ( strlen( $ville->cp ) == 4 ) {
 							$hasZero = 0;
 						}
-						$nvillle = $ville->ville." ($hasZero".$ville->cp.")";
+						$nvillle = $ville->ville . " ($hasZero" . $ville->cp . ")";
 					}
 					$contents[] = [
 						'title'     => $nodeContent->getTitle(),
@@ -77,11 +114,11 @@ class ConsultationsProximiteBlock extends BlockBase {
 			$tabPatients[ $patient->tid ] = $patient->name;
 		}
 
-		$tabVilles  = [];
-		$query      = $connection->select( 'nc_villes', 'v' )
-		                         ->fields( 'v', array( 'id', 'ville', 'cp' ) )
-		                         ->orderBy( 'ville', 'ASC' );
-		$result     = $query->execute();
+		$tabVilles = [];
+		$query     = $connection->select( 'nc_villes', 'v' )
+		                        ->fields( 'v', array( 'id', 'ville', 'cp' ) )
+		                        ->orderBy( 'ville', 'ASC' );
+		$result    = $query->execute();
 
 		/**
 		 * Décommenter pour affiché la liste clef|label utilisé dans le champ filed_ville des consultations.
@@ -130,19 +167,19 @@ class ConsultationsProximiteBlock extends BlockBase {
 			],
 		];
 
-		if  (!empty($_GET)){
+		if ( ! empty( $_GET ) ) {
 			$form["form"]["lieu"]["#value"] = $_GET["ville"];
 			$form["form"]["type"]["#value"] = $_GET["type"];
 		}
-		
+
 		$build = [
 			'form'  => [
 				'#theme' => 'formconsultation',
 				'#data'  => $form,
 			],
 			'carte' => [
-				'#theme' => 'consultationmap',
-				'#data'  => $contents,
+				'#theme'    => 'consultationmap',
+				'#data'     => $contents,
 				'#attached' => [
 					'library' => [
 						'nc_liste/leaflet',
