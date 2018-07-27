@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Database\Database;
 use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Provides a 'Liste - Consultations de proximité' Block.
@@ -20,15 +21,15 @@ class ConsultationsProximiteBlock extends BlockBase {
 	 * {@inheritdoc}
 	 */
 	public function build() {
+		$connection = Database::getConnection();
+
 		$contents = $nids = [];
 
 		$query = \Drupal::entityQuery( 'node' );
 		$query->condition( 'type', [ 'consultation' ], 'IN' )
 		      ->condition( 'status', 1 )
 		      ->condition( 'field_consultation', 728 ); //Consultation de proximité
-		/**
-		 * @TODO affiner requete si GET
-		 */
+
 		if ( ! empty( $_GET["type"] ) ) {
 			$query->condition( "field_patients", $_GET["type"]);
 		}
@@ -45,13 +46,20 @@ class ConsultationsProximiteBlock extends BlockBase {
 			foreach ( $nids as $nid ) {
 				$nodeContent = Node::load( $nid );
 				if ( ! empty( $nodeContent ) ) {
+					$query      = $connection->select( 'nc_villes', 'v' )
+					                         ->fields( 'v', array( 'id', 'ville', 'cp' ) )
+					                         ->condition( 'id', $nodeContent->get( 'field_ville' )->value )
+					                         ->orderBy( 'ville', 'ASC' );
+					$result     = $query->execute();
+					var_dump($result);die();
 					$contents[] = [
 						'title'     => $nodeContent->getTitle(),
 						'adresse'   => $nodeContent->get( 'field_adresse' )->value,
+						'ville'     => $nodeContent->get( 'field_ville' )->getValue(),
 						'telephone' => $nodeContent->get( 'field_telephone' )->value,
 						'horaires'  => $nodeContent->get( 'field_horaires' )->value,
 						'lat'       => $nodeContent->get( 'field_gps_latitude' )->value,
-						'lng'       => $nodeContent->get( 'field_horaires' )->value,
+						'lng'       => $nodeContent->get( 'field_gps_longitude' )->value,
 						'url'       => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
 					];
 				}
@@ -64,7 +72,6 @@ class ConsultationsProximiteBlock extends BlockBase {
 		}
 
 		$tabVilles  = [];
-		$connection = Database::getConnection();
 		$query      = $connection->select( 'nc_villes', 'v' )
 		                         ->fields( 'v', array( 'id', 'ville', 'cp' ) )
 		                         ->orderBy( 'ville', 'ASC' );
@@ -117,6 +124,11 @@ class ConsultationsProximiteBlock extends BlockBase {
 			],
 		];
 
+		if  (!empty($_GET)){
+			$form["form"]["lieu"]["#value"] = $_GET["ville"];
+			$form["form"]["type"]["#value"] = $_GET["type"];
+		}
+		
 		$build = [
 			'form'  => [
 				'#theme' => 'formconsultation',

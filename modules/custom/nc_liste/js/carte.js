@@ -1,9 +1,20 @@
-var map = L.map('mapConsult').setView([51.505, -0.09], 13);
+var map = L.map('mapConsult').setView([49.3990733, 1.0984624], 11);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-L.marker([51.5, -0.09]).addTo(map)
-    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    .openPopup();
+
+var $ = jQuery;
+
+$(".markerConsult").each(function () {
+    L.marker([$(this).data("lat"), $(this).data("lng")])
+        .bindPopup($(this).data("titre")
+            +"<br>"+$(this).data("adress")
+            +"<br>"+$(this).data("ville")
+            +"<br>"+$(this).data("tel")
+            +"<br>"+$(this).data("horaire")
+            +"<br><a href=\""+$(this).data("url")+"\">Voir le détail</a>"
+            )
+        .addTo(map);
+});

@@ -1,5 +1,13 @@
 {% for consultation in data %}
-    <div class="markerConsult" data-lat="" data-lng="" data-adress="" data-tel="" data-ville="" data-horaire=""></div>
+    <div class="markerConsult"
+         data-titre="{{ consultation.title }}"
+         data-lat="{{ consultation.lat }}"
+         data-lng="{{ consultation.lng }}"
+         data-adress="{{ consultation.adresse }}"
+         data-tel="{{ consultation.telephone }}"
+         data-ville="{{ consultation.ville }}"
+         data-url="{{ consultation.url }}"
+         data-horaire="{{ consultation.horaires }}"></div>
 {% endfor %}
 
 <div id="mapConsult" style="width: 100%; height: 350px"></div>
