@@ -51,11 +51,17 @@ class ConsultationsProximiteBlock extends BlockBase {
 					                         ->condition( 'id', $nodeContent->get( 'field_ville' )->value )
 					                         ->orderBy( 'ville', 'ASC' );
 					$result     = $query->execute();
-					var_dump($result);die();
+					foreach ($result as $ville){
+						$hasZero = "";
+						if ( strlen( $ville->cp ) == 4 ) {
+							$hasZero = 0;
+						}
+						$nvillle = $ville->ville." ($hasZero".$ville->cp.")";
+					}
 					$contents[] = [
 						'title'     => $nodeContent->getTitle(),
 						'adresse'   => $nodeContent->get( 'field_adresse' )->value,
-						'ville'     => $nodeContent->get( 'field_ville' )->getValue(),
+						'ville'     => $nvillle,
 						'telephone' => $nodeContent->get( 'field_telephone' )->value,
 						'horaires'  => $nodeContent->get( 'field_horaires' )->value,
 						'lat'       => $nodeContent->get( 'field_gps_latitude' )->value,
