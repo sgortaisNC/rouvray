@@ -35,5 +35,11 @@ function nc_liste_theme($existing, $type, $theme, $path) {
                 'data' => NULL,
             )
         ),
+        'articleliste' => array(
+	        'template' => 'articleliste',
+	        'variables' => array(
+		        'data' => NULL,
+	        )
+        ),
     );
 }

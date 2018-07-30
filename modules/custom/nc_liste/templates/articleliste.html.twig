@@ -1,0 +1,26 @@
+<ul>
+    {% for article in data %}
+        <li>
+            <h3>{{ article.title }}</h3>
+            <div>
+                {{ article.affichage }}
+            </div>
+            <div>
+                {{ article.image }}
+            </div>
+            <div>
+                {{ article.date_deb }}
+            </div>
+            <div>
+                {{ article.date_fin }}
+            </div>
+            <div>
+                {{ article.lieu }}
+            </div>
+            <div>
+                {{ article.body }}
+            </div>
+            <a href="{{ article.url }}" title="Lire la suite">Lire la suite</a>
+        </li>
+    {% endfor %}
+</ul>
