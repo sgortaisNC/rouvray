@@ -30,6 +30,9 @@ class RejoindreBlock extends BlockBase {
 
         //Image
         $urlImage = $altImage = '';
+	    /**
+	     * @TODO Error: Call to a member function get() on null in Drupal\nc_site\Plugin\Block\RejoindreBlock->build() (line 36 of modules\custom\nc_site\src\Plugin\Block\RejoindreBlock.php).
+	     */
         if(count($formation->get('field_image')->getValue()) > 0){
             $file = File::load($formation->get('field_image')->getValue()[0]['target_id']);
             if(!empty($file)){
