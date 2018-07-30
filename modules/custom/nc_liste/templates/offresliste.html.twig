@@ -1,0 +1,35 @@
+<ul>
+    {% for offre in data %}
+        <li>
+            <h3>{{ offre.title }}</h3>
+            <div>
+                URL : {{ offre.image.url }} ALT : {{ offre.image.alt }}
+            </div>
+            <div>
+                {{ offre.statut }}
+            </div>
+            <div>
+                {{ offre.grade }}
+            </div>
+            <div>
+                {{ offre.lieu }}
+            </div>
+            <div>
+                {{ offre.fiche }}
+            </div>
+            <div>
+                {{ offre.date_limite }}
+            </div>
+            <div>
+                {{ offre.date_deb }}
+            </div>
+            <div>
+                {{ offre.date_fin }}
+            </div>
+            <div>
+                {{ offre.type_contrat }}
+            </div>
+            <a href="{{ offre.url }}" title="Lire la suite">Lire la suite</a>
+        </li>
+    {% endfor %}
+</ul>

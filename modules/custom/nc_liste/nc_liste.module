@@ -35,6 +35,18 @@ function nc_liste_theme($existing, $type, $theme, $path) {
                 'data' => NULL,
             )
         ),
+        'offresliste' => array(
+            'template' => 'offresliste',
+            'variables' => array(
+                'data' => NULL,
+            )
+        ),
+        'offresform' => array(
+            'template' => 'offresform',
+            'variables' => array(
+                'data' => NULL,
+            )
+        ),
         'articleliste' => array(
 	        'template' => 'articleliste',
 	        'variables' => array(
