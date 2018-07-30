@@ -30,7 +30,7 @@ class ListeactualiteBlock extends BlockBase {
 		$query->condition( 'type', [ 'article' ], 'IN' )
 		      ->condition( 'status', 1 );
 
-		$nids = $query->sort( 'created', 'DESC' )
+		$nids = $query->sort( 'field_date', 'DESC' )
 		              ->pager( 25 )
 		              ->execute();
 
@@ -47,7 +47,10 @@ class ListeactualiteBlock extends BlockBase {
 					$contents[] = [
 						'title'        => $nodeContent->getTitle(),
 						'affichage'    => $nodeContent->get("field_affichage")->getValue()[0]["value"],
-						"image"        => $image,
+						"image"        => [
+							"url" => $image,
+							"alt" => $nodeContent->get("field_image")->getValue()[0]['alt']
+						],
 						"date_deb"     => $nodeContent->get("field_date")->getValue()[0]["value"],
 						"date_fin"     => $date_fin,
 						"lieu"         => $lieu,
