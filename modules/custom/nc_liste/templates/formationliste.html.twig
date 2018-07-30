@@ -1,0 +1,20 @@
+<ul>
+    {% for formation in data %}
+        <li>
+            <h3>{{ formation.title }}</h3>
+            <div>
+                {{ formation.duree }}
+            </div>
+            <div>
+                {{ formation.organisation }}
+            </div>
+            <div>
+                {{ formation.publics }}
+            </div>
+            <div>
+                {{ formation.objectifs }}
+            </div>
+            <a href="{{ formation.url }}" title="Lire la suite">Lire la suite</a>
+        </li>
+    {% endfor %}
+</ul>

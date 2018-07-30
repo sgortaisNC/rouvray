@@ -23,5 +23,17 @@ function nc_liste_theme($existing, $type, $theme, $path) {
                 'data' => NULL,
             )
         ),
+	    'formationliste' => array(
+            'template' => 'formationliste',
+            'variables' => array(
+                'data' => NULL,
+            )
+        ),
+        'formationform' => array(
+            'template' => 'formationform',
+            'variables' => array(
+                'data' => NULL,
+            )
+        ),
     );
 }
