@@ -1,0 +1,23 @@
+<ul>
+    {% for offre in data %}
+        <li>
+            <h3>{{ offre.title }}</h3>
+            <div>
+                {{ offre.epreuve }}
+            </div>
+            <div>
+                {{ offre.date_publication }}
+            </div>
+            <div>
+                {{ offre.type_concours }}
+            </div>
+            <div>
+                {{ offre.grade }}
+            </div>
+            <div>
+                {{ offre.date_limite }}
+            </div>
+            <a href="{{ offre.url }}" title="Lire la suite">Lire la suite</a>
+        </li>
+    {% endfor %}
+</ul>

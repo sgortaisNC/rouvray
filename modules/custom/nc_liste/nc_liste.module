@@ -47,6 +47,18 @@ function nc_liste_theme($existing, $type, $theme, $path) {
                 'data' => NULL,
             )
         ),
+        'concoursliste' => array(
+            'template' => 'concoursliste',
+            'variables' => array(
+                'data' => NULL,
+            )
+        ),
+        'concoursform' => array(
+            'template' => 'concoursform',
+            'variables' => array(
+                'data' => NULL,
+            )
+        ),
         'articleliste' => array(
 	        'template' => 'articleliste',
 	        'variables' => array(
