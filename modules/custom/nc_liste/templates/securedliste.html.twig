@@ -1,0 +1,14 @@
+<ul>
+    {% for secured in data %}
+        <li>
+            <h3>{{ secured.title }}</h3>
+            <div>
+                URL : {{ secured.image.url }} ALT : {{ secured.image.alt }}
+            </div>
+            <div>
+                {{ secured.body }}
+            </div>
+            <a href="{{ secured.url }}" title="Lire la suite">Lire la suite</a>
+        </li>
+    {% endfor %}
+</ul>

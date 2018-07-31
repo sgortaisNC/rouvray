@@ -5,7 +5,7 @@ use Drupal\Core\Database\Database;
 
 function nc_site_preprocess_node( &$variables ) {
 	if ( isset( $variables['node'] ) ) {
-		if ( $variables['node']->bundle() == "secured" ) {
+		if ( $variables['node']->bundle() == "secured" ||  $variables['node']->id()  == 120) {
 			$user = \Drupal::currentUser();
 			if  ($user->getRoles()[0] == 'anonymous'){
 				global $base_url;

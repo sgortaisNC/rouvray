@@ -65,5 +65,11 @@ function nc_liste_theme($existing, $type, $theme, $path) {
 		        'data' => NULL,
 	        )
         ),
+        'securedliste' => array(
+	        'template' => 'securedliste',
+	        'variables' => array(
+		        'data' => NULL,
+	        )
+        ),
     );
 }
