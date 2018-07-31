@@ -120,13 +120,13 @@ class ConsultationsProximiteBlock extends BlockBase {
 				}
 			}
 		}
-		$tabPatients = [];
+		$tabPatients = ["" => "Sélectionnez un type de patient"];
 		$patients    = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'types_patient' );
 		foreach ( $patients as $patient ) {
 			$tabPatients[ $patient->tid ] = $patient->name;
 		}
 
-		$tabPatho = [];
+		$tabPatho = ["" => "Sélectionnez une pathologie ou un type de prestation"];
 		$pathos    = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'types_prestation' );
 		foreach ( $pathos as $patho ) {
 			$tabPatho[ $patho->tid ] = $patho->name;
