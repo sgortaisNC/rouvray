@@ -1,5 +1,48 @@
 <?php
 
+use Drupal\Core\Database\Database;
+
+
+/**
+ * Implements hook_entity_presave().
+ */
+function nc_site_entity_presave( Drupal\Core\Entity\EntityInterface $entity ) {
+	switch ( $entity->bundle() ) {
+		case 'consultation':
+
+			$connection = Database::getConnection();
+
+			$node    = \Drupal\node\Entity\Node::load( $entity->id() );
+			$query   = $connection->select( 'nc_villes', 'v' )
+			                      ->fields( 'v', array( 'id', 'ville', 'cp' ) )
+			                      ->condition( 'id', $node->get( 'field_ville' )->value )
+			                      ->orderBy( 'ville', 'ASC' );
+			$result  = $query->execute();
+			$nville = $cp = "";
+			foreach ( $result as $ville ) {
+				$hasZero = "";
+				if ( strlen( $ville->cp ) == 4 ) {
+					$hasZero = 0;
+				}
+				$nville = $ville->ville;
+				$cp    = $hasZero . $ville->cp;
+			}
+			$node_address = $node->get( "field_adresse" )->getValue()[0]["value"];
+			$address      = urlencode( $node_address . ", " . $cp . " " . $nville . ", france" );
+			$url          = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=" . $address;
+			$response     = file_get_contents( $url );
+			$json         = json_decode( $response, true );
+
+			$lat = $json['results'][0]['geometry']['location']['lat'];
+			$lng = $json['results'][0]['geometry']['location']['lng'];
+
+			$entity->set( "field_gps_latitude", $lat );
+			$entity->set( "field_gps_longitude", $lng );
+
+			break;
+	}
+}
+
 /**
  * Implements hook_theme().
  */
