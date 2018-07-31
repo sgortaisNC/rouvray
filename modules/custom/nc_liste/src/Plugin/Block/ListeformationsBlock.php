@@ -58,10 +58,10 @@ class ListeformationsBlock extends BlockBase {
 
 					$contents[] = [
 						'title'        => $nodeContent->getTitle(),
-						'duree'        => $nodeContent->get("field_duree")->getValue()[0]["value"],
-						'organisation' => $nodeContent->get("field_organisation")->getValue()[0]["value"],
+						'duree'        => !empty($nodeContent->get("field_duree")->getValue()[0]["value"]) ? $nodeContent->get("field_duree")->getValue()[0]["value"] : "",
+						'organisation' => !empty($nodeContent->get("field_organisation")->getValue()[0]["value"]) ? $nodeContent->get("field_organisation")->getValue()[0]["value"] : "",
 						'publics'      => implode(", ",$fPublic),
-						'objectifs'    => $nodeContent->get("field_objectifs")->getValue()[0]["value"],
+						'objectifs'    => !empty($nodeContent->get("field_objectifs")->getValue()[0]["value"]) ? $nodeContent->get("field_objectifs")->getValue()[0]["value"] : "",
 						'url'          => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
 					];
 				}

@@ -39,23 +39,28 @@ class ListeactualiteBlock extends BlockBase {
 			foreach ( $nids as $nid ) {
 				$nodeContent = Node::load( $nid );
 				if ( ! empty( $nodeContent ) ) {
-
-					$image = file_create_url(File::load($nodeContent->get("field_image")->getValue()[0]['target_id'])->getFileUri());
-					$body = strlen($nodeContent->get("body")->getValue()[0]["value"])> 175 ? substr($nodeContent->get("body")->getValue()[0]["value"],0,175)."..." : $nodeContent->get("body")->getValue()[0]["value"];
-					$date_fin = !empty($nodeContent->get("field_date_other")->getValue()[0]["value"]) ? $nodeContent->get("field_date_other")->getValue()[0]["value"] : "";
-					$lieu = !empty($nodeContent->get("field_lieu")->getValue()[0]["value"]) ? $nodeContent->get("field_lieu")->getValue()[0]["value"] : '';
+					$image = "";
+					if ( ! empty( $nodeContent->get( "field_image" )->getValue()[0]['target_id'] ) ) {
+						$image = file_create_url( File::load( $nodeContent->get( "field_image" )->getValue()[0]['target_id'] )->getFileUri() );
+					}
+					$body = "";
+					if ( ! empty( $nodeContent->get( "body" )->getValue()[0]["value"] ) ) {
+						$body = strlen( $nodeContent->get( "body" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "body" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "body" )->getValue()[0]["value"];
+					}
+					$date_fin   = ! empty( $nodeContent->get( "field_date_other" )->getValue()[0]["value"] ) ? $nodeContent->get( "field_date_other" )->getValue()[0]["value"] : "";
+					$lieu       = ! empty( $nodeContent->get( "field_lieu" )->getValue()[0]["value"] ) ? $nodeContent->get( "field_lieu" )->getValue()[0]["value"] : '';
 					$contents[] = [
-						'title'        => $nodeContent->getTitle(),
-						'affichage'    => $nodeContent->get("field_affichage")->getValue()[0]["value"],
-						"image"        => [
+						'title'     => $nodeContent->getTitle(),
+						'affichage' => $nodeContent->get( "field_affichage" )->getValue()[0]["value"],
+						"image"     => [
 							"url" => $image,
-							"alt" => $nodeContent->get("field_image")->getValue()[0]['alt']
+							"alt" => ! empty( $nodeContent->get( "field_image" )->getValue()[0]['alt'] ) ? $nodeContent->get( "field_image" )->getValue()[0]['alt'] : ""
 						],
-						"date_deb"     => $nodeContent->get("field_date")->getValue()[0]["value"],
-						"date_fin"     => $date_fin,
-						"lieu"         => $lieu,
-						"body"         => $body,
-						'url'          => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
+						"date_deb"  => $nodeContent->get( "field_date" )->getValue()[0]["value"],
+						"date_fin"  => $date_fin,
+						"lieu"      => $lieu,
+						"body"      => $body,
+						'url'       => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
 					];
 				}
 			}

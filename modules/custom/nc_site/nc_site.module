@@ -5,7 +5,7 @@ use Drupal\Core\Database\Database;
 
 function nc_site_preprocess_node( &$variables ) {
 	if ( isset( $variables['node'] ) ) {
-		if ( $variables['node']->bundle() == "secured" ||  $variables['node']->id()  == 120) {
+		if ( $variables['node']->bundle() == "secured" ||  $variables['node']->bundle()  == 120) {
 			$user = \Drupal::currentUser();
 			if  ($user->getRoles()[0] == 'anonymous'){
 				global $base_url;
@@ -23,13 +23,11 @@ function nc_site_preprocess_node( &$variables ) {
 function nc_site_entity_presave( Drupal\Core\Entity\EntityInterface $entity ) {
 	switch ( $entity->bundle() ) {
 		case 'consultation':
-
 			$connection = Database::getConnection();
 
-			$node   = \Drupal\node\Entity\Node::load( $entity->id() );
 			$query  = $connection->select( 'nc_villes', 'v' )
 			                     ->fields( 'v', array( 'id', 'ville', 'cp' ) )
-			                     ->condition( 'id', $node->get( 'field_ville' )->value )
+			                     ->condition( 'id', $entity->get( 'field_ville' )->value )
 			                     ->orderBy( 'ville', 'ASC' );
 			$result = $query->execute();
 			$nville = $cp = "";
@@ -41,7 +39,7 @@ function nc_site_entity_presave( Drupal\Core\Entity\EntityInterface $entity ) {
 				$nville = $ville->ville;
 				$cp     = $hasZero . $ville->cp;
 			}
-			$node_address = $node->get( "field_adresse" )->getValue()[0]["value"];
+			$node_address = $entity->get( "field_adresse" )->getValue()[0]["value"];
 			$address      = urlencode( $node_address . ", " . $cp . " " . $nville . ", france" );
 			$url          = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=" . $address;
 			$response     = file_get_contents( $url );
