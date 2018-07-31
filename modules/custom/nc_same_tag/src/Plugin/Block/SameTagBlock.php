@@ -37,7 +37,7 @@ class SameTagBlock extends BlockBase {
                     $tabTags[] = $tag['target_id'];
                 }
                 $query = \Drupal::entityQuery('node');
-                $query-->condition('field_tags', $tabTags, 'IN')
+                $query->condition('field_tags', $tabTags, 'IN')
                     ->condition('status', 1)
                     ->condition('nid', $node->id(), '!=');
 
