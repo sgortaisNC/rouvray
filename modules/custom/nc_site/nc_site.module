@@ -3,6 +3,20 @@
 use Drupal\Core\Database\Database;
 
 
+function nc_site_preprocess_node( &$variables ) {
+	if ( isset( $variables['node'] ) ) {
+		if ( $variables['node']->bundle() == "secured" ) {
+			$user = \Drupal::currentUser();
+			if  ($user->getRoles()[0] == 'anonymous'){
+				global $base_url;
+				$response = new Symfony\Component\HttpFoundation\RedirectResponse($base_url."/user");
+				$response->send(); // don't send the response yourself inside controller and form.
+				return;
+			}
+		}
+	}
+}
+
 /**
  * Implements hook_entity_presave().
  */
@@ -12,12 +26,12 @@ function nc_site_entity_presave( Drupal\Core\Entity\EntityInterface $entity ) {
 
 			$connection = Database::getConnection();
 
-			$node    = \Drupal\node\Entity\Node::load( $entity->id() );
-			$query   = $connection->select( 'nc_villes', 'v' )
-			                      ->fields( 'v', array( 'id', 'ville', 'cp' ) )
-			                      ->condition( 'id', $node->get( 'field_ville' )->value )
-			                      ->orderBy( 'ville', 'ASC' );
-			$result  = $query->execute();
+			$node   = \Drupal\node\Entity\Node::load( $entity->id() );
+			$query  = $connection->select( 'nc_villes', 'v' )
+			                     ->fields( 'v', array( 'id', 'ville', 'cp' ) )
+			                     ->condition( 'id', $node->get( 'field_ville' )->value )
+			                     ->orderBy( 'ville', 'ASC' );
+			$result = $query->execute();
 			$nville = $cp = "";
 			foreach ( $result as $ville ) {
 				$hasZero = "";
@@ -25,7 +39,7 @@ function nc_site_entity_presave( Drupal\Core\Entity\EntityInterface $entity ) {
 					$hasZero = 0;
 				}
 				$nville = $ville->ville;
-				$cp    = $hasZero . $ville->cp;
+				$cp     = $hasZero . $ville->cp;
 			}
 			$node_address = $node->get( "field_adresse" )->getValue()[0]["value"];
 			$address      = urlencode( $node_address . ", " . $cp . " " . $nville . ", france" );
@@ -46,31 +60,31 @@ function nc_site_entity_presave( Drupal\Core\Entity\EntityInterface $entity ) {
 /**
  * Implements hook_theme().
  */
-function nc_site_theme($existing, $type, $theme, $path) {
-    return [
-        'consultationsform' => [
-            'template' => 'consultationsform',
-            'variables' => [
-                'data' => NULL,
-            ],
-        ],
-        'multisites' => [
-            'template' => 'multisites',
-            'variables' => [
-                'data' => NULL,
-            ],
-        ],
-        'livret' => [
-            'template' => 'livret',
-            'variables' => [
-                'data' => NULL,
-            ],
-        ],
-        'rejoindre' => [
-            'template' => 'rejoindre',
-            'variables' => [
-                'data' => NULL,
-            ],
-        ],
-    ];
+function nc_site_theme( $existing, $type, $theme, $path ) {
+	return [
+		'consultationsform' => [
+			'template'  => 'consultationsform',
+			'variables' => [
+				'data' => null,
+			],
+		],
+		'multisites'        => [
+			'template'  => 'multisites',
+			'variables' => [
+				'data' => null,
+			],
+		],
+		'livret'            => [
+			'template'  => 'livret',
+			'variables' => [
+				'data' => null,
+			],
+		],
+		'rejoindre'         => [
+			'template'  => 'rejoindre',
+			'variables' => [
+				'data' => null,
+			],
+		],
+	];
 }
