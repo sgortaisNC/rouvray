@@ -65,6 +65,12 @@ function nc_liste_theme($existing, $type, $theme, $path) {
 		        'data' => NULL,
 	        )
         ),
+        'carrefourliste' => array(
+	        'template' => 'carrefourliste',
+	        'variables' => array(
+		        'data' => NULL,
+	        )
+        ),
         'securedliste' => array(
 	        'template' => 'securedliste',
 	        'variables' => array(
