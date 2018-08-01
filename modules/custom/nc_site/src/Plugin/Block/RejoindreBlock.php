@@ -71,10 +71,10 @@ class RejoindreBlock extends BlockBase {
 						'alt' => $altImage,
 					],
 					'link'    => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $formation->id() ),
-					'url'     => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/1' ),
+					'url'     => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/110' ),
 				],
 				'offre'       => [
-					'url' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/1' ),
+					'url' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/113' ),
 					'nb'  => (int) $result,
 				],
 				'candidature' => [

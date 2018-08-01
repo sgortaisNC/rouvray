@@ -84,7 +84,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 				break;
 		}
 
-		$nids = $query->sort( 'field_date', 'DESC' )
+		$nids = $query->sort( 'title', 'ASC' )
 		              ->sort( 'created', 'DESC' )
 		              ->pager( 25 )
 		              ->execute();
@@ -132,7 +132,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 			$tabPatho[ $patho->tid ] = $patho->name;
 		}
 
-		$tabVilles = [];
+		$tabVilles = ['' => 'Sélectionnez une ville'];
 		$query     = $connection->select( 'nc_villes', 'v' )
 		                        ->fields( 'v', array( 'id', 'ville', 'cp' ) )
 		                        ->orderBy( 'ville', 'ASC' );

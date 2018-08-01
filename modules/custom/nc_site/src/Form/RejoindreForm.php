@@ -36,6 +36,7 @@ class RejoindreForm extends ConfigFormBase {
         $config = $this->config('ncsite.config.rejoindre');
         $form = [
             'formation' => [
+            	'#title' => "Formation à la une",
                 '#type' => 'entity_autocomplete',
                 '#target_type' => 'node',
                 '#selection_handler' => 'default', // Optional. The default selection handler is pre-populated to 'default'.

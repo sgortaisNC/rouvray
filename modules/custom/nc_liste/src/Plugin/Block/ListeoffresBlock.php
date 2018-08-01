@@ -97,7 +97,7 @@ class ListeoffresBlock extends BlockBase {
 			'form'   => [
 				'titre'  => [
 					'#type'      => 'textfield',
-					'#title'     => 'Titre ou fiche de poste',
+					'#title'     => 'Mot clé',
 					'#size'      => 60,
 					'#name'      => "q",
 					'#maxlength' => 128,
