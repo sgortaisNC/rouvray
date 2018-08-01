@@ -20,13 +20,13 @@ class ConsultationsBlock extends BlockBase {
 	 * {@inheritdoc}
 	 */
 	public function build() {
-		$tabPatients = ["" => "Sélectionnez un type de patient"];
+		$tabPatients = ["" => "Type de patient"];
 		$patients    = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'types_patient' );
 		foreach ( $patients as $patient ) {
 			$tabPatients[ $patient->tid ] = $patient->name;
 		}
 
-		$tabVilles  = ["" => "Sélectionnez une ville"];
+		$tabVilles  = ["" => "Choisir votre ville"];
 		$connection = Database::getConnection();
 		$query      = $connection->select( 'nc_villes', 'v' )
 		                         ->fields( 'v', array( 'id', 'ville', 'cp' ) )
@@ -36,7 +36,7 @@ class ConsultationsBlock extends BlockBase {
 			$tabVilles[ $record->id ] = $record->ville . ' (' . $record->cp . ')';
 		}
 
-		$tabPatho = ["" => "Sélectionnez une pathologie ou un type de prestation"];
+		$tabPatho = ["" => "Pathologie / Type de prestation"];
 		$pathos    = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'types_prestation' );
 		foreach ( $pathos as $patho ) {
 			$tabPatho[ $patho->tid ] = $patho->name;
@@ -49,19 +49,18 @@ class ConsultationsBlock extends BlockBase {
 				'form'   => [
 					'lieu' => [
 						'#type'      => 'select',
-						'#title'     => 'Choisir votre commune',
-						'#attribute' => [
-							'class' => 'form-control',
-
+						'#title'     => '',
+						'#attributes' => [
+							'class' => ['custom-select', 'my-3']
 						],
 						"#name"      => 'ville',
 						'#options'   => $tabVilles,
 					],
 					'type' => [
 						'#type'      => 'select',
-						'#title'     => 'Type de patient',
-						'#attribute' => [
-							'class' => 'form-control',
+						'#title'     => '',
+						'#attributes' => [
+							'class' => ['custom-select', 'my-3']
 						],
 						'#name'      => 'type',
 						'#options'   => $tabPatients,
@@ -74,9 +73,9 @@ class ConsultationsBlock extends BlockBase {
 				'form'   => [
 					'pathologie' => [
 						'#type'      => 'select',
-						'#title'     => 'Pathologie',
-						'#attribute' => [
-							'class' => 'form-control',
+						'#title'     => '',
+						'#attributes' => [
+							'class' => ['custom-select', 'my-3']
 						],
 						'#name'  => 'type',
 						'#options' => $tabPatho,
