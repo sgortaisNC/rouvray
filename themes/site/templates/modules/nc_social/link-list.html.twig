@@ -1,0 +1,7 @@
+<ul class="d-inline mb-0 p-0">
+{% for row in rows %}
+    <li class="d-inline mx-1">
+        <a href="{{ row.link }}" title="{{ row.label }}" class="text-primary" target="_blank"><i class="fab {{ row.icon }}"></i></a>
+    </li>
+{% endfor %}
+</ul>

@@ -6,7 +6,7 @@ padding: 1px;
 }
 /* DEBUG */
 body {
-  font-family: 'Noto Serif';
+  font-family: 'Noto Serif',serif;
 }
 .hamburger,
 .removeMenu {
@@ -104,7 +104,7 @@ h2 {
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
   margin-right: 10px;
-  box-shadow: 0px -1px 20px #717171 !important;
+  box-shadow: 0 -1px 20px #717171 !important;
   color: #2f3853;
 }
 .nav-pills .nav-link.active {
@@ -127,13 +127,12 @@ h2 {
 }
 button.c-around {
   border: none;
-  padding: 0;
-  padding-top: 5px;
+  padding: 5px 0 0;
   margin-top: 15px;
   color: #0071ce;
 }
 form {
-  font-family: Hind;
+  font-family: Hind, sans-serif;
 }
 textarea {
   border-color: #e7eaef;
@@ -252,11 +251,11 @@ textarea {
 }
 .row .with_shadow::after,
 .row .with_shadow::before {
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
 }
 h1 {
-  font-family: 'Noto Serif';
+  font-family: 'Noto Serif', serif;
   font-size: 30px;
   color: #0071ce;
 }
@@ -284,7 +283,7 @@ header {
   position: relative;
 }
 header .phone {
-  font-family: Hind;
+  font-family: Hind, sans-serif;
 }
 header .phone b {
   font-size: 20px;
@@ -299,12 +298,15 @@ header .logo {
   left: 15px;
   z-index: 1;
 }
+#search-block-form .js-form-type-search{
+  display: block;
+  width: 90%;
+}
 header .sur-header {
   background: #e7eaef;
 }
 header .bg-danger {
-  border-radius: 4px;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   border-radius: 2px;
   font-size: 16px;
   line-height: 14px;
@@ -317,9 +319,9 @@ header .dropdown button {
 header input.form-control {
   border-radius: 0;
   border-color: #e4dccc;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
 }
 header input.form-control::placeholder {
   color: #c1c3ca;
@@ -403,7 +405,7 @@ header .main-header .main_menu li a {
   display: block !important;
   content: '\f0da';
   font-weight: bold;
-  font-family: 'Font Awesome 5 Free';
+  font-family: 'Font Awesome 5 Free', fantasy;
   position: absolute;
   color: #FFF;
   top: 50%;
@@ -415,7 +417,6 @@ header .main-header .main_menu li a {
   display: none;
   z-index: 99;
   list-style: none;
-  padding-left: 0.5em;
   min-width: 250px;
   width: auto;
   position: absolute;
@@ -481,12 +482,10 @@ main .acces-rapide .d-lg-flex a {
   min-width: 60px;
   height: 55px;
   text-transform: uppercase;
-  font-family: Hind;
-  padding: 5px;
+  font-family: Hind, sans-serif;
   width: 60px;
   padding: 10px;
-  border-width: 80%;
-  padding-bottom: 10px;
+  border-width: 1px;
   position: relative;
   cursor: pointer;
   transition: 0.1s all;
@@ -509,7 +508,6 @@ main .acces-rapide .d-lg-flex a img {
   margin: 0 auto;
 }
 main .acces-rapide .d-lg-flex a .op0 {
-  display: block;
   width: 100%;
   display: none;
   opacity: 1;
@@ -563,7 +561,7 @@ main #main-info .caption .bg-white::before {
 }
 main #main-info .caption .bg-white .text {
   max-width: 340px;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
 }
 main #main-info .caption .bg-white i {
   font-size: 26px;
@@ -603,7 +601,7 @@ main .search_and_slide h5 {
 }
 main .search_and_slide .carousel-caption {
   border: 2px solid #ffffff;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   right: 15px;
   left: 15px;
   font-size: 15px;
@@ -659,14 +657,13 @@ main .key_figure img {
 .actu .top_actu .date {
   position: absolute;
   z-index: 3;
-  bottom: 0px;
+  bottom: 0;
   left: 6px;
   background: #ffffff;
-  padding: 2px 4px;
   max-width: 60px;
   height: 60px;
   text-align: center;
-  padding-top: 8px;
+  padding: 8px 4px 2px;
 }
 .actu .top_actu .date span {
   display: block;
@@ -728,7 +725,7 @@ main .key_figure img {
   padding: 10px 15px;
 }
 .nous-rejoindre .bg-white p {
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   font-size: 14px;
 }
 .nous-rejoindre .bg-white h5 {
@@ -780,7 +777,7 @@ main .key_figure img {
 .bloc h4 {
   color: #0071ce;
   font-size: 18px;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -791,7 +788,7 @@ main .key_figure img {
 .bloc ul li a {
   color: #2f3853;
   line-height: 2;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
 }
 .bloc.menu_contextuel li {
   position: relative;
@@ -828,7 +825,7 @@ main .key_figure img {
 .bloc.liste_liens ul li a::before {
   position: absolute;
   content: '\f15c';
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Free", fantasy;
   font-weight: normal;
   left: -25px;
   top: -5px;
@@ -859,7 +856,7 @@ main .key_figure img {
   bottom: 0;
   text-align: left;
   padding: 10px 35px 10px 40px;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   font-size: 14px;
 }
 .bloc #memeTheme .carousel-caption a {
@@ -874,7 +871,7 @@ main .key_figure img {
 }
 .ariane ul li {
   display: inline;
-  font-family: Palanquin;
+  font-family: Palanquin, sans-serif;
 }
 .ariane ul li::after {
   content: ' > ';
@@ -942,11 +939,11 @@ footer .bg-info ul li {
 footer .bg-info ul li a {
   color: #ffffff;
   font-size: 13px;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
 }
 footer .bg-warning {
   text-transform: uppercase;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   font-weight: 500;
   font-size: 12px;
 }
@@ -990,7 +987,7 @@ footer .bg-warning a {
   margin-bottom: 25px;
 }
 .content-page h3 {
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   font-size: 17px;
   color: #0071ce;
   font-weight: bold;
@@ -998,7 +995,7 @@ footer .bg-warning a {
   margin-bottom: 25px;
 }
 .content-page h4 {
-  font-family: "Noto Serif";
+  font-family: "Noto Serif", serif;
   font-weight: bold;
   font-size: 17px;
   margin-bottom: 15px;
@@ -1008,7 +1005,7 @@ footer .bg-warning a {
 .content-page p,
 .content-page ul,
 .content-page tr {
-  font-family: Hind;
+  font-family: Hind, sans-serif;
 }
 .content-page table thead {
   color: #ffffff;
@@ -1016,7 +1013,7 @@ footer .bg-warning a {
   text-transform: uppercase;
 }
 .content-page table thead th {
-  font-family: "Noto Serif";
+  font-family: "Noto Serif", serif;
 }
 .content-page table tr:nth-child(even) {
   background: #e7eaef;
@@ -1067,7 +1064,7 @@ footer .bg-warning a {
   top: 0;
   right: 0;
   content: '\f077';
-  font-family: 'Font Awesome 5 Free';
+  font-family: 'Font Awesome 5 Free', fantasy;
   font-weight: bold;
   display: -webkit-flex;
   display: -moz-flex;
@@ -1082,7 +1079,7 @@ footer .bg-warning a {
   background: #e7eaef;
 }
 .content-page .blockquote {
-  font-family: "Noto Serif";
+  font-family: "Noto Serif", serif;
   color: #0071ce;
   padding: 20px 60px 20px 40px;
   font-style: italic;
@@ -1101,13 +1098,13 @@ footer .bg-warning a {
   background: #feb602;
 }
 .content-page .shadow {
-  font-family: Hind;
+  font-family: Hind, sans-serif;
 }
 .content-page .shadow .c-top {
   text-align: center;
   font-size: 26px;
   color: #0071ce;
-  font-family: "Nato Serif";
+  font-family: "Noto Serif", serif;
 }
 .content-page .shadow .c-top::before {
   background: url("../img/little_c.png");
@@ -1251,7 +1248,7 @@ footer .bg-warning a {
   background: #feb602;
 }
 .seachForm .bg-info button.c-around {
-  font-family: "Noto Serif";
+  font-family: "Noto Serif", serif;
   color: #ffffff;
 }
 .seachForm .bg-info button.c-around::after {
@@ -1340,7 +1337,7 @@ main .search_and_slide .carousel-caption:hover {
 .actu .top_actu::after {
   position: absolute;
   content: '\f055';
-  font-family: 'Font Awesome 5 Free';
+  font-family: 'Font Awesome 5 Free', fantasy;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -1420,7 +1417,7 @@ main .search_and_slide .carousel-caption:hover {
 }
 .nous-rejoindre .flex-column a:first-child:hover::before {
   content: "\f100";
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Free", fantasy;
   font-weight: bold;
   background: #FFF;
   top: 33%;
@@ -1455,7 +1452,7 @@ footer a.round:hover {
     top: 70px;
   }
 }
-@media screen and (max-width: 1199.98px) {
+@media screen and (max-width: 1199px) {
   header .logo {
     width: 157px;
   }
@@ -1475,7 +1472,6 @@ footer a.round:hover {
   .lvl2,
   .lvl3 {
     padding-top: 50px !important;
-    position: relative;
     z-index: 999;
     display: block;
     position: fixed;
@@ -1504,7 +1500,7 @@ footer a.round:hover {
     top: 50%;
     right: 25px;
     transform: translateY(-50%);
-    font-family: 'Font Awesome 5 Free';
+    font-family: 'Font Awesome 5 Free', fantasy;
     font-weight: bold;
     color: #0071ce;
   }
@@ -1524,7 +1520,6 @@ footer a.round:hover {
   .lvl3 .removeMenu a {
     justify-content: flex-end;
     color: #ffffff !important;
-    padding-right: 1em !important;
     line-height: 50px !important;
     padding: 0 !important;
   }
@@ -1578,7 +1573,7 @@ footer a.round:hover {
     right: 50px;
   }
 }
-@media screen and (max-width: 991.98px) {
+@media screen and (max-width: 991px) {
   .actu {
     max-width: 250px;
     display: block;
@@ -1594,9 +1589,6 @@ footer a.round:hover {
   header .d-flex,
   header .dropdown {
     display: -webkit-inline-flex !important;
-    display: -moz-inline-flex !important;
-    display: -ms-inline-flex !important;
-    display: -o-inline-flex !important;
     display: inline-flex !important;
     justify-content: center;
   }
@@ -1730,7 +1722,7 @@ footer a.round:hover {
     display: none;
   }
 }
-@media screen and (max-width: 575.98px) {
+@media screen and (max-width: 575px) {
   header .logo {
     float: none;
   }
