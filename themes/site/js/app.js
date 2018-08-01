@@ -3,8 +3,7 @@
 jQuery(window).on("load", function () {
     // Animate loader off screen
     jQuery("body").removeClass("stuck");
-    var progress = 0;
-    for (progress = 0 ; progress < 100 ; progress ++){
+    for (var progress = 0 ; progress < 100 ; progress ++){
         jQuery(".progress-bar").css("width",progress+"%");
     }
     setTimeout(function(){
@@ -13,7 +12,12 @@ jQuery(window).on("load", function () {
 });
 
 
-$( document ).ready(function() {
+jQuery( document ).ready(function($) {
+    $('img').each(function () {
+       if (!$(this).hasClass("img-fluid")){
+           $(this).addClass("img-fluid");
+       }
+    });
     $(".accordion a").each(function(){
         if   (!$(this).hasClass('collapsed')){
             $(this).parent().parent().addClass("is-open")

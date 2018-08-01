@@ -2,11 +2,15 @@ global-styling:
   version: 1.0
   css:
     theme:
+      https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css: { type: external }
       css/hamburgers.css: {}
       css/styles.css: {}
       css/print.css: { media: print}
+
   js:
     https://use.fontawesome.com/f05512e9af.js: { type: external }
+    https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js: { type: external }
+    https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js: { type: external }
     js/app.js: {}
   dependencies:
     - core/jquery
