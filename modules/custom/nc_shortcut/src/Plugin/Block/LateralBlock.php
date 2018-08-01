@@ -21,27 +21,27 @@ class LateralBlock extends BlockBase {
     public function build() {
         $data = [
             'link1' => [
-                'icon' => '',
+                'icon' => '/themes/site/img/agenda_ico.png',
                 'title' => 'Prendre rendez-vous',
                 'link' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/1'),
             ],
             'link2' => [
-                'icon' => '',
+                'icon' => '/themes/site/img/notepad_ico.png',
                 'title' => 'Préparer son hospitalisation',
                 'link' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/1'),
             ],
             'link3' => [
-                'icon' => '',
+                'icon' => '/themes/site/img/pharm_ico.png',
                 'title' => 'Urgences',
                 'link' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/1'),
             ],
             'link4' => [
-                'icon' => '',
+                'icon' => '/themes/site/img/map_ico.png',
                 'title' => 'Plan d\'accès',
                 'link' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/1'),
             ],
             'link5' => [
-                'icon' => '',
+                'icon' => '/themes/site/img/mail_ico.png',
                 'title' => 'Contactez-nous',
                 'link' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/1'),
             ],
