@@ -13,26 +13,12 @@
     {{ page.home }}
 
     <div class="container pt-5 mt-5">
-        {{ page.home_bottom }}
+        {{ page.home_bis }}
     </div>
     <div class="bg-warning separator with_shadow shadow-bottom mb-5"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 ">
-                <div class="bg-warning p-4">
-                    <h3 class="c-left c-bleu text-info mb-4">Livret d'accueil du patient</h3>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <img src="/themes/site/img/livret.png" alt="" class="img-fluid">
-                        </div>
-                        <div class="col-md-7">
-                            <p class="mt-4 mb-4"><a href="" class="text-primary"><u>Feuilleter</u></a></p>
-                            <p class="mt-2 mb-4"><a href="" class="text-primary"><u>Telécharger en PDF</u></a></p>
-                            <p class="ml-4"><a href="" class="c-around c-bleu">Toutes les publications</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{ page.home_bottom }}
             <div class="col-lg-7 nous-rejoindre">
                 <div class="shadow">
                     <h2 class="c-left text-info">Nous rejoindre</h2>
@@ -69,49 +55,5 @@
             </div>
         </div>
     </div>
-    <div class="acces-rapide">
-        <div class="container">
-            <div class="d-lg-flex flex-column align-items-end">
-                <a class="d-lg-flex align-items-center bg-warning"><img class="mr-2"
-                                                                        src="/themes/site/img/agenda_ico.png"
-                                                                        alt=""><span class="op0">Agenda</span></a>
-                <a class="d-lg-flex align-items-center bg-warning"><img class="mr-2"
-                                                                        src="/themes/site/img/notepad_ico.png"
-                                                                        alt=""><span class="op0">Hospitalisations</span></a>
-                <a class="d-lg-flex align-items-center bg-warning"><img class="mr-2"
-                                                                        src="/themes/site/img/pharm_ico.png"
-                                                                        alt=""><span class="op0">Urgences</span></a>
-                <a class="d-lg-flex align-items-center bg-warning"><img class="mr-2" src="/themes/site/img/map_ico.png"
-                                                                        alt=""><span class="op0">Plan d'accès</span></a>
-                <a class="d-lg-flex align-items-center bg-warning"><img class="mr-2" src="/themes/site/img/mail_ico.png"
-                                                                        alt=""><span
-                            class="op0">Contactez-nous</span></a>
-            </div>
-        </div>
-    </div>
 </main>
-
-<main role="main">
-    <a id="main-content" tabindex="-1"></a>
-
-    <div class="layout-content">
-
-        {{ page.bottom_content }}
-    </div>
-
-    {% if page.sidebar_first %}
-        <aside class="layout-sidebar-first" role="complementary">
-            {{ page.sidebar_first }}
-        </aside>
-    {% endif %}
-
-    {% if page.sidebar_second %}
-        <aside class="layout-sidebar-second" role="complementary">
-            {{ page.sidebar_second }}
-        </aside>
-    {% endif %}
-
-</main>
-
-
 {% include directory ~ '/templates/parts/footer.html.twig' %}
