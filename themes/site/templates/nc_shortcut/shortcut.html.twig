@@ -1,0 +1,6 @@
+{% for key, link in data %}
+    <a href="{{ link.link }}" class="key_figure mx-5">
+        <img src="{{ link.image }}" class="img-fluid mb-3" alt="{{ link.title }}"><br>
+        {{ link.title }}
+    </a>
+{% endfor %}

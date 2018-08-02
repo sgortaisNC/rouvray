@@ -1,0 +1,27 @@
+{% set cpt = 0 %}
+<ol class="carousel-indicators">
+    {% for key, site in data %}
+    <li data-target="#carouselFade" data-slide-to="{{ cpt }}" class="{% if cpt == 0 %}active{% endif %}"></li>
+    {%  set cpt = cpt + 1 %}
+    {% endfor %}
+</ol>
+<h2 class="c-left text-info">Consultez aussi...</h2>
+<div class="carousel-inner" role="listbox">
+    {% for key, site in data %}
+        <div class="carousel-item {% if key == "multisite1" %}active{% endif %}">
+            <img class="d-block w-100 img-fluid" src="{{ site.image }}" alt="{{ site.title }}">
+            <div class="carousel-caption d-flex align-items-center bg-white">
+                <a class="carousel-control-prev" href="#carouselFade" role="button" data-slide="prev">
+                    <img src="/themes/site/img/arrow_left.png" alt="">
+                </a>
+                <a href="#">
+                    <img src="{{ site.logo }}" class="img-fluid mx-2" alt="{{ site.title }}">
+                </a>
+                <a href="#">{{ site.title }}</a>
+                <a class="carousel-control-next" href="#carouselFade" role="button" data-slide="next">
+                    <img src="/themes/site/img/arrow-right.png" alt="">
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

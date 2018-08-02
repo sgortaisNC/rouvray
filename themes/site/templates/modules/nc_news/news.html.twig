@@ -1,0 +1,20 @@
+{% for article in data %}
+    <a href="{{ article.url }}" class="col actu">
+        <span class="top_actu">
+            <img src="{{ article.image.url }}" alt="{{ article.image.alt }}" class="img-fluid">
+            {% if article.type == 'actualite' %}
+                <span class="date">
+                        <span>{{ article.date }}</span>
+                </span>
+                {% else %}
+                <span class="date with-end">
+                    <span>Du {{ article.date }}</span><span>Au {{ article.dateFin }}</span>
+                </span>
+            {% endif %}
+        </span>
+        <span class="title_actu">{{ article.title }}</span>
+    </a>
+{% endfor %}
+<div class="col-12 text-center my-4">
+    <a href="{{ url }}" class="c-around"><b>Toutes les actualités</b></a>
+</div>

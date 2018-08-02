@@ -1,0 +1,208 @@
+//main: main.less
+
+a:hover{
+    text-decoration: none;    
+}
+.c-around{
+    transition: all 0.1s;
+    &::after{
+        transition: all 0.1s;
+    }
+    &:hover{
+        &::after{
+            top: 0;
+            bottom: 0;
+        }
+    }
+}
+
+#main-info .caption h1{
+    transition: all 0.1s;
+    position: relative;
+    left: 0;
+    &::before{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: @bleu;
+        content: '';
+        opacity: 0;
+    }
+    &:hover{
+        left: 15px;
+        &::before{
+            opacity: 1;
+            left: -15px;
+        }
+    }
+}
+a.bg-danger:hover{
+    color: #FFF;
+    background: darken(@rouge,5%) !important;
+}
+
+.fab{
+    transition: all 0.1s;
+    &:hover{
+        transform: rotate(10deg) scale(1.1);
+    }
+}
+
+main .search_and_slide .carousel-caption{
+    transition: 0.1s all;
+    &:hover{
+        border-color: @orange
+    }
+}
+
+.key_figure{
+    img{
+        transition: all 0.1s;
+    }
+    transition: all 0.1s;
+    &:hover{
+        transform: scale(1.1);
+        img{
+            transform: rotate(5deg) scale(1.2);
+        }
+    }
+}
+
+.actu{
+    span{
+        display: block;
+    }
+    .top_actu{
+        overflow: hidden;
+        position: relative;
+        &::after{
+            position: absolute;
+            content: '\f055';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            font-size: 42px;
+            justify-content: center;
+            color: #FFF;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            opacity: 0;
+        }
+        &::before{
+            position: absolute;
+            content: '';
+            display: block;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            opacity: 0;
+            background: rgba(0,0,0,0.5);
+        }
+    }
+    *{
+        transition: all 0.1s;
+    }
+    .title_actu{
+        position: relative;
+        left: 0;
+        margin-top: 2px;
+    }
+    &:hover{
+        img{
+            transform: scale(1.5);
+            filter: blur(2px);
+        }
+        .top_actu{
+            &::after,
+            &::before{
+                opacity: 1;
+            }
+        }
+        .title_actu{
+            
+            left: 5px;
+            &::before{
+                display: block;
+                position: absolute;
+                left: -5px;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                content: '';
+                background: @bleu_f;
+            }
+        }
+    }
+}
+
+.nous-rejoindre .flex-column{
+    a{
+        position: relative;
+        left: 0;
+        transition: all 0.1s;
+        &:hover{
+            left: 15px;
+            &::before{
+                position: absolute;
+                display: block;
+                left: -15px;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: @orange;
+                content: '';
+            }
+        }
+        &:first-child:hover{
+            margin-right: -15px;
+            padding-left: 15px;
+            left: 0;
+            &::before{
+                content: "\f100";
+                font-family: "Font Awesome 5 Free";
+                font-weight: bold;
+                background: #FFF;
+                top: 33%;
+                left: -25px;
+                transform: translateY(-50%);
+                color: @orange;
+                font-size: 40px;
+            }
+        }
+    }
+}
+
+.pole{
+    .pole__text{
+        h4{
+            a{
+                transition: all 0.1s;
+                &:hover{
+                    background: @bleu;
+                    color: #FFF;                    
+                }
+            }
+        }
+    }
+}
+
+footer{
+    a{
+        transition: all 0.1s;
+        &:hover{
+            text-decoration: underline;
+        }
+        &.round:hover{
+            text-decoration: none;
+            background: @orange;
+            color: #FFF;
+        }
+    }
+}

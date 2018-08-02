@@ -1,0 +1,324 @@
+//main: main.less
+@media screen and (max-width: 1800px) {
+    main .acces-rapide {
+        right: 0;
+    }
+    main #main-info .caption {
+        top: 70px;
+    }
+}
+
+@media screen and (max-width: 1199.98px) {
+    header .logo {
+        width: 157px;
+    }
+
+    body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        display: block !important;
+    }
+
+    .main_menu,
+    .changeSize {
+        display: none;
+    }
+    .main_menu{
+        background: linear-gradient(to right, #FFF, #FFF 65%, rgba(0, 0, 0, 0.2) 65%);
+    }
+    .main_menu,
+    .lvl2,
+    .lvl3 {
+        padding-top: 50px !important;
+        position: relative;
+        li{
+            &::after {
+                display: none !important;
+
+            }
+            &.dropdown {
+                position: relative;
+                &::before{
+                    content:"\f061";
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    right: 25px;
+                    transform: translateY(-50%);
+                    font-family: 'Font Awesome 5 Free';
+                    font-weight: bold;
+                    color: @bleu;
+                }
+            }
+        }
+
+        .removeMenu {
+            position: absolute !important;
+            width: 65vw;
+            top: 0;
+            height: 50px;
+            line-height: 50px;
+            left: 0;
+            background: @bleu;
+            a {
+                justify-content: flex-end;
+                color: @blanc  !important;
+                padding-right: 1em !important;
+                line-height: 50px !important;
+                padding: 0 !important;
+                i{
+                    padding-right: 25px;
+                }
+            }
+        }
+        z-index: 999;
+        display: block;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: -100vw;
+        height: 100vh;
+        width: 100vw;
+
+        li {
+            display: flex !important;
+            width: 65vw;
+            height: 40px;
+            a {
+                width: 100%;
+                padding: 5px !important;
+                height: 100%;
+                color: @bleu  !important;
+            }
+        }
+
+    }
+
+    .main_menu.is-active {
+        left: 0;
+    }
+
+    .lvl2 {
+        background: linear-gradient(to right, #FFF, #FFF 65%, rgba(0, 0, 0, 0.0) 65%);
+        display: block;
+        left: -200vw;
+        &.is-active {
+            left: 0;
+        }
+    }
+
+    .lvl3 {
+        background: linear-gradient(to right, #FFF, #FFF 65%, rgba(0, 0, 0, 0.0) 65%);
+        left: -300vw;
+        &.is-active {
+            left: 0;
+        }
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    main .acces-rapide {
+        display: none;
+    }
+    main #main-info .caption .bg-white {
+        position: absolute;
+        top: 0;
+        right: 50px;
+    }
+}
+
+@media screen and (max-width: 991.98px) {
+    .actu {
+        max-width: 250px;
+        display: block;
+        margin: 15px auto;
+        .top_actu {
+            margin: 5px auto;
+            max-width: 250px;
+        }
+    }
+    header {
+        .d-flex{
+            margin: 5px !important;
+        }
+        .d-flex,
+        .dropdown {
+            display: -webkit-inline-flex !important;
+            display: -moz-inline-flex !important;
+            display: -ms-inline-flex !important;
+            display: -o-inline-flex !important;
+            display: inline-flex !important;
+            justify-content: center;
+            &.bg-danger {
+                position: relative;
+                top: 8px;
+            }
+        }
+    }
+    #carouselFade {
+        display: block;
+        max-width: 375px;
+        margin: 25px auto 0;
+    }
+    .hamburger {
+        padding: 15px;
+        float: left;
+    }
+
+    .nous-rejoindre {
+        margin-top: 25px;
+    }
+
+    .col {
+        flex-basis: auto;
+    }
+
+    main #main-info {
+        margin-bottom: 25px;
+        &::after {
+            bottom: -1px;
+        }
+        .caption {
+            h1 {
+                max-width: 275px;
+            }
+            .bg-white {
+                a {
+                    display: none;
+                }
+            }
+            top: 15px;
+        }
+    }
+
+    footer .bg-info {
+        height: 540px;
+        img {
+            margin: 20px 0;
+        }
+    }
+
+    .c-left {
+        &::before {
+            display: none;
+        }
+    }
+    .c-top::before{
+        left: 53%;
+    }
+    .pole img {
+        display: block;
+        margin: 5px auto;
+    }
+
+    .shadow {
+        padding: 15px;
+    }
+
+    .nav-link {
+        display: inline-block;
+        width: 100%;
+    }
+
+    header {
+        .logo {
+            float: left;
+            position: relative;
+            display: block;
+            width: 180px;
+            img {
+                position: relative;
+            }
+        }
+    }
+    footer {
+        .bg-info img{
+            max-width: 25vw;
+        }
+        .bg-warning{
+
+            a{
+                font-size: 14px;
+            }
+        }
+        .rightmenu{
+            margin-top: 15px ;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .nous-rejoindre .flex-column a{
+        padding: 15px;
+        &:first-child:hover{
+            left: 40px;
+            width: 62vw; 
+            &::before{
+                left: -40px;
+                content: '\f102';
+            }
+        }
+    }
+    .key_figure{
+        margin: 15px 0;
+    }
+    footer {
+
+        .bg-info{
+            height: 100%;
+            .logo_footer{
+                padding-bottom: 0;
+                &::after{
+                    display: none;
+                }
+            }
+            .adress{
+                padding-bottom: 15px;
+            }
+            .d-flex{
+                align-items: center;
+            }
+            img{
+                max-width: 50vw;
+            }
+        }
+    }
+    main #main-info .caption {
+        position: relative;
+        left: 0;
+        top: 0;
+        h1 {
+            z-index: 999;
+            top: 0;
+            margin-top: 15px;
+            position: relative;
+        }
+        .bg-white {
+            position: relative;
+            top: 0;
+            left: 0;
+            a {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575.98px) {
+    header .logo {
+        float: none;
+    }
+    .list-result {
+        .result{
+            display: block;
+        }
+        svg{
+            display: none;
+        }
+        .teaser {
+            width: 100%;
+        }
+    }
+}

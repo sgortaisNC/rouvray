@@ -44,6 +44,12 @@
   </head>
 
   <body{{ attributes.addClass(body_classes) }}>
+  <div id="loader" class="flex-column justify-content-center align-items-center">
+      <img src="/themes/site/img/logo_header.png" alt="">
+      <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="41" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+  </div>
     {{ page_top }}
     {{ page }}
     {{ page_bottom }}
