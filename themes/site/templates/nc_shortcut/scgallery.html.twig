@@ -1,0 +1,10 @@
+{% for key, link in data %}
+    <div class="col{% if  key != "link3" %} mr-2{% endif %}">
+        <div class="pole">
+            <img src="{{ link.image }}" alt="{{ link.title }}" class="img-fluid">
+            <div class="pole__text">
+                <h4 class="text-info"><a href="{{ link.link }}">{{ link.title }}</a></h4>
+            </div>
+        </div>
+    </div>
+{% endfor %}
