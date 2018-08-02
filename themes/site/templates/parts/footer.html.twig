@@ -1,5 +1,51 @@
-<footer>
-    {{ page.footer }}
+<footer class="mt-5 with_shadow">
 
-    {{ page.secondary_menu }}
+    <div class="bg-info">
+        <div class="container">
+            <div class="d-flex flex-wrap flex-column align-item-between h-100">
+                {{ page.footer }}
+                <a href="#" class="round">Nous contacter</a>
+                <img src="img/gmap.png" class="img-fluid" alt="" width="336">
+            </div>
+        </div>
+    </div>
+    <div class="bg-warning py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="d-flex">
+                        <ul class="p-0 m-0 inline_menu">
+                            <li class="d-inline"><a href="#">Espace presse</a></li>
+                            <li class="d-inline"><a href="#">Marchés publics</a></li>
+                            <li class="d-inline"><a href="#">Partenaires</a></li>
+                        </ul>
+                        <ul class="p-0 m-0 social_menu">
+                            <li class="d-inline">
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="d-inline">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="d-inline">
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-7 text-lg-right rightmenu">
+                    <div class="d-flex flex-column flex-md-row text-primary">
+                        {{ page.secondary_menu }}
+                        <ul class="p-0 m-0 inline_menu withLine">
+                            <li class="d-inline"><a href="">Plan du site</a></li>
+                            <li class="d-inline"><a href="">Mentions légales</a></li>
+                            <li class="d-inline"><a href="">CGU</a></li>
+                            <li class="d-inline"><a href="">Crédits</a></li>
+                            <li class="d-inline"><a href="">Contact webmaster</a></li>
+                        </ul>
+                        <div> réalisation : <a href="https://net-com.fr" target="_blank">Net.Com</a> - 2017</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
