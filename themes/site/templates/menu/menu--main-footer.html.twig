@@ -38,8 +38,10 @@
         {% for item in items %}
             {% if menu_level == 0 %}
                 <div class="submenu d-none d-md-block">
-                    <a href="{{ item.url }}"><h6>{{ item.title }}</h6></a>
-                </div>
+            {% endif %}
+
+            {% if menu_level == 0 %}
+                <a href="{{ item.url }}"><h6>{{ item.title }}</h6></a>
                 {% if item.below %}
                     {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
                 {% endif %}
@@ -48,6 +50,9 @@
                 <li>
                     <a href="{{ item.url }}">{{ item.title }}</a>
                 </li>
+            {% endif %}
+            {% if menu_level == 0 %}
+                </div>
             {% endif %}
         {% endfor %}
         </ul>

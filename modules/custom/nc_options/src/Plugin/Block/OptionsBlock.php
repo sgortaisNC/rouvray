@@ -67,7 +67,7 @@ class OptionsBlock extends BlockBase {
                     $data['option']['value'] = theme_get_setting($config['nc_options_option'].'.url');
                     break;
 
-                case 'site_options.logo_footer':
+                /*case 'site_options.logo_footer':
                     $file = File::load(theme_get_setting($config['nc_options_option'])[0]);
                     if($file->isPermanent() !== true){
                         $file->setPermanent();
@@ -75,7 +75,7 @@ class OptionsBlock extends BlockBase {
                     }
                     $data['option']['value'] = file_create_url($file->getFileUri());
                     break;
-
+*/
                 default:
                     $data['option']['value'] = theme_get_setting($config['nc_options_option']);
                     break;
