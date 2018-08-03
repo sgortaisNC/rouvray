@@ -1,14 +1,13 @@
 {% if(isEmpty != true) %}
     <div class="bloc menu_contextuel">
         {% if label %}
-        <h3 class="c-left">{{ label }}</h3>
+            <h3 class="c-left">{{ label }}</h3>
         {% endif %}
 
         {% block content %}
             {{ content }}
         {% endblock %}
     </div>
-
 {% endif %}
 
 
