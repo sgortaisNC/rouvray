@@ -2,8 +2,10 @@
 namespace Drupal\nc_node_banniere\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * Provides a 'Bannière' Block.
@@ -19,10 +21,40 @@ class BanniereBlock extends BlockBase {
      * {@inheritdoc}
      */
     public function build() {
-        $build = [
-            '#theme' => 'translator',
-            '#data' => NULL,
-        ];
+
+	    $node = \Drupal::routeMatch()->getParameter('node');
+	    if ($node) {
+		    // You can get nid and anything else you need from the node object.
+		    $image = "";
+		    if  (!empty($node->get("field_background")->getValue()[0]["target_id"])){
+			    $fid = $node->get("field_background")->getValue()[0]["target_id"];
+			    $file = File::Load($fid);
+			    $image = Url::fromUri($file->getFileUri());
+		    }else{
+			    $fileUuid = $node->get('field_background')->getSetting('default_image')['uuid'];
+			    $file = \Drupal::service('entity.repository')->loadEntityByUuid('file', $fileUuid);
+			    if(!empty($file)){
+				    $image = ImageStyle::load('background')->buildUrl($file->getFileUri());
+			    }
+		    }
+
+		    $data = [
+		        "titre"	=> $node->getTitle(),
+			    "image" => [
+			    	"url" => $image,
+				    "alt" => $node->getTitle()
+			    ]
+		    ];
+
+		    $build = [
+			    '#theme' => 'banniere',
+			    '#data' => $data,
+		    ];
+	    }else{
+	    	$build = [];
+	    }
+
+
 
         return $build;
     }
