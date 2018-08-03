@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function nc_node_banniere_theme($existing, $type, $theme, $path) {
+    return [
+        'translator' => [
+            'template' => 'translator',
+            'variables' => [
+                'data' => NULL,
+            ],
+        ],
+    ];
+}
