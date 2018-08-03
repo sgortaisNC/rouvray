@@ -959,7 +959,7 @@ footer .bg-warning ul.inline_menu li::after {
   content: '-';
   color: #2f3853;
   position: absolute;
-  right: 2px;
+  right: 6px;
 }
 footer .bg-warning ul.inline_menu li:last-child::after {
   display: none;
