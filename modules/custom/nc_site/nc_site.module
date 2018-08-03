@@ -5,15 +5,20 @@ use Drupal\Core\Database\Database;
 
 function nc_site_preprocess_node( &$variables ) {
 	if ( isset( $variables['node'] ) ) {
-		if ( $variables['node']->bundle() == "secured" ||  $variables['node']->bundle()  == 120) {
-			$user = \Drupal::currentUser();
-			if  ($user->getRoles()[0] == 'anonymous'){
-				global $base_url;
-				$response = new Symfony\Component\HttpFoundation\RedirectResponse($base_url."/user");
-				$response->send(); // don't send the response yourself inside controller and form.
-				return;
+		$node = \Drupal::routeMatch()->getParameter('node');
+		if ($node) {
+			// You can get nid and anything else you need from the node object.
+			if ( $node == "secured" ||  $node->id()  == 120) {
+				$user = \Drupal::currentUser();
+				if  ($user->getRoles()[0] == 'anonymous'){
+					global $base_url;
+					$response = new Symfony\Component\HttpFoundation\RedirectResponse($base_url."/node/2");
+					$response->send(); // don't send the response yourself inside controller and form.
+					return;
+				}
 			}
 		}
+
 	}
 }
 
