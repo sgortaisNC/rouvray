@@ -13,6 +13,12 @@ jQuery(window).on("load", function () {
 
 
 jQuery( document ).ready(function($) {
+    $('#block-site-content table').each(function () {
+        if (!$(this).hasClass("table")){
+            $(this).addClass("table").addClass("table-bordered");
+        }
+    });
+
     $('img').each(function () {
        if (!$(this).hasClass("img-fluid")){
            $(this).addClass("img-fluid");
