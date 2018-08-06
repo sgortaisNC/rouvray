@@ -13,6 +13,12 @@ jQuery(window).on("load", function () {
 
 
 jQuery( document ).ready(function($) {
+
+    $('.home form select').change(function () {
+        var form = $(this).closest('form');
+        form.submit();
+    });
+
     $('#block-site-content table').each(function () {
         if (!$(this).hasClass("table")){
             $(this).addClass("table").addClass("table-bordered");
