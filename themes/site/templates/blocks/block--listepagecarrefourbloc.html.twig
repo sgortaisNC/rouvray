@@ -1,0 +1,9 @@
+{% if(isEmpty != true) %}
+    <div class="liste_pages_enfant d-flex flex-row flex-wrap justify-content-around">
+        {% block content %}
+            {{ content }}
+        {% endblock %}
+    </div>
+{% endif %}
+
+

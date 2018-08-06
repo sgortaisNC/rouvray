@@ -6,6 +6,7 @@ use Drupal;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 
@@ -61,6 +62,12 @@ class ListecarrefourBlock extends BlockBase {
 					$image = "";
 					if ( ! empty( $node->get( "field_image" )->getValue()[0]['target_id'] ) ) {
 						$image = file_create_url( File::load( $node->get( "field_image" )->getValue()[0]['target_id'] )->getFileUri() );
+					}else{
+						$fileUuid = $node->get('field_image')->getSetting('default_image')['uuid'];
+						$file = \Drupal::service('entity.repository')->loadEntityByUuid('file', $fileUuid);
+						if(!empty($file)){
+							$image = ImageStyle::load('detail')->buildUrl($file->getFileUri());
+						}
 					}
 
 					$body = "";
