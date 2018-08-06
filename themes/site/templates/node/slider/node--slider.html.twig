@@ -1,4 +1,8 @@
-{{ content.field_image }}
+{% if content.field_image is not empty %}
+    {{ content.field_image }}
+{% else %}
+    <img src="/sites/default/files/styles/detail/public/default_images/image-default_0.jpg" class="img-fluid" alt="{{ label | render | striptags }}">
+{% endif %}
 <div class="carousel-caption d-flex align-items-center bg-white">
     <a class="carousel-control-prev" href="#memeTheme" role="button" data-slide="prev">
         <img src="/themes/site/img/arrow_left.png" alt="">
