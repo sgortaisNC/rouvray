@@ -24,13 +24,17 @@ class ListecarrefourBlock extends BlockBase {
 	 * {@inheritdoc}
 	 */
 	public function build() {
-		$build             = [];
-		$cnode             = \Drupal::routeMatch()->getParameter( 'node' );
-		$menu_to_show      = [];
-		$nids_carrefour    = [];
+		$build          = [];
+		$cnode          = \Drupal::routeMatch()->getParameter( 'node' );
+		$menu_to_show   = [];
+		$nids_carrefour = [];
 		if ( $cnode instanceof NodeInterface ) {
 			// You can get nid and anything else you need from the node object.
-			$type         = $cnode->get( 'field_type' )->getValue()[0]["value"];
+			$type = "";
+			if ( ! empty( $cnode->get( 'field_type' )->getValue()[0]["value"] ) ) {
+				$type = $cnode->get( 'field_type' )->getValue()[0]["value"];
+			}
+
 			$current_node = $cnode->id();
 			if ( $type == 'carrefour' ) {
 				$contents = $nids = [];
@@ -42,8 +46,8 @@ class ListecarrefourBlock extends BlockBase {
 					if ( $element->inActiveTrail ) {
 						if ( $current_node == $element->link->getUrlObject()->getRouteParameters()["node"] ) {
 							$menu_to_show = $element->subtree;
-						}else{
-							foreach ($element->subtree as $subKey => $subelement){
+						} else {
+							foreach ( $element->subtree as $subKey => $subelement ) {
 								if ( $current_node == $subelement->link->getUrlObject()->getRouteParameters()["node"] ) {
 									$menu_to_show = $subelement->subtree;
 								}
@@ -62,11 +66,11 @@ class ListecarrefourBlock extends BlockBase {
 					$image = "";
 					if ( ! empty( $node->get( "field_image" )->getValue()[0]['target_id'] ) ) {
 						$image = file_create_url( File::load( $node->get( "field_image" )->getValue()[0]['target_id'] )->getFileUri() );
-					}else{
-						$fileUuid = $node->get('field_image')->getSetting('default_image')['uuid'];
-						$file = \Drupal::service('entity.repository')->loadEntityByUuid('file', $fileUuid);
-						if(!empty($file)){
-							$image = ImageStyle::load('detail')->buildUrl($file->getFileUri());
+					} else {
+						$fileUuid = $node->get( 'field_image' )->getSetting( 'default_image' )['uuid'];
+						$file     = \Drupal::service( 'entity.repository' )->loadEntityByUuid( 'file', $fileUuid );
+						if ( ! empty( $file ) ) {
+							$image = ImageStyle::load( 'detail' )->buildUrl( $file->getFileUri() );
 						}
 					}
 
@@ -79,9 +83,9 @@ class ListecarrefourBlock extends BlockBase {
 						'body'  => $body,
 						'image' => [
 							"url" => $image,
-							'alt' => !empty($node->get( "field_image" )->getValue()[0]['alt']) ? $node->get( "field_image" )->getValue()[0]['alt'] : "",
+							'alt' => ! empty( $node->get( "field_image" )->getValue()[0]['alt'] ) ? $node->get( "field_image" )->getValue()[0]['alt'] : "",
 						],
-						'url'       => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $node->id() )
+						'url'   => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $node->id() )
 					];
 				}
 
