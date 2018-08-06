@@ -1,13 +1,14 @@
-block--liensutilesbloc.html.twig{% if(isEmpty != true) %}
-    <div class="bloc menu_contextuel">
+{% if(isEmpty != true) %}
+    <div class="bloc meme_theme">
         {% if label %}
             <h3 class="c-left">{{ label }}</h3>
         {% endif %}
-
-        {% block content %}
-            {{ content }}
-        {% endblock %}
+        <div id="memeTheme" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                {% block content %}
+                    {{ content }}
+                {% endblock %}
+            </div>
+        </div>
     </div>
 {% endif %}
-
-

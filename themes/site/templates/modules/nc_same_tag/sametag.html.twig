@@ -1,0 +1,5 @@
+{% for key, content in data %}
+    <div class="carousel-item {% if key == 0 %}active{% endif %}">
+        {{ content }}
+    </div>
+{% endfor %}

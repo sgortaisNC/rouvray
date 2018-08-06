@@ -1,7 +1,8 @@
-block--liensutilesbloc.html.twig{% if(isEmpty != true) %}
-    <div class="bloc menu_contextuel">
+{% if(isEmpty != true) %}
+    <div class="bloc liste_liens">
         {% if label %}
             <h3 class="c-left">{{ label }}</h3>
+            <h4>Site internet partenaires</h4>
         {% endif %}
 
         {% block content %}
