@@ -1,0 +1,14 @@
+<ul>
+    {% for page in data %}
+        <li>
+            <h3>{{ page.title }}</h3>
+            <div>
+                URL : {{ page.image.url }} ALT : {{ page.image.alt }}
+            </div>
+            <div>
+                {{ page.body }}
+            </div>
+            <a href="{{ page.url }}" title="Lire la suite">Lire la suite</a>
+        </li>
+    {% endfor %}
+</ul>
