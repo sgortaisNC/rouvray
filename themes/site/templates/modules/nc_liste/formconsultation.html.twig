@@ -8,6 +8,7 @@
         </h2>
         <form action="{{ data.action }}" method="GET">
             <div class="row">
+                {% if data.form.lieu %}
                 <div class="col-lg-6">
                     <div class="form-group">
 
@@ -17,7 +18,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                {% endif %}
+                <div class="col-lg-{% if data.form.lieu %}6{% else %}12{% endif %}">
                     <div class="form-group">
                         {{ data.form.type["#title"] }}
                         <div class="no-title">
