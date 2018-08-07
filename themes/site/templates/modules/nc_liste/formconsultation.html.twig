@@ -1,0 +1,39 @@
+<div class="row no-gutters shadow-lg seachForm content-page">
+    <div class="col-md-3 d-none d-lg-block">
+        <img src="/themes/site/img/img_search.png" class="w-100" alt="">
+    </div>
+    <div class="col bg-info">
+        <h2 class="c-top text-center text-light">
+            Notre offre de soins
+        </h2>
+        <form action="{{ data.action }}" method="GET">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+
+                        {{ data.form.lieu["#title"] }}
+                        <div class="no-title">
+                            {{ data.form.lieu }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        {{ data.form.type["#title"] }}
+                        <div class="no-title">
+                            {{ data.form.type }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <button class="c-around" type="submit">Je recherche</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="with_shadow mt-x mb-3">
+    <div id="mapmultiple" class="w-100 leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative; outline: none;"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" role="presentation" src="https://c.tile.openstreetmap.org/11/1031/702.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(238px, -57px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://a.tile.openstreetmap.org/11/1032/702.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(494px, -57px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://a.tile.openstreetmap.org/11/1031/703.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(238px, 199px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://b.tile.openstreetmap.org/11/1032/703.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(494px, 199px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://b.tile.openstreetmap.org/11/1030/702.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-18px, -57px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://b.tile.openstreetmap.org/11/1033/702.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(750px, -57px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://c.tile.openstreetmap.org/11/1030/703.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-18px, 199px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://c.tile.openstreetmap.org/11/1033/703.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(750px, 199px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-marker-pane"><img src="img/marker.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" alt="" tabindex="0" style="margin-left: -25px; margin-top: -47px; width: 52px; height: 51px; transform: translate3d(223px, 63px, 0px); z-index: 63;"><img src="img/marker.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" alt="" tabindex="0" style="margin-left: -25px; margin-top: -47px; width: 52px; height: 51px; transform: translate3d(536px, 105px, 0px); z-index: 105;"><img src="img/marker.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" alt="" tabindex="0" style="margin-left: -25px; margin-top: -47px; width: 52px; height: 51px; transform: translate3d(351px, 261px, 0px); z-index: 261;"><img src="img/marker.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" alt="" tabindex="0" style="margin-left: -25px; margin-top: -47px; width: 52px; height: 51px; transform: translate3d(402px, 139px, 0px); z-index: 139;"></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(264110px, 179941px, 0px) scale(1024);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out">−</a></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a></div></div></div></div>
+</div>

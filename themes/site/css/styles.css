@@ -2134,3 +2134,10 @@ footer a.round:hover {
     left: 0;
     z-index: -2;
 }
+
+.no-title select {
+    width: 100%;
+}
+.no-title label {
+    display: none;
+}
