@@ -2093,6 +2093,7 @@ footer a.round:hover {
     left: 0;
     list-style: none;
     padding-left: 0;
+    z-index: 999;
 }
 
 .fixedTab li {

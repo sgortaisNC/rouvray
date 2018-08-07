@@ -4,11 +4,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+var hIcon = L.icon({
+    iconUrl: '/themes/site/img/marker.png',
+    iconSize:     [52, 51],
+    iconAnchor:   [25, 47],
+});
 
 var $ = jQuery;
 
 $(".markerConsult").each(function () {
-    L.marker([$(this).data("lat"), $(this).data("lng")])
+    L.marker([$(this).data("lat"), $(this).data("lng")], {icon: hIcon})
         .bindPopup($(this).data("titre")
             +"<br>"+$(this).data("adress")
             +"<br>"+$(this).data("ville")
@@ -18,3 +23,5 @@ $(".markerConsult").each(function () {
             )
         .addTo(map);
 });
+
+
