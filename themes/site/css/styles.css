@@ -1281,7 +1281,8 @@ footer .bg-warning a {
     background: #e7eaef;
 }
 
-.content-page .blockquote {
+.content-page blockquote,
+.content-page .blockquote  {
     font-family: "Noto Serif", serif;
     color: #0071ce;
     padding: 20px 60px 20px 40px;
@@ -1291,6 +1292,12 @@ footer .bg-warning a {
     position: relative;
 }
 
+.content-page blockquote p,
+.content-page .blockquote p{
+    margin-bottom: 0;
+}
+
+.content-page blockquote::before,
 .content-page .blockquote::before {
     position: absolute;
     left: 8px;
@@ -1301,6 +1308,7 @@ footer .bg-warning a {
     content: '';
     background: #feb602;
 }
+
 
 .content-page .shadow {
     font-family: Hind, sans-serif;
