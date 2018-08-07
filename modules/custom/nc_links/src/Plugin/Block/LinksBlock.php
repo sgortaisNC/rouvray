@@ -34,7 +34,7 @@ class LinksBlock extends BlockBase {
             if($node->hasField('field_links') && count($node->get('field_links')->getValue()) > 0){
                 foreach ($node->get('field_links')->getValue() as $link){
                     $links[] = [
-                        'title' => $link['title'],
+                        'title' => !empty($link['title']) ? $link['title'] : $link['uri'],
                         'url' => $link['uri'],
                     ];
                 }

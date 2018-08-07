@@ -62,7 +62,7 @@ jQuery( document ).ready(function($) {
         });
     }
     if  ($('#mapid').length > 0){
-        var map = L.map('mapid').setView([47.9, 3.6667], 13);
+        var map = L.map('mapid').setView([$(".marker").data("lat"),$(".marker").data("lng")], 13);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -72,11 +72,11 @@ jQuery( document ).ready(function($) {
         }).addTo(map);
 
         var hIcon = L.icon({
-            iconUrl: 'img/marker.png',
+            iconUrl: '/themes/site/img/marker.png',
             iconSize:     [52, 51],
-            iconAnchor:   [25, 47],
+            iconAnchor:   [25, 47]
         });
-        L.marker([47.9, 3.6667], {icon: hIcon}).addTo(map);
+        L.marker([$(".marker").data("lat"),$(".marker").data("lng")], {icon: hIcon}).addTo(map);
     }
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     $( window ).resize(function() {
