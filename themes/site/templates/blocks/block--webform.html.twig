@@ -27,16 +27,17 @@
  * @ingroup themeable
  */
 #}
-
-{% if(isEmpty != true) %}
-  <div{{ attributes }}>
-    {{ title_prefix }}
-    {% if label %}
-      <h2{{ title_attributes }}>{{ label }}</h2>
+<div class="content-page">
+    {% if(isEmpty != true) %}
+        <div{{ attributes }}>
+            {{ title_prefix }}
+            {% if label %}
+                <h2{{ title_attributes }}>{{ label }}</h2>
+            {% endif %}
+            {{ title_suffix }}
+            {% block content %}
+                {{ content }}
+            {% endblock %}
+        </div>
     {% endif %}
-    {{ title_suffix }}
-    {% block content %}
-      {{ content }}
-    {% endblock %}
-  </div>
-{% endif %}
+</div>
