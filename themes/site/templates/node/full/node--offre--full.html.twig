@@ -70,28 +70,53 @@
  *   in different view modes.
  */
 #}
-<article{{ attributes }}>
+<div class="content-page">
+    <article{{ attributes }}>
+        <div class="d-flex justify-content-between align-items-center">
+            <div><i class="fas fa-map-marker text-warning"></i> {{ content.field_lieu }}</div>
+            <div><i class="fas fa-briefcase text-warning"></i> {{ content.field_quantite }} postes</div>
+        </div>
 
-  {{ title_prefix }}
-  {% if not page %}
-    <h2{{ title_attributes }}>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h2>
-  {% endif %}
-  {{ title_suffix }}
+        <div class="d-flex justify-content-center align-items-center bg-dark">
+            {{ content.field_image }}
+        </div>
 
-  {% if display_submitted %}
-    <footer>
-      {{ author_picture }}
-      <div{{ author_attributes }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
-      </div>
-    </footer>
-  {% endif %}
+        <div class="d-flex justify-content-around align-items-start text-align-center my-3">
+            <div>
+                <i class="fas fa-2x text-warning fa-clipboard"></i>
+                <br>
+                Type de contrat <br>
+                {{ content.field_contrat }}
+            </div>
 
-  <div{{ content_attributes }}>
-    {{ content }}
-  </div>
+            <div>
+                <i class="fas fa-2x text-warning fa-calendar-plus"></i>
+                <br>
+                Début de contrat <br>
+                {{ content.field_date }}
+            </div>
 
-</article>
+            {% if content.field_date_other %}
+                <div>
+                    <i class="fas fa-2x text-warning fa-calendar-minus"></i>
+                    <br>
+                    Fin de contrat <br>
+                    {{ content.field_date_other }}
+                </div>
+            {% endif %}
+            <div>
+                <i class="fas fa-2x text-warning fa-calendar-times"></i>
+                <br>
+                Date limite de candidature <br>
+                {{ content.field_date_limite }}
+            </div>
+        </div>
+
+        {{ content.body }}
+        {% if content.field_tags %}
+            <hr>
+            <h3>Mots clés</h3>
+            {{ content.field_tags }}
+        {% endif %}
+    </article>
+</div>
