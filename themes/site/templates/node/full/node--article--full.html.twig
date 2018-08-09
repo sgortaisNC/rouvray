@@ -71,27 +71,17 @@
  */
 #}
 <article{{ attributes }}>
+    <div class="d-flex justify-content-between align-items-center">
+        {{ content.lieu }}
+        <div>
+        {{ content.field_date }} {{ content.field_date_other }}
+        </div>
+    </div>
 
-  {{ title_prefix }}
-  {% if not page %}
-    <h2{{ title_attributes }}>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h2>
-  {% endif %}
-  {{ title_suffix }}
-
-  {% if display_submitted %}
-    <footer>
-      {{ author_picture }}
-      <div{{ author_attributes }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
-      </div>
-    </footer>
-  {% endif %}
-
-  <div{{ content_attributes }}>
-    {{ content }}
-  </div>
-
+    <div class="d-flex justify-content-center align-items-center">
+        {{ content.field_image }}
+    </div>
+    {{ content.body }}
+    <hr>
+    {{ content.field_tags }}
 </article>
