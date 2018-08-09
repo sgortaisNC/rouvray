@@ -70,19 +70,21 @@
  *   in different view modes.
  */
 #}
-<article{{ attributes }}>
-    <div class="d-flex justify-content-between align-items-center my-2">
-        <div><i class="fas fa-map-marker"></i> {{ content.field_lieu }}</div>
-        <div>
-            <i class="fas fa-calendar-alt"></i> {{ content.field_date }} {{ content.field_date_other }}
+<div class="content-page">
+    <article{{ attributes }}>
+        <div class="d-flex justify-content-between align-items-center my-2">
+            <div><i class="fas fa-map-marker"></i> {{ content.field_lieu }}</div>
+            <div>
+                <i class="fas fa-calendar-alt"></i> {{ content.field_date }} {{ content.field_date_other }}
+            </div>
         </div>
-    </div>
 
-    <div class="d-flex justify-content-center align-items-center my-2 bg-dark">
-        {{ content.field_image }}
-    </div>
-    {{ content.body }}
-    <hr>
-    <h2>Mots-clés : </h2>
-    {{ content.field_tags }}
-</article>
+        <div class="d-flex justify-content-center align-items-center my-2 bg-dark">
+            {{ content.field_image }}
+        </div>
+        {{ content.body }}
+        <hr>
+        <h2>Mots-clés : </h2>
+        {{ content.field_tags }}
+    </article>
+</div>
