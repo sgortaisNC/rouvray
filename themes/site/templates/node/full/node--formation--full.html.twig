@@ -71,27 +71,53 @@
  */
 #}
 <article{{ attributes }}>
-
-  {{ title_prefix }}
-  {% if not page %}
-    <h2{{ title_attributes }}>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h2>
-  {% endif %}
-  {{ title_suffix }}
-
-  {% if display_submitted %}
-    <footer>
-      {{ author_picture }}
-      <div{{ author_attributes }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
-      </div>
-    </footer>
-  {% endif %}
-
-  <div{{ content_attributes }}>
-    {{ content }}
-  </div>
-
+    <div class="content-page">
+        <div class="d-flex justify-content-center align-items-center bg-dark">
+            {{ content.field_image }}
+        </div>
+        <div class="d-flex justify-content-around align-items-start text-align-center my-3">
+            <div>
+                <i class="fas fa-2x text-warning fa-hourglass-start"></i>
+                <br>
+                {{ content.field_duree }}
+            </div>
+            <div>
+                <i class="fas fa-2x text-warning fa-money-bill"></i>
+                <br>
+                {{ content.field_prix }}
+            </div>
+            <div>
+                <i class="fas fa-2x text-warning fa-user-graduate"></i>
+                <br>
+                {{ content.field_publics }}
+            </div>
+            <div>
+                <i class="fas fa-2x text-warning fa-users"></i>
+                <br>
+                {{ content.field_organisation }}
+            </div>
+            {% if content.field_pastille %}
+                <div>
+                    <i class="fas fa-2x text-warning fa-check"></i>
+                    <br>
+                    DPC
+                </div>
+            {% endif %}
+        </div>
+        {{ content.body }}
+        <h2>Objectifs de la formation</h2>
+        {{ content.field_objectifs }}
+        <h2>Pré-requis</h2>
+        {{ content.field_horaires }}
+        <h2>Points forts</h2>
+        {{ content.field_points }}
+        <h2>Intervenants</h2>
+        {{ content.field_intervenants }}
+        <h2>Programme</h2>
+        {{ content.field_horaires }}
+        <hr>
+        <h3>Mots clés</h3>
+        {{ content.field_tags }}
+        <hr>
+    </div>
 </article>
