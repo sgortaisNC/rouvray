@@ -8,7 +8,11 @@ function site_form_alter( &$form, \Drupal\Core\Form\FormStateInterface $form_sta
 			if ( $route = $request->attributes->get( \Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT ) ) {
 				$title = \Drupal::service( 'title_resolver' )->getTitle( $request, $route );
 			}
-			$form["elements"]["formation"]["#value"] = $title;
+			$form["elements"]['flexbox']['flexbox_01']["formation"]["#value"] = $title;
 		}
 	}
+}
+
+function site_theme_suggestions_form_alter( array &$suggestions, array $variables ) {
+	$suggestions[] = 'form__' . $variables["element"]["#form_id"];
 }

@@ -13,7 +13,13 @@ jQuery(window).on("load", function () {
 
 
 jQuery( document ).ready(function($) {
-
+    $("#search-block-form .input-group, #search-form .input-group").append('<div class="form-actions js-form-wrapper form-wrapper">' +
+        '<div class="input-group-append">' +
+        '<button class="btn btn-white" type="submit">' +
+        '<i class="fa fa-search"></i>' +
+        '</button>' +
+        '</div>' +
+        '</div>');
     $('.home form select').change(function () {
         var form = $(this).closest('form');
         form.submit();
