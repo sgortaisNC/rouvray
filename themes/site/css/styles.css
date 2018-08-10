@@ -2150,3 +2150,29 @@ footer a.round:hover {
 .no-title label {
     display: none;
 }
+
+.sitemap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.sitemap-box-menu h2{
+    color: rgb(254,182,2);
+}
+
+
+.sitemap-box-menu .content ul{
+    list-style: none;
+    border-left: 2px solid rgb(254,182,2);
+}
+
+.sitemap-box-menu .content ul ul ul{
+    list-style: none;
+    border-left: 2px solid #0071ce;
+}
+
+.sitemap-box-menu .content > ul{
+    border: none;
+    padding-left: 0;
+}
