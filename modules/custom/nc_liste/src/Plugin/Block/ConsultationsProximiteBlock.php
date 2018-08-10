@@ -213,7 +213,9 @@ class ConsultationsProximiteBlock extends BlockBase {
 			if (!empty($_GET["ville"])){
 				$form["form"]["lieu"]["#value"] = $_GET["ville"];
 			}
-			$form["form"]["type"]["#value"] = $_GET["type"];
+			if (!empty($_GET["type"])) {
+				$form["form"]["type"]["#value"] = $_GET["type"];
+			}
 		}
 
 		$build = [
