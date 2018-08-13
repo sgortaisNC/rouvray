@@ -48,6 +48,9 @@ class ListeactualiteBlock extends BlockBase {
 						$body = strlen( $nodeContent->get( "body" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "body" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "body" )->getValue()[0]["value"];
 					}
 					$date_fin   = ! empty( $nodeContent->get( "field_date_other" )->getValue()[0]["value"] ) ? $nodeContent->get( "field_date_other" )->getValue()[0]["value"] : "";
+					if  (!empty($date_fin)) {
+						$date_fin = \Drupal::service( 'date.formatter' )->format( strtotime( $date_fin ), "long" );
+					}
 					$lieu       = ! empty( $nodeContent->get( "field_lieu" )->getValue()[0]["value"] ) ? $nodeContent->get( "field_lieu" )->getValue()[0]["value"] : '';
 					$contents[] = [
 						'title'     => $nodeContent->getTitle(),
@@ -56,7 +59,7 @@ class ListeactualiteBlock extends BlockBase {
 							"url" => $image,
 							"alt" => ! empty( $nodeContent->get( "field_image" )->getValue()[0]['alt'] ) ? $nodeContent->get( "field_image" )->getValue()[0]['alt'] : ""
 						],
-						"date_deb"  => $nodeContent->get( "field_date" )->getValue()[0]["value"],
+						"date_deb"  => \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( "field_date" )->getValue()[0]["value"]),"long"),
 						"date_fin"  => $date_fin,
 						"lieu"      => $lieu,
 						"body"      => $body,

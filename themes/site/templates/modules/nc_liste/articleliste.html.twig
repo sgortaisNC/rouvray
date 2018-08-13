@@ -1,26 +1,41 @@
-<ul>
+<div class="list-result content-page mt-5">
     {% for article in data %}
-        <li>
-            <h3>{{ article.title }}</h3>
-            <div>
-                {{ article.affichage }}
+        <div class="result py-4 px-2">
+            <i class="fas fa-calendar-alt fa-2x mr-2"></i>
+            <div class="teaser px-2">
+                <a href="{{ article.url }}"><h4>{{ article.title }}</h4></a>
+                <div class="d-flex justify-content-start align-items-center my-4">
+                    <div class="w-25">
+                        <img src="{{ article.image.url }}" alt="{{ article.image.alt }}" class="img-fluid">
+                    </div>
+                    <div class="d-flex flex-column justify-content-around w-25">
+                        {% if article.date_deb is not empty %}
+                            <div class="text-center">
+                                <i class="fas fa-hourglass-start fa-2x text-warning"></i> <br>
+                                {{ article.date_deb }}
+                            </div>
+                        {% endif %}
+                        {% if article.date_fin is not empty %}
+                            <br>
+                            <div class="text-center">
+                                <i class="fas fa-hourglass-end fa-2x text-warning"></i> <br>
+                                {{ article.date_fin }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    {% if article.lieu is not empty %}
+                        <div class="text-center w-25">
+                            <i class="fas fa-map-marker fa-2x text-warning"></i><br>
+                            {{ article.lieu }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div>
+                    {{ article.body | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
+                </div>
             </div>
-            <div>
-                URL : {{ article.image.url }} ALT : {{ article.image.alt }}
-            </div>
-            <div>
-                {{ article.date_deb }}
-            </div>
-            <div>
-                {{ article.date_fin }}
-            </div>
-            <div>
-                {{ article.lieu }}
-            </div>
-            <div>
-                {{ article.body }}
-            </div>
-            <a href="{{ article.url }}" title="Lire la suite">Lire la suite</a>
-        </li>
+            <a href="{{ article.url }}" class="align-self-center btn btn-outline-light">En savoir plus</a>
+        </div>
     {% endfor %}
-</ul>
+</div>
