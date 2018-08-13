@@ -1,0 +1,23 @@
+<ul>
+    {% for concour in data %}
+        <li>
+            <h3>{{ concour.title }}</h3>
+            <div>
+                {{ concour.epreuve }}
+            </div>
+            <div>
+                {{ concour.date_publication }}
+            </div>
+            <div>
+                {{ concour.type_concours }}
+            </div>
+            <div>
+                {{ concour.grade }}
+            </div>
+            <div>
+                {{ concour.date_limite }}
+            </div>
+            <a href="{{ concour.url }}" title="Lire la suite">Lire la suite</a>
+        </li>
+    {% endfor %}
+</ul>
