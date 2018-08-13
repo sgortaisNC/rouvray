@@ -1,14 +1,21 @@
-<ul>
+<div class="list-result content-page mt-5">
     {% for secured in data %}
-        <li>
-            <h3>{{ secured.title }}</h3>
-            <div>
-                URL : {{ secured.image.url }} ALT : {{ secured.image.alt }}
+        <div class="result py-4 px-2">
+            <i class="fas fa-file-alt fa-2x mr-2"></i>
+            <div class="teaser px-2">
+                <a href="{{ secured.url }}"><h4>{{ secured.title }}</h4></a>
+                <div class="d-flex justify-content-start align-items-start mt-4">
+                    {% if secured.image.url is not empty %}
+                        <div class="w-25">
+                            <img src="{{ secured.image.url }}" alt="{{ secured.image.alt }}" class="img-fluid">
+                        </div>
+                    {% endif %}
+                    <div class="flex-fill px-2">
+                        {{ secured.body | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
+                    </div>
+                </div>
             </div>
-            <div>
-                {{ secured.body }}
-            </div>
-            <a href="{{ secured.url }}" title="Lire la suite">Lire la suite</a>
-        </li>
+            <a href="{{ secured.url }}" class="align-self-center btn btn-outline-light">En savoir plus</a>
+        </div>
     {% endfor %}
-</ul>
+</div>

@@ -64,7 +64,8 @@
         <div id="mapid" class="mt-5 w-100"></div>
     </div>
 </div>
-
-<script>
-
-</script>
+{% if content.field_tags is not empty %}
+    <hr>
+    <h3>Mots-clés : </h3>
+    {{ content.field_tags }}
+{% endif %}

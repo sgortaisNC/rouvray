@@ -85,8 +85,10 @@
             {{ content.field_image }}
         </div>
         {{ content.body }}
-        <hr>
-        <h3>Mots-clés : </h3>
-        {{ content.field_tags }}
+        {% if content.field_tags is not empty %}
+            <hr>
+            <h3>Mots-clés : </h3>
+            {{ content.field_tags }}
+        {% endif %}
     </article>
 </div>

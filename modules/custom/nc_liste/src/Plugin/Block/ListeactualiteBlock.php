@@ -43,6 +43,16 @@ class ListeactualiteBlock extends BlockBase {
 					if ( ! empty( $nodeContent->get( "field_image" )->getValue()[0]['target_id'] ) ) {
 						$image = file_create_url( File::load( $nodeContent->get( "field_image" )->getValue()[0]['target_id'] )->getFileUri() );
 					}
+					else{
+						$fileUuid = $nodeContent->get('field_image')->getSetting('default_image')['uuid'];
+						$file = \Drupal::service('entity.repository')->loadEntityByUuid('file', $fileUuid);
+						if(!empty($file)){
+							$path = $file->getFileUri();
+							$image = file_create_url(ImageStyle::load('detail')->buildUrl($path));
+						}
+					}
+
+
 					$body = "";
 					if ( ! empty( $nodeContent->get( "body" )->getValue()[0]["value"] ) ) {
 						$body = strlen( $nodeContent->get( "body" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "body" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "body" )->getValue()[0]["value"];
@@ -57,7 +67,7 @@ class ListeactualiteBlock extends BlockBase {
 						'affichage' => $nodeContent->get( "field_affichage" )->getValue()[0]["value"],
 						"image"     => [
 							"url" => $image,
-							"alt" => ! empty( $nodeContent->get( "field_image" )->getValue()[0]['alt'] ) ? $nodeContent->get( "field_image" )->getValue()[0]['alt'] : ""
+							"alt" => ! empty( $nodeContent->get( "field_image" )->getValue()[0]['alt'] ) ? $nodeContent->get( "field_image" )->getValue()[0]['alt'] : $nodeContent->getTitle(),
 						],
 						"date_deb"  => \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( "field_date" )->getValue()[0]["value"]),"long"),
 						"date_fin"  => $date_fin,

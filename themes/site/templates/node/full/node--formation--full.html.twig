@@ -115,9 +115,11 @@
         {{ content.field_intervenants }}
         <h2>Programme</h2>
         {{ content.field_horaires }}
-        <hr>
-        <h3>Mots clés</h3>
-        {{ content.field_tags }}
+        {% if content.field_tags is not empty %}
+            <hr>
+            <h3>Mots-clés : </h3>
+            {{ content.field_tags }}
+        {% endif %}
         <hr>
     </div>
 </article>

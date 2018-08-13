@@ -116,8 +116,10 @@
             <div class="w-75">{{ content.field_liste }}</div>
         </div>
 
-        <hr>
-        <h3>Mots clés</h3>
-        {{ content.field_tags }}
+        {% if content.field_tags is not empty %}
+            <hr>
+            <h3>Mots-clés : </h3>
+            {{ content.field_tags }}
+        {% endif %}
     </article>
 </div>
