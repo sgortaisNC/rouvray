@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Term;
 

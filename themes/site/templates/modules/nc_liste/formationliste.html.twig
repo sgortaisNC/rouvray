@@ -1,20 +1,38 @@
-<ul>
+<div class="list-result content-page mt-5">
     {% for formation in data %}
-        <li>
-            <h3>{{ formation.title }}</h3>
-            <div>
-                {{ formation.duree }}
+        <div class="result py-4 px-2">
+            <i class="fas fa-user-graduate fa-2x mr-2"></i>
+            <div class="teaser px-2">
+                <a href="{{ formation.url }}"><h4>{{ formation.title }}</h4></a>
+                <div class="d-flex justify-content-start align-items-start my-4">
+                    {% if formation.duree is not empty %}
+                        <div class="text-center w-25">
+                            <i class="fas fa-hourglass-half fa-2x text-warning"></i> <br>
+                            <br>
+                            {{ formation.duree }}
+                        </div>
+                    {% endif %}
+
+                    {% if formation.organisation is not empty %}
+                        <div class="text-center w-25">
+                            <i class="fas fa-users fa-2x text-warning"></i><br>
+                            {{ formation.organisation }}
+                        </div>
+                    {% endif %}
+
+                    {% if formation.publics is not empty %}
+                        <div class="text-center w-25">
+                            <i class="fas fa-graduation-cap fa-2x text-warning"></i><br>
+                            {{ formation.publics }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div>
+                    {{ formation.objectifs  | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
+                    <br>
+                </div>
             </div>
-            <div>
-                {{ formation.organisation }}
-            </div>
-            <div>
-                {{ formation.publics }}
-            </div>
-            <div>
-                {{ formation.objectifs }}
-            </div>
-            <a href="{{ formation.url }}" title="Lire la suite">Lire la suite</a>
-        </li>
+            <a href="{{ formation.url }}" class="align-self-center btn btn-outline-light">Détail de la formation</a>
+        </div>
     {% endfor %}
-</ul>
+</div>
