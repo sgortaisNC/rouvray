@@ -196,7 +196,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 					'type' => [
 						'#type'      => 'select',
 						'#title'     => 'Pathologie / Type de prestation',
-						'#attribute' => [
+						'#attributes' => [
 							'class' => 'form-control',
 						],
 						'#name'      => 'type',

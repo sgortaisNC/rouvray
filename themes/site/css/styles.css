@@ -1389,9 +1389,14 @@ footer .bg-warning a {
     display: flex;
 }
 
-.result svg {
+.result > svg,
+.result > i{
     align-self: flex-end;
     margin-bottom: 10px;
+}
+
+.result > i{
+    margin-bottom: 5px;
 }
 
 .result:nth-child(odd) {
@@ -2240,4 +2245,8 @@ footer a.round:hover {
 
 .searchItem h4:hover::before {
     width: 100%;
+}
+
+.form-text{
+    margin-top: 0;
 }

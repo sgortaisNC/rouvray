@@ -52,18 +52,17 @@ class ListeconcoursBlock extends BlockBase {
 					$contents[] = [
 						'title'            => $nodeContent->getTitle(),
 						"epreuve"          => $epreuve,
-						"date_publication" => ! empty( $nodeContent->get( 'field_date' )->getValue()[0]["value"] ) ? $nodeContent->get( 'field_date' )->getValue()[0]["value"] : "",
+						"date_publication" => ! empty( $nodeContent->get( 'field_date' )->getValue()[0]["value"] ) ? \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( 'field_date' )->getValue()[0]["value"]),"long") : "",
 						"type_concours"    => ! empty( $nodeContent->get( 'field_concours' )->getValue()[0]["target_id"] ) ? Term::Load( $nodeContent->get( 'field_concours' )->getValue()[0]["target_id"] )->getName() : "",
 						"grade"            => ! empty( $nodeContent->get( 'field_grade' )->getValue()[0]["target_id"] ) ? Term::Load( $nodeContent->get( 'field_grade' )->getValue()[0]["target_id"] )->getName() : "",
-						"date_limite"      => ! empty( $nodeContent->get( 'field_date_limite' )->getValue()[0]["value"] ) ? $nodeContent->get( 'field_date_limite' )->getValue()[0]["value"] : '',
+						"date_limite"      => ! empty( $nodeContent->get( 'field_date_limite' )->getValue()[0]["value"] ) ? \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( 'field_date_limite' )->getValue()[0]["value"]),"long") : '',
 						'url'              => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
 					];
 				}
-
 			}
 		}
 
-		$tabGrade = ["" => "Sélectionnez un grade"];
+		$tabGrade = [ "" => "Sélectionnez un grade" ];
 
 		$grades = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'grades' );
 		foreach ( $grades as $grade ) {
@@ -74,28 +73,34 @@ class ListeconcoursBlock extends BlockBase {
 			'title'  => 'Filtrer les concours',
 			'action' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/117' ),
 			'form'   => [
-				'titre'  => [
-					'#type'      => 'textfield',
-					'#title'     => 'Mot clé',
-					'#size'      => 60,
-					'#name'      => "q",
-					'#maxlength' => 128,
-				],
-				'epreuve'  => [
-					'#type'      => 'textfield',
-					'#title'     => 'Epreuve',
-					'#size'      => 60,
-					'#name'      => "epreuve",
-					'#maxlength' => 128,
-				],
-				'grade'  => [
-					'#type'      => 'select',
-					'#title'     => 'Grade',
-					'#name'      => "grade",
-					'#attribute' => [
-						'class' => 'form-control',
+				'titre'   => [
+					'#type'       => 'textfield',
+					'#title'      => 'Mot clé',
+					'#size'       => 60,
+					'#name'       => "q",
+					'#maxlength'  => 128,
+					'#attributes' => [
+						'class' => [ 'form-control' ],
 					],
-					'#options'   => $tabGrade,
+				],
+				'epreuve' => [
+					'#type'       => 'textfield',
+					'#title'      => 'Epreuve',
+					'#size'       => 60,
+					'#name'       => "epreuve",
+					'#maxlength'  => 128,
+					'#attributes' => [
+						'class' => [ 'form-control' ],
+					],
+				],
+				'grade'   => [
+					'#type'       => 'select',
+					'#title'      => 'Grade',
+					'#name'       => "grade",
+					'#attributes' => [
+						'class' => [ 'form-control' ],
+					],
+					'#options'    => $tabGrade,
 				]
 			]
 		];
