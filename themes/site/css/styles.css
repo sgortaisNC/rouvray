@@ -2223,6 +2223,10 @@ footer a.round:hover {
     margin-bottom: 1rem;
 }
 
+.form-control{
+    max-width: 100% !important;
+}
+
 .iconSearch {
     min-height: 50px;
     height: 100%;

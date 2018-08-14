@@ -1,25 +1,18 @@
 <div class="row no-gutters shadow-lg seachForm content-page">
-    <div class="col-md-3 d-none d-lg-block">
-        <img src="/themes/site/img/img_search.png" class="w-100" alt="Recherche">
-    </div>
-    <div class="col bg-info">
-        <h2 class="c-top text-center text-light">
-            Nos formations
-        </h2>
-        <form action="{{ data.action }}" method="GET">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="form-group text-center">
-                        {{ data.form.titre["#title"] }}
-                        <div class="no-title">
-                            {{ data.form.titre }}
-                        </div>
+    <div class="col bg-info" style="padding-bottom: 0;">
+        <form action="{{ data.action }}" method="GET" class="form-inline w-100">
+            <div class="form-group row py-3">
+                <div class="col-md-4">
+                    {{ data.form.titre["#title"] }}
+                </div>
+                <div class="col-md-6">
+                    <div class="no-title">
+                        {{ data.form.titre }}
                     </div>
                 </div>
-
-            </div>
-            <div class="col-12 text-center">
-                <button class="c-around" type="submit">Je recherche</button>
+                <div class="col-md-2 text-align-center">
+                        <button class="c-around" type="submit" style="position: relative;top: -7px;">Rechercher</button>
+                </div>
             </div>
         </form>
     </div>

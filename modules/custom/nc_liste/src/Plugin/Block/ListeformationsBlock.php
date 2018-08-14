@@ -74,7 +74,7 @@ class ListeformationsBlock extends BlockBase {
 			'form' => [
 				'titre' => [
 					'#type' => 'textfield',
-					'#title' => 'Mot clé',
+					'#title' => 'Je recherche la formation suivante : ',
 					'#size' => 60,
 					'#name' => "titre",
 					'#attributes' => [

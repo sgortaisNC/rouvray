@@ -1,7 +1,7 @@
 <div class="list-result content-page mt-5">
     {% for secured in data %}
-        <div class="result py-4 px-2">
-            <div class="teaser px-2">
+        <div class="result p-4">
+            <div class="teaser">
                 <a href="{{ secured.url }}"><h4>{{ secured.title }}</h4></a>
                 <div class="d-flex justify-content-start align-items-start mt-4">
                     {% if secured.image.url is not empty %}
@@ -9,7 +9,7 @@
                             <img src="{{ secured.image.url }}" alt="{{ secured.image.alt }}" class="img-fluid">
                         </div>
                     {% endif %}
-                    <div class="flex-fill px-2">
+                    <div class="flex-fill">
                         {{ secured.body | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
                     </div>
                 </div>

@@ -93,7 +93,7 @@ class NewsBlock extends BlockBase {
             $build = [
                 '#theme' => 'news',
                 '#data' => $contents,
-                '#url' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/1'),
+                '#url' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/112'),
             ];
         }else{
             $build = [];

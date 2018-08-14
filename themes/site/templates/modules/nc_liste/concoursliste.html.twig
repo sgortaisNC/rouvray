@@ -1,7 +1,7 @@
 <div class="list-result content-page mt-5">
     {% for concour in data %}
-        <div class="result py-4 px-2">
-            <div class="teaser px-2">
+        <div class="result p-4">
+            <div class="teaser">
                 <a href="{{ concour.url }}"><h4>{{ concour.title }}</h4></a>
                 <div class="d-flex justify-content-start align-items-start my-4">
                     {% if concour.date_publication is not empty %}

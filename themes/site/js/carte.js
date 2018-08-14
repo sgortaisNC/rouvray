@@ -1,6 +1,6 @@
 var $ = jQuery;
 
-if ($("#mapConsult") !== undefined ){
+if ($("#mapConsult").length > 0 ){
     var map = L.map('mapConsult').setView([49.3990733, 1.0984624], 11);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

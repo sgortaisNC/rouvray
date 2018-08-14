@@ -22,7 +22,7 @@ function site_form_system_theme_settings_alter( &$form, \Drupal\Core\Form\FormSt
 
 function site_preprocess_search_result( &$variables ) {
 	if ( isset( $variables['result']['node']->type ) ) {
-		$correpondance                   = [
+		$correpondance = [
 			"article"      => "calendar-alt",
 			"concours"     => "user-graduate",
 			"consultation" => "user-md",
@@ -31,6 +31,18 @@ function site_preprocess_search_result( &$variables ) {
 			"page"         => "file-alt",
 			"secured"      => "lock",
 		];
-		$variables['info_split']['icon'] = $correpondance[$variables['result']['node']->getType()];
+
+		$correpondanceT = [
+			"article"      => "Actualité",
+			"concours"     => "Concours",
+			"consultation" => "Consultation",
+			"formation"    => "Formation",
+			"offre"        => "Offre d'emploi",
+			"page"         => "Page",
+			"secured"      => "Page securisée",
+		];
+
+		$variables['info_split']['icon'] = $correpondance[ $variables['result']['node']->getType() ];
+		$variables['info_split']['type'] = $correpondanceT[ $variables['result']['node']->getType() ];
 	}
 }
