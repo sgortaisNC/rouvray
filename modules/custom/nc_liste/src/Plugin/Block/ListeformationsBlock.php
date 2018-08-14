@@ -23,7 +23,6 @@ class ListeformationsBlock extends BlockBase {
 	public function build() {
 
 		$contents = $nids = [];
-
 		$query = \Drupal::entityQuery( 'node' );
 		$query->condition( 'type', [ 'formation' ], 'IN' )
 		      ->condition( 'status', 1 );
