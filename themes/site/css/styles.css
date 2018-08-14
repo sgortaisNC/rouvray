@@ -2283,3 +2283,18 @@ footer a.round:hover {
     margin-top: 10px;
 }
 
+
+ul.main_menu{
+    position: relative;
+}
+
+ul.main_menu::after{
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    content: '';
+    display: block;
+    right: 0;
+    height: 1px;
+    background: #e7eaef;
+}
