@@ -1,6 +1,41 @@
-<form action="{{ data.action }}" method="GET">
-    {{ data.form.titre }}
-    {{ data.form.statut }}
-    {{ data.form.grade }}
-    <button>OK</button>
-</form>
+<div class="row no-gutters shadow-lg seachForm content-page">
+    <div class="col-md-3 d-none d-lg-block">
+        <img src="/themes/site/img/img_search.png" class="w-100" alt="Recherche">
+    </div>
+    <div class="col bg-info">
+        <h2 class="c-top text-center text-light">
+            Nos concours
+        </h2>
+        <form action="{{ data.action }}" method="GET">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        {{ data.form.titre["#title"] }}
+                        <div class="no-title">
+                            {{ data.form.titre }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        {{ data.form.statut["#title"] }}
+                        <div class="no-title">
+                            {{ data.form.statut }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        {{ data.form.grade["#title"] }}
+                        <div class="no-title">
+                            {{ data.form.grade }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <button class="c-around" type="submit">Je recherche</button>
+            </div>
+        </form>
+    </div>
+</div>

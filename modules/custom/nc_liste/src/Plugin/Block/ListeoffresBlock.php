@@ -5,6 +5,7 @@ namespace Drupal\nc_liste\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Term;
 
@@ -56,6 +57,15 @@ class ListeoffresBlock extends BlockBase {
 					if  (!empty($nodeContent->get( "field_image" )->getValue()[0]['target_id'])){
 						$image      = file_create_url( File::load( $nodeContent->get( "field_image" )->getValue()[0]['target_id'] )->getFileUri() );
 					}
+					else{
+						$fileUuid = $nodeContent->get('field_image')->getSetting('default_image')['uuid'];
+						$file = \Drupal::service('entity.repository')->loadEntityByUuid('file', $fileUuid);
+						if(!empty($file)){
+							$path = $file->getFileUri();
+							$image = file_create_url(ImageStyle::load('detail')->buildUrl($path));
+						}
+					}
+
 					$fiche      = strlen( $nodeContent->get( "field_fiche" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "field_fiche" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "field_fiche" )->getValue()[0]["value"];
 					$contents[] = [
 						'title'        => $nodeContent->getTitle(),
@@ -102,13 +112,16 @@ class ListeoffresBlock extends BlockBase {
 					'#name'      => "q",
 					'#maxlength' => 128,
 					'#required'  => true,
+					'#attributes' => [
+						'class' => ['form-control'],
+					],
 				],
 				'statut' => [
 					'#type'      => 'select',
 					'#title'     => 'Statut du poste',
 					'#name'      => "statut",
-					'#attribute' => [
-						'class' => 'form-control',
+					'#attributes' => [
+						'class' => ['form-control'],
 					],
 					'#options'   => $tabStatut,
 				],
@@ -116,8 +129,8 @@ class ListeoffresBlock extends BlockBase {
 					'#type'      => 'select',
 					'#title'     => 'Grade',
 					'#name'      => "grade",
-					'#attribute' => [
-						'class' => 'form-control',
+					'#attributes' => [
+						'class' => ['form-control'],
 					],
 					'#options'   => $tabGrade,
 				]

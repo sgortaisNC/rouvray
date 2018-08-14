@@ -77,8 +77,12 @@ class ListeformationsBlock extends BlockBase {
 					'#title' => 'Mot clé',
 					'#size' => 60,
 					'#name' => "titre",
+					'#attributes' => [
+						"class" => [
+							'form-control',
+						],
+					],
 					'#maxlength' => 128,
-					'#required' => TRUE,
 				]
 			]
 		];

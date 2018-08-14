@@ -1,35 +1,87 @@
-<ul>
+<div class="list-result content-page mt-5">
     {% for offre in data %}
-        <li>
-            <h3>{{ offre.title }}</h3>
-            <div>
-                URL : {{ offre.image.url }} ALT : {{ offre.image.alt }}
+        <div class="result py-4 px-2">
+            <i class="fas fa-briefcase fa-2x mr-2"></i>
+            <div class="teaser px-2">
+                <a href="{{ offre.url }}"><h4>{{ offre.title }}</h4></a>
+                <div class="d-flex justify-content-start align-items-center my-2">
+                    <div class="w-25">
+                        <img src="{{ offre.image.url }}" alt="{{ offre.image.alt }}" class="img-fluid">
+                    </div>
+                    <div class="w-75">
+                        <div class="row">
+                            <div class="col-md-4">
+                                {% if offre.date_deb is not empty %}
+                                    <div class="text-center">
+                                        <i class="fas fa-calendar-plus fa-2x text-warning"></i> <br>
+                                        Début de contrat <br>
+                                        {{ offre.date_deb }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                {% if offre.date_fin is not empty %}
+                                    <div class="text-center">
+                                        <i class="fas fa-calendar-minus fa-2x text-warning"></i> <br>
+                                        Fin de contrat <br>
+                                        {{ offre.date_fin }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                {% if  offre.date_limite is not empty %}
+                                    <div class="text-center">
+                                        <i class="fas fa-calendar-times fa-2x text-warning"></i> <br>
+                                        Date limite de candidature <br>
+                                        {{ offre.date_limite }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-3">
+                                {% if offre.lieu is not empty %}
+                                    <br>
+                                    <div class="text-center">
+                                        <i class="fas fa-map-marker fa-2x text-warning"></i> <br>
+                                        {{ offre.lieu }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-3">
+                                {% if offre.statut is not empty %}
+                                    <br>
+                                    <div class="text-center">
+                                        <i class="fas fa-pencil-alt fa-2x text-warning"></i> <br>
+                                        {{ offre.statut }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-3">
+                                {% if offre.grade is not empty %}
+                                    <br>
+                                    <div class="text-center">
+                                        <i class="fas fa-graduation-cap fa-2x text-warning"></i> <br>
+                                        {{ offre.grade }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-3">
+                                {% if offre.type_contrat is not empty %}
+                                    <br>
+                                    <div class="text-center">
+                                        <i class="fas fa-clipboard fa-2x text-warning"></i> <br>
+                                        {{ offre.type_contrat }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    {{ offre.fiche | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
+                </div>
             </div>
-            <div>
-                {{ offre.statut }}
-            </div>
-            <div>
-                {{ offre.grade }}
-            </div>
-            <div>
-                {{ offre.lieu }}
-            </div>
-            <div>
-                {{ offre.fiche }}
-            </div>
-            <div>
-                {{ offre.date_limite }}
-            </div>
-            <div>
-                {{ offre.date_deb }}
-            </div>
-            <div>
-                {{ offre.date_fin }}
-            </div>
-            <div>
-                {{ offre.type_contrat }}
-            </div>
-            <a href="{{ offre.url }}" title="Lire la suite">Lire la suite</a>
-        </li>
+            <a href="{{ offre.url }}" class="align-self-center btn btn-outline-light">En savoir plus</a>
+        </div>
     {% endfor %}
-</ul>
+</div>

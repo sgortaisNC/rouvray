@@ -4,32 +4,28 @@
             <i class="fas fa-user-graduate fa-2x mr-2"></i>
             <div class="teaser px-2">
                 <a href="{{ formation.url }}"><h4>{{ formation.title }}</h4></a>
-                <div class="d-flex justify-content-start align-items-start my-4">
-                    {% if formation.duree is not empty %}
-                        <div class="text-center w-25">
-                            <i class="fas fa-hourglass-half fa-2x text-warning"></i> <br>
-                            <br>
+                <div class="row my-4">
+                    <div class="text-center col-md-4">
+                        {% if formation.duree is not empty %}
+                            <i class="fas fa-hourglass-half fa-2x text-warning"></i><br>
                             {{ formation.duree }}
-                        </div>
-                    {% endif %}
-
-                    {% if formation.organisation is not empty %}
-                        <div class="text-center w-25">
+                        {% endif %}
+                    </div>
+                    <div class="text-center col-md-4">
+                        {% if formation.organisation is not empty %}
                             <i class="fas fa-users fa-2x text-warning"></i><br>
                             {{ formation.organisation }}
-                        </div>
-                    {% endif %}
-
-                    {% if formation.publics is not empty %}
-                        <div class="text-center w-25">
+                        {% endif %}
+                    </div>
+                    <div class="text-center col-md-4">
+                        {% if formation.publics is not empty %}
                             <i class="fas fa-graduation-cap fa-2x text-warning"></i><br>
                             {{ formation.publics }}
-                        </div>
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
                 <div>
                     {{ formation.objectifs  | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
-                    <br>
                 </div>
             </div>
             <a href="{{ formation.url }}" class="align-self-center btn btn-outline-light">Détail de la formation</a>
