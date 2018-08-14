@@ -14,7 +14,7 @@
                                 {% if offre.date_deb is not empty %}
                                     <div class="text-center">
                                         <i class="fas fa-calendar-plus fa-2x text-warning"></i> <br>
-                                        Début de contrat <br>
+                                        <b>Début de contrat</b> <br>
                                         {{ offre.date_deb }}
                                     </div>
                                 {% endif %}
@@ -23,7 +23,7 @@
                                 {% if offre.date_fin is not empty %}
                                     <div class="text-center">
                                         <i class="fas fa-calendar-minus fa-2x text-warning"></i> <br>
-                                        Fin de contrat <br>
+                                        <b>Fin de contrat</b> <br>
                                         {{ offre.date_fin }}
                                     </div>
                                 {% endif %}
@@ -32,7 +32,7 @@
                                 {% if  offre.date_limite is not empty %}
                                     <div class="text-center">
                                         <i class="fas fa-calendar-times fa-2x text-warning"></i> <br>
-                                        Date limite de candidature <br>
+                                        <b>Limite de candidature</b> <br>
                                         {{ offre.date_limite }}
                                     </div>
                                 {% endif %}

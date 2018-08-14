@@ -77,9 +77,9 @@ class ListeoffresBlock extends BlockBase {
 						"grade"        => ! empty( $nodeContent->get( 'field_grade' )->getValue()[0]["target_id"] ) ? Term::Load( $nodeContent->get( 'field_grade' )->getValue()[0]["target_id"] )->getName() : "",
 						"lieu"         => ! empty( $nodeContent->get( 'field_lieu' )->getValue()[0]["value"] ) ? $nodeContent->get( 'field_lieu' )->getValue()[0]["value"] : '',
 						"fiche"        => $fiche,
-						"date_limite"  => ! empty( $nodeContent->get( 'field_date_limite' )->getValue()[0]["value"] ) ? $nodeContent->get( 'field_date_limite' )->getValue()[0]["value"] : '',
-						"date_deb"     => ! empty( $nodeContent->get( 'field_date' )->getValue()[0]["value"] ) ? $nodeContent->get( 'field_date' )->getValue()[0]["value"] : "",
-						"date_fin"     => ! empty( $nodeContent->get( 'field_date_other' )->getValue()[0]["value"] ) ? $nodeContent->get( 'field_date_other' )->getValue()[0]["value"] : "",
+						"date_limite"  => ! empty( $nodeContent->get( 'field_date_limite' )->getValue()[0]["value"] ) ? \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( "field_date_limite" )->getValue()[0]["value"]),"long") : '',
+						"date_fin"     => ! empty( $nodeContent->get( 'field_date_other' )->getValue()[0]["value"] ) ? \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( "field_date_other" )->getValue()[0]["value"]),"long") : "",
+						"date_deb"     => ! empty( $nodeContent->get( 'field_date' )->getValue()[0]["value"] ) ? \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( "field_date" )->getValue()[0]["value"]),"long") : "",
 						"type_contrat" => ! empty( $nodeContent->get( 'field_contrat' )->getValue()[0]["target_id"] ) ? Term::Load( $nodeContent->get( 'field_contrat' )->getValue()[0]["target_id"] )->getName() : "",
 						'url'          => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
 					];
