@@ -75,7 +75,7 @@ class ListeconcoursBlock extends BlockBase {
 			'form'   => [
 				'titre'   => [
 					'#type'       => 'textfield',
-					'#title'      => 'Mot clé',
+					'#title'      => 'Mot clé :',
 					'#size'       => 60,
 					'#name'       => "q",
 					'#maxlength'  => 128,
@@ -85,7 +85,7 @@ class ListeconcoursBlock extends BlockBase {
 				],
 				'epreuve' => [
 					'#type'       => 'textfield',
-					'#title'      => 'Epreuve',
+					'#title'      => 'Epreuve :',
 					'#size'       => 60,
 					'#name'       => "epreuve",
 					'#maxlength'  => 128,
@@ -95,7 +95,7 @@ class ListeconcoursBlock extends BlockBase {
 				],
 				'grade'   => [
 					'#type'       => 'select',
-					'#title'      => 'Grade',
+					'#title'      => 'Grade :',
 					'#name'       => "grade",
 					'#attributes' => [
 						'class' => [ 'form-control' ],

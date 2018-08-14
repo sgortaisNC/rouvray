@@ -159,6 +159,10 @@ button.c-around {
     color: #0071ce;
 }
 
+.seachForm.content-page button.c-around{
+    padding-top: 0;
+}
+
 form {
     font-family: Hind, sans-serif;
 }
@@ -1399,6 +1403,7 @@ footer .bg-warning a {
     display: -ms-flex;
     display: -o-flex;
     display: flex;
+    border-bottom: 2px solid #e7eaef;
 }
 
 .result > svg,
@@ -1412,11 +1417,7 @@ footer .bg-warning a {
 }
 
 .result:nth-child(odd) {
-    background: #e7eaef;
-}
-
-.result:last-child {
-    border-bottom: 2px solid #e7eaef;
+    background: #fbfbfb;
 }
 
 .result .teaser {
@@ -1430,11 +1431,15 @@ footer .bg-warning a {
     display: block;
 }
 
+.result .teaser h4{
+    color: #0071ce;
+}
+
 .result .teaser a::before {
     position: absolute;
     content: "";
     display: block;
-    background: #feb602;
+    background: #0071ce;
     top: 0;
     left: 0;
     width: 2px;

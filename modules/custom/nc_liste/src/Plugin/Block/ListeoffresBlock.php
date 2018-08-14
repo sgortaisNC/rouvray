@@ -107,7 +107,7 @@ class ListeoffresBlock extends BlockBase {
 			'form'   => [
 				'titre'  => [
 					'#type'      => 'textfield',
-					'#title'     => 'Mot clé',
+					'#title'     => 'Mot clé :',
 					'#size'      => 60,
 					'#name'      => "q",
 					'#maxlength' => 128,
@@ -118,7 +118,7 @@ class ListeoffresBlock extends BlockBase {
 				],
 				'statut' => [
 					'#type'      => 'select',
-					'#title'     => 'Statut du poste',
+					'#title'     => 'Statut du poste :',
 					'#name'      => "statut",
 					'#attributes' => [
 						'class' => ['form-control'],
@@ -127,7 +127,7 @@ class ListeoffresBlock extends BlockBase {
 				],
 				'grade'  => [
 					'#type'      => 'select',
-					'#title'     => 'Grade',
+					'#title'     => 'Grade :',
 					'#name'      => "grade",
 					'#attributes' => [
 						'class' => ['form-control'],

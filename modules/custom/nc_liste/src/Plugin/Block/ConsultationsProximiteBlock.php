@@ -172,18 +172,18 @@ class ConsultationsProximiteBlock extends BlockBase {
 				$form['form'] = [
 					'lieu' => [
 						'#type'      => 'select',
-						'#title'     => 'Choisir votre commune',
-						'#attribute' => [
-							'class' => 'form-control'
+						'#title'     => 'Choisir votre commune :',
+						'#attributes' => [
+							'class' => ['form-control'],
 						],
 						'#name'      => 'ville',
 						'#options'   => $tabVilles,
 					],
 					'type' => [
 						'#type'      => 'select',
-						'#title'     => 'Type de patient',
-						'#attribute' => [
-							'class' => 'form-control',
+						'#title'     => 'Type de patient :',
+						'#attributes' => [
+							'class' => ['form-control'],
 						],
 						'#name'      => 'type',
 						'#options'   => $tabPatients,
@@ -195,9 +195,9 @@ class ConsultationsProximiteBlock extends BlockBase {
 				$form['form'] = [
 					'type' => [
 						'#type'      => 'select',
-						'#title'     => 'Pathologie / Type de prestation',
+						'#title'     => 'Pathologie / Type de prestation :',
 						'#attributes' => [
-							'class' => 'form-control',
+							'class' => ['form-control'],
 						],
 						'#name'      => 'type',
 						'#options'   => $tabPatho,
