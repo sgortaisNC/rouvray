@@ -4,7 +4,7 @@
             <img src="{{ article.image.url }}" alt="{{ article.image.alt }}" class="img-fluid">
             {% if article.type == 'actualite' %}
                 <span class="date">
-                        <span>{{ article.date }}</span>
+                        <span>{{ article.date|replace({ (" "): "<br>" }) | raw  }}</span>
                 </span>
                 {% else %}
                 <span class="date with-end">

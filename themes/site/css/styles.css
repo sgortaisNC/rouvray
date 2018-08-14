@@ -227,7 +227,7 @@ textarea {
     top: -7px;
     left: -20px;
     right: -20px;
-    bottom: -11px;
+    bottom: -8px;
     border: 4px solid #feb602;
     border-radius: 50px;
     z-index: -2;
@@ -385,6 +385,11 @@ header input.form-control {
     font-family: Hind, sans-serif;
     font-weight: 500;
     font-size: 16px;
+    padding: 7px 0.75rem 5px;
+}
+
+.form-control:focus{
+    border-color: #e4dccc;
 }
 
 .input-group-append {
@@ -404,7 +409,7 @@ header .dropdown-menu {
 }
 
 header .dropdown-item {
-    padding: 5px 5px 5px 15px;
+    padding: 12px 10px;
 }
 
 header .main-header {
@@ -417,13 +422,13 @@ header .main-header .main_menu li {
     position: relative;
 }
 
-header .main-header .main_menu li::after {
+header .main-header .main_menu li a::after {
     position: absolute;
     width: 1px;
-    height: 34px;
+    height: 15px;
     background: #e7eaef;
-    bottom: -15px;
-    right: 0;
+    bottom: 0;
+    right: -1px;
     content: '';
     display: block;
 }
@@ -534,9 +539,13 @@ header .main-header .main_menu li a {
 }
 
 .lvl3 {
-    background: #2f3853;
     top: 0;
     left: 100%;
+}
+
+.resize:hover,
+.tozero:hover{
+    cursor: pointer;
 }
 
 .lvl3 a {
@@ -789,7 +798,6 @@ main .key_figure img {
     bottom: 0;
     left: 6px;
     background: #ffffff;
-    max-width: 60px;
     height: 60px;
     text-align: center;
     padding: 8px 4px 2px;
@@ -1103,6 +1111,10 @@ footer .bg-info h6 {
     padding-bottom: 10px;
     margin-bottom: 14px;
     position: relative;
+}
+
+footer .bg-info .submenu  > a:hover {
+    text-decoration: none;
 }
 
 footer .bg-info h6::after {
@@ -2250,3 +2262,24 @@ footer a.round:hover {
 .form-text{
     margin-top: 0;
 }
+
+#sliding-popup *{
+    font-family: Hind, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: normal;
+}
+
+#sliding-popup button.agree-button,
+#sliding-popup button.decline-button {
+    background: #FFF;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    color: #000;
+    padding: 10px 5px;
+    text-decoration: none;
+    border-bottom: 2px solid rgb(254, 182, 2);
+    height: 45px;
+    margin-top: 10px;
+}
+

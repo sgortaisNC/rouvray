@@ -13,6 +13,9 @@ jQuery(window).on("load", function () {
 
 
 jQuery( document ).ready(function($) {
+    $(".tozero").click(function () {
+        $('body').css('font-size', "16px");
+    });
     $("#search-block-form .input-group, #search-form .input-group").append('<div class="form-actions js-form-wrapper form-wrapper">' +
         '<div class="input-group-append">' +
         '<button class="btn btn-white" type="submit">' +
