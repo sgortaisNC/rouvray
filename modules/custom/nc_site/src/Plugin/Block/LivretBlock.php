@@ -41,7 +41,7 @@ class LivretBlock extends BlockBase {
             'image' => $url,
             'file' => $urlPdf,
             'code' => $config->get('code'),
-            'url' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/1'),
+            'url' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/170'),
         ];
 
         if(count($data) > 0){
