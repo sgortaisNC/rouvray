@@ -1868,7 +1868,7 @@ footer a.round:hover {
     .lvl2 li a,
     .lvl3 li a {
         width: 100%;
-        padding: 5px !important;
+        padding: 5px 40px 5px 5px !important;
         height: 100%;
         color: #0071ce !important;
     }
@@ -2296,6 +2296,15 @@ footer a.round:hover {
     margin-top: 10px;
 }
 
+@media screen and (max-width: 992px) {
+    #search-block-form .js-form-type-search{
+        width: 85%;
+    }
+    #block-socialnetworkblock,
+    #block-translatorbloc{
+        display: inline-block;
+    }
+}
 @media screen and (min-width: 1200px) {
     ul.main_menu{
         position: relative;
