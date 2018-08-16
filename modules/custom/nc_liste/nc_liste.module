@@ -11,6 +11,12 @@ function nc_liste_theme($existing, $type, $theme, $path) {
                 'data' => NULL,
             )
         ),
+        'publicationliste' => array(
+            'template' => 'publicationliste',
+            'variables' => array(
+                'data' => NULL,
+            )
+        ),
         'consultationmap' => array(
             'template' => 'consultationmap',
             'variables' => array(
