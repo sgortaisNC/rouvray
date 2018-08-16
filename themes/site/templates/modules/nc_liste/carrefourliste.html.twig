@@ -1,7 +1,7 @@
-    {% for page in data %}
-        <a href="{{ page.url }}" class="page_enfant my-2 p-4">
-            <img src="{{ page.image.url }}" alt="{{ page.image.alt }}" class="img-fluid">
-            <h4>{{ page.title }}</h4>
-            <p>{{ page.body | raw }}</p>
-        </a>
-    {% endfor %}
+{% for page in data %}
+    <a href="{{ page.url }}" class="page_enfant my-2 p-4">
+        <img src="{{ page.image.url }}" alt="{{ page.image.alt }}" class="img-fluid">
+        <h4>{{ page.title }}</h4>
+        <p>{{ page.body | raw }}</p>
+    </a>
+{% endfor %}

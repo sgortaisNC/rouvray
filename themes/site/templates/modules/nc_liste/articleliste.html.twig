@@ -3,35 +3,34 @@
         <div class="result p-4">
             <div class="teaser">
                 <a href="{{ article.url }}"><h4>{{ article.title }}</h4></a>
-                <div class="d-flex justify-content-start align-items-center my-2">
-                    <div class="w-25">
+                <div class="d-flex justify-content-start align-items-center my-2 row">
+                    <div class="col-md-3">
                         <img src="{{ article.image.url }}" alt="{{ article.image.alt }}" class="img-fluid">
                     </div>
-                    <div class="px-3">
-                    <div class="d-flex justify-content-between mb-2">
-                        {% if article.date_deb is not empty %}
-                            <div class="text-center isField">
-                                <i class="fas fa-hourglass-end text-warning"></i>
-                                {{ article.date_deb }}
-                                {% if article.date_fin is not empty %}
-                                    -
-                                    {{ article.date_fin }}
+                    <div class="col-md-9 px-3">
+                        <div class="d-flex flex-column flex-md-row justify-content-between mt-2 mt-md-0 mb-2">
+                            {% if article.date_deb is not empty %}
+                                <div class="isField">
+                                    <i class="fas fa-hourglass-end text-warning"></i>
+                                    {{ article.date_deb }}
+                                    {% if article.date_fin is not empty %}
+                                        -
+                                        {{ article.date_fin }}
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+
+
+                            <div class="isField">
+                                {% if article.lieu is not empty %}
+                                    <i class="fas fa-map-marker text-warning"></i>
+                                    {{ article.lieu }}
                                 {% endif %}
                             </div>
-                        {% endif %}
-
-
-
-                        <div class="text-center isField">
-                            {% if article.lieu is not empty %}
-                                <i class="fas fa-map-marker text-warning"></i>
-                                {{ article.lieu }}
-                            {% endif %}
                         </div>
-                    </div>
-                    <div>
-                        {{ article.body | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
-                    </div>
+                        <div>
+                            {{ article.body | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
+                        </div>
                     </div>
                 </div>
             </div>

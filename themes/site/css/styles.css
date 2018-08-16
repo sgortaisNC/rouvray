@@ -159,7 +159,7 @@ button.c-around {
     color: #0071ce;
 }
 
-.seachForm.content-page button.c-around{
+.seachForm.content-page button.c-around {
     padding-top: 0;
 }
 
@@ -392,7 +392,7 @@ header input.form-control {
     padding: 7px 0.75rem 5px;
 }
 
-.form-control:focus{
+.form-control:focus {
     border-color: #e4dccc;
 }
 
@@ -548,7 +548,7 @@ header .main-header .main_menu li a {
 }
 
 .resize:hover,
-.tozero:hover{
+.tozero:hover {
     cursor: pointer;
 }
 
@@ -566,10 +566,25 @@ main #main-info::after {
     left: 0;
     right: 0;
     top: 0;
-    background: url("../img/mask-header.png") no-repeat bottom;
     content: '';
     display: block;
     z-index: 0;
+}
+
+@media screen and (min-width: 992px) {
+    main #main-info::after {
+        background: url("../img/mask-header.png") no-repeat bottom;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    header .logo img {
+        left: -15px;
+    }
+
+    header .logo {
+        margin: 0 auto;
+    }
 }
 
 main .acces-rapide {
@@ -1117,7 +1132,7 @@ footer .bg-info h6 {
     position: relative;
 }
 
-footer .bg-info .submenu  > a:hover {
+footer .bg-info .submenu > a:hover {
     text-decoration: none;
 }
 
@@ -1407,12 +1422,12 @@ footer .bg-warning a {
 }
 
 .result > svg,
-.result > i{
+.result > i {
     align-self: flex-end;
     margin-bottom: 10px;
 }
 
-.result > i{
+.result > i {
     margin-bottom: 5px;
 }
 
@@ -1431,7 +1446,7 @@ footer .bg-warning a {
     display: block;
 }
 
-.result .teaser h4{
+.result .teaser h4 {
     color: #0071ce;
 }
 
@@ -2139,7 +2154,7 @@ footer a.round:hover {
 .liste_pages_enfant .page_enfant {
     width: 248px;
     height: 181px;
-    max-width: 30%;
+    max-width: 100%;
     display: block;
     position: relative;
     color: #FFF;
@@ -2223,7 +2238,7 @@ footer a.round:hover {
     margin-bottom: 1rem;
 }
 
-.form-control{
+.form-control {
     max-width: 100% !important;
 }
 
@@ -2240,7 +2255,7 @@ footer a.round:hover {
     height: 100%;
 }
 
-.isField{
+.isField {
     font-size: 0.8rem;
 }
 
@@ -2272,11 +2287,11 @@ footer a.round:hover {
     width: 100%;
 }
 
-.form-text{
+.form-text {
     margin-top: 0;
 }
 
-#sliding-popup *{
+#sliding-popup * {
     font-family: Hind, sans-serif !important;
     font-size: 16px !important;
     font-weight: normal;
@@ -2297,21 +2312,23 @@ footer a.round:hover {
 }
 
 @media screen and (max-width: 992px) {
-    #search-block-form .js-form-type-search{
+    #search-block-form .js-form-type-search {
         width: 85%;
     }
+
     #block-socialnetworkblock,
-    #block-translatorbloc{
+    #block-translatorbloc {
         display: inline-block;
     }
 }
+
 @media screen and (min-width: 1200px) {
-    ul.main_menu{
+    ul.main_menu {
         position: relative;
     }
 }
 
-ul.main_menu::after{
+ul.main_menu::after {
     position: absolute;
     left: 0;
     bottom: -10px;
