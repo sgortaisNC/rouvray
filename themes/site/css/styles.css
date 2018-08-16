@@ -1507,7 +1507,7 @@ footer .bg-warning a {
 }
 
 .seachForm {
-    margin-top: 85px;
+    margin-top: 1.5rem;
 }
 
 .seachForm .bg-info {
@@ -2238,6 +2238,10 @@ footer a.round:hover {
 .searchItem {
     border: 1px solid rgb(254, 182, 2);
     height: 100%;
+}
+
+.isField{
+    font-size: 0.8rem;
 }
 
 .searchItem strong {

@@ -113,8 +113,8 @@ class ConsultationsProximiteBlock extends BlockBase {
 						'ville'     => $nvillle,
 						'telephone' => $nodeContent->get( 'field_telephone' )->getValue()[0]['value'],
 						'horaires'  => $nodeContent->get( 'field_horaires' )->getValue()[0]['value'],
-						'lat'       => $nodeContent->get( 'field_gps_latitude' )->getValue()[0]['value'],
-						'lng'       => $nodeContent->get( 'field_gps_longitude' )->getValue()[0]['value'],
+						'lat'       => !empty($nodeContent->get( 'field_gps_latitude' )->getValue()[0]['value']) ? $nodeContent->get( 'field_gps_latitude' )->getValue()[0]['value'] : "" ,
+						'lng'       => !empty($nodeContent->get( 'field_gps_longitude' )->getValue()[0]['value']) ? $nodeContent->get( 'field_gps_longitude' )->getValue()[0]['value'] : "",
 						'url'       => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
 					];
 				}

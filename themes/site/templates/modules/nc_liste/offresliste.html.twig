@@ -7,68 +7,61 @@
                     <div class="w-25">
                         <img src="{{ offre.image.url }}" alt="{{ offre.image.alt }}" class="img-fluid">
                     </div>
-                    <div class="w-75">
+                    <div class="w-75 px-3">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-12 isField my-3">
                                 {% if offre.date_deb is not empty %}
-                                    <div class="text-center">
-                                        <i class="fas fa-calendar-plus fa-2x text-warning"></i> <br>
-                                        <b>Début de contrat</b> <br>
-                                        {{ offre.date_deb }}
+                                    <div>
+                                        <i class="fas fa-calendar-plus text-warning"></i>
+                                        À partir du {{ offre.date_deb }}
+                                        {% if offre.date_fin is not empty %}
+                                            jusqu'au {{ offre.date_fin }}
+                                        {% endif %}
                                     </div>
                                 {% endif %}
                             </div>
-                            <div class="col-md-4">
-                                {% if offre.date_fin is not empty %}
-                                    <div class="text-center">
-                                        <i class="fas fa-calendar-minus fa-2x text-warning"></i> <br>
-                                        <b>Fin de contrat</b> <br>
-                                        {{ offre.date_fin }}
-                                    </div>
-                                {% endif %}
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12 isField my-3">
                                 {% if  offre.date_limite is not empty %}
-                                    <div class="text-center">
-                                        <i class="fas fa-calendar-times fa-2x text-warning"></i> <br>
-                                        <b>Limite de candidature</b> <br>
+                                    <div>
+                                        <i class="fas fa-calendar-times text-warning"></i>
+                                        Limite de candidature :
                                         {{ offre.date_limite }}
                                     </div>
                                 {% endif %}
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4 isField">
                                 {% if offre.lieu is not empty %}
                                     <br>
-                                    <div class="text-center">
-                                        <i class="fas fa-map-marker fa-2x text-warning"></i> <br>
+                                    <div class="">
+                                        <i class="fas fa-map-marker text-warning"></i>
                                         {{ offre.lieu }}
                                     </div>
                                 {% endif %}
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-3 isField">
                                 {% if offre.statut is not empty %}
                                     <br>
-                                    <div class="text-center">
-                                        <i class="fas fa-pencil-alt fa-2x text-warning"></i> <br>
+                                    <div class="">
+                                        <i class="fas fa-pencil-alt text-warning"></i>
                                         {{ offre.statut }}
                                     </div>
                                 {% endif %}
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 isField">
                                 {% if offre.grade is not empty %}
                                     <br>
-                                    <div class="text-center">
-                                        <i class="fas fa-graduation-cap fa-2x text-warning"></i> <br>
+                                    <div class="">
+                                        <i class="fas fa-graduation-cap text-warning"></i>
                                         {{ offre.grade }}
                                     </div>
                                 {% endif %}
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2 isField">
                                 {% if offre.type_contrat is not empty %}
                                     <br>
-                                    <div class="text-center">
-                                        <i class="fas fa-clipboard fa-2x text-warning"></i> <br>
+                                    <div class="">
+                                        <i class="fas fa-clipboard text-warning"></i>
                                         {{ offre.type_contrat }}
                                     </div>
                                 {% endif %}

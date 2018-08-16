@@ -3,35 +3,38 @@
         <div class="result p-4">
             <div class="teaser">
                 <a href="{{ concour.url }}"><h4>{{ concour.title }}</h4></a>
-                <div class="d-flex justify-content-start align-items-start my-4">
-                    {% if concour.date_publication is not empty %}
-                        <div class="text-center w-25">
-                            <i class="fas fa-hourglass-start fa-2x text-warning"></i> <br>
-                            <b>Publié le </b><br>
-                            {{ concour.date_publication }}
-                        </div>
-                    {% endif %}
+                <div class="row my-3">
+                    <div class="col-md-8">
+                        {% if concour.date_publication is not empty %}
+                            <div class="isField my-2">
+                                <i class="fas fa-hourglass-start text-warning"></i>
+                                Publié le
+                                {{ concour.date_publication }}
+                            </div>
+                        {% endif %}
 
-                    {% if concour.type_concours is not empty %}
-                        <div class="text-center w-25">
-                            <i class="fas fa-book-open fa-2x text-warning"></i><br>
-                            {{ concour.type_concours }}
-                        </div>
-                    {% endif %}
+                        {% if concour.date_limite is not empty %}
+                            <div class="isField my-2">
+                                <i class="fas fa-hourglass-end text-warning"></i>
+                                Limite de dépôt de dossier : {{ concour.date_limite }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        {% if concour.type_concours is not empty %}
+                            <div class="isField my-2">
+                                <i class="fas fa-book-open text-warning"></i>
+                                {{ concour.type_concours }}
+                            </div>
+                        {% endif %}
 
-                    {% if concour.grade is not empty %}
-                        <div class="text-center w-25">
-                            <i class="fas fa-graduation-cap fa-2x text-warning"></i><br>
-                            {{ concour.grade }}
-                        </div>
-                    {% endif %}
-
-                    {% if concour.date_limite is not empty %}
-                        <div class="text-center w-25">
-                            <i class="fas fa-hourglass-end fa-2x text-warning"></i> <br>
-                            <b>Limite de dépôt de dossier</b> <br>{{ concour.date_limite }}
-                        </div>
-                    {% endif %}
+                        {% if concour.grade is not empty %}
+                            <div class="isField my-2">
+                                <i class="fas fa-graduation-cap text-warning"></i>
+                                {{ concour.grade }}
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
                 <div>
                     <b>Epreuve</b> : {{ concour.epreuve | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}

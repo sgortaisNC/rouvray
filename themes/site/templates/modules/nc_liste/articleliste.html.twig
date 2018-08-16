@@ -1,4 +1,4 @@
-<div class="list-result content-page mt-5">
+<div class="list-result content-page mt-4">
     {% for article in data %}
         <div class="result p-4">
             <div class="teaser">
@@ -7,31 +7,31 @@
                     <div class="w-25">
                         <img src="{{ article.image.url }}" alt="{{ article.image.alt }}" class="img-fluid">
                     </div>
-                    <div class="d-flex flex-column justify-content-around w-25">
+                    <div class="px-3">
+                    <div class="d-flex justify-content-between mb-2">
                         {% if article.date_deb is not empty %}
-                            <div class="text-center">
-                                <i class="fas fa-hourglass-start fa-2x text-warning"></i> <br>
+                            <div class="text-center isField">
+                                <i class="fas fa-hourglass-end text-warning"></i>
                                 {{ article.date_deb }}
+                                {% if article.date_fin is not empty %}
+                                    -
+                                    {{ article.date_fin }}
+                                {% endif %}
                             </div>
                         {% endif %}
-                        {% if article.date_fin is not empty %}
-                            <br>
-                            <div class="text-center">
-                                <i class="fas fa-hourglass-end fa-2x text-warning"></i> <br>
-                                {{ article.date_fin }}
-                            </div>
-                        {% endif %}
-                    </div>
 
-                    <div class="text-center w-25">
-                        {% if article.lieu is not empty %}
-                            <i class="fas fa-map-marker fa-2x text-warning"></i><br>
-                            {{ article.lieu }}
-                        {% endif %}
-                    </div>
 
-                    <div class="w-25">
+
+                        <div class="text-center isField">
+                            {% if article.lieu is not empty %}
+                                <i class="fas fa-map-marker text-warning"></i>
+                                {{ article.lieu }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div>
                         {{ article.body | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
+                    </div>
                     </div>
                 </div>
             </div>

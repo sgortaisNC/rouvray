@@ -3,22 +3,22 @@
         <div class="result p-4">
             <div class="teaser">
                 <a href="{{ formation.url }}"><h4>{{ formation.title }}</h4></a>
-                <div class="row my-4">
-                    <div class="text-center col-md-4">
+                <div class="row my-3">
+                    <div class="text-center col-md-4 isField">
                         {% if formation.duree is not empty %}
-                            <i class="fas fa-hourglass-half fa-2x text-warning"></i><br>
+                            <i class="fas fa-hourglass-half text-warning"></i>
                             {{ formation.duree }}
                         {% endif %}
                     </div>
-                    <div class="text-center col-md-4">
+                    <div class="text-center col-md-4 isField">
                         {% if formation.organisation is not empty %}
-                            <i class="fas fa-users fa-2x text-warning"></i><br>
+                            <i class="fas fa-users text-warning"></i>
                             {{ formation.organisation }}
                         {% endif %}
                     </div>
-                    <div class="text-center col-md-4">
+                    <div class="text-center col-md-4 isField">
                         {% if formation.publics is not empty %}
-                            <i class="fas fa-graduation-cap fa-2x text-warning"></i><br>
+                            <i class="fas fa-graduation-cap text-warning"></i>
                             {{ formation.publics }}
                         {% endif %}
                     </div>
