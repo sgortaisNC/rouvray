@@ -45,9 +45,8 @@ class ListepublicationsBlock extends BlockBase {
 					}
 
 
-$uri = File::load($nodeContent->get( "field_files" )->getValue()[0]["target_id"])->getFileUri();
-
-					$url = URL::fromUri($uri)->toString();
+					$uri = File::load($nodeContent->get( "field_files" )->getValue()[0]["target_id"])->getFileUri();
+					$url = file_create_url($uri);
 
 					$contents[] = [
 						'title' => $nodeContent->getTitle(),
