@@ -2296,9 +2296,10 @@ footer a.round:hover {
     margin-top: 10px;
 }
 
-
-ul.main_menu{
-    position: relative;
+@media screen and (min-width: 1200px) {
+    ul.main_menu{
+        position: relative;
+    }
 }
 
 ul.main_menu::after{
