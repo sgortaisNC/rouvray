@@ -23,13 +23,13 @@ class ListeformationsBlock extends BlockBase {
 	public function build() {
 
 		$contents = $nids = [];
-		$query = \Drupal::entityQuery( 'node' );
+		$query    = \Drupal::entityQuery( 'node' );
 		$query->condition( 'type', [ 'formation' ], 'IN' )
 		      ->condition( 'status', 1 );
 
 
-		if  (!empty($_GET["titre"])){
-			$query->condition('title','%'.$_GET["titre"].'%','LIKE');
+		if ( ! empty( $_GET["titre"] ) ) {
+			$query->condition( 'title', '%' . $_GET["titre"] . '%', 'LIKE' );
 		}
 
 
@@ -42,25 +42,37 @@ class ListeformationsBlock extends BlockBase {
 			foreach ( $nids as $nid ) {
 				$nodeContent = Node::load( $nid );
 				if ( ! empty( $nodeContent ) ) {
-					$tabpublic = [];
-					$prepublics = $nodeContent->get("field_publics")->getValue();
-					foreach ( $prepublics as $k => $v ){
-						foreach($v as $data) {
-							$tabpublic[] = $data;
-						}
-					}
-					$publics = Term::LoadMultiple($tabpublic);
 					$fPublic = [];
-					foreach ($publics as $public){
-						$fPublic[] = $public->getName();
+					if ( ! empty( $nodeContent->get( "field_publics" )->getValue() ) ) {
+						$isStr      = true;
+						$tabpublic  = [];
+						$prepublics = $nodeContent->get( "field_publics" )->getValue();
+						foreach ( $prepublics as $k => $v ) {
+							foreach ( $v as $data ) {
+								$tabpublic[] = $data;
+							}
+						}
+						foreach ( $tabpublic as $donnee ) {
+							if ( gettype( $donnee ) != "string" ) {
+								$isStr = false;
+							}
+						}
+						if ( $isStr ) {
+							$publics = Term::LoadMultiple( $tabpublic );
+
+							$fPublic = [];
+							foreach ( $publics as $public ) {
+								$fPublic[] = $public->getName();
+							}
+						}
 					}
 
 					$contents[] = [
 						'title'        => $nodeContent->getTitle(),
-						'duree'        => !empty($nodeContent->get("field_duree")->getValue()[0]["value"]) ? $nodeContent->get("field_duree")->getValue()[0]["value"] : "",
-						'organisation' => !empty($nodeContent->get("field_organisation")->getValue()[0]["value"]) ? $nodeContent->get("field_organisation")->getValue()[0]["value"] : "",
-						'publics'      => implode(", ",$fPublic),
-						'objectifs'    => !empty($nodeContent->get("field_objectifs")->getValue()[0]["value"]) ? $nodeContent->get("field_objectifs")->getValue()[0]["value"] : "",
+						'duree'        => ! empty( $nodeContent->get( "field_duree" )->getValue()[0]["value"] ) ? $nodeContent->get( "field_duree" )->getValue()[0]["value"] : "",
+						'organisation' => ! empty( $nodeContent->get( "field_organisation" )->getValue()[0]["value"] ) ? $nodeContent->get( "field_organisation" )->getValue()[0]["value"] : "",
+						'publics'      => implode( ", ", $fPublic ),
+						'objectifs'    => ! empty( $nodeContent->get( "field_objectifs" )->getValue()[0]["value"] ) ? $nodeContent->get( "field_objectifs" )->getValue()[0]["value"] : "",
 						'url'          => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
 					];
 				}
@@ -69,20 +81,20 @@ class ListeformationsBlock extends BlockBase {
 
 
 		$form = [
-			'title' => 'Filtrer les formations',
+			'title'  => 'Filtrer les formations',
 			'action' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/110' ),
-			'form' => [
+			'form'   => [
 				'titre' => [
-					'#type' => 'textfield',
-					'#title' => 'Rechercher une formation : ',
-					'#size' => 60,
-					'#name' => "titre",
+					'#type'       => 'textfield',
+					'#title'      => 'Rechercher une formation : ',
+					'#size'       => 60,
+					'#name'       => "titre",
 					'#attributes' => [
 						"class" => [
 							'form-control',
 						],
 					],
-					'#maxlength' => 128,
+					'#maxlength'  => 128,
 				]
 			]
 		];
