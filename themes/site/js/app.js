@@ -29,6 +29,8 @@ jQuery(document).ready(function ($) {
         form.submit();
     });
 
+    $(".js-do-form-control input, .js-do-form-control select, .js-do-form-control textarea").addClass("form-control");
+
     $('#block-site-content table').each(function () {
         if (!$(this).hasClass("table")) {
             $(this).addClass("table").addClass("table-bordered");
