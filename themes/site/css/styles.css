@@ -947,8 +947,13 @@ main .key_figure img {
 .bloc h3 {
     color: #0071ce;
     font-size: 21px;
-    padding-left: 35px;
     margin-bottom: 35px;
+}
+
+@media screen and (min-width: 992px) {
+    .bloc h3 {
+        padding-left: 35px;
+    }
 }
 
 .bloc h4 {
@@ -2311,7 +2316,7 @@ footer a.round:hover {
     margin-top: 10px;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1200px) {
     #search-block-form .js-form-type-search {
         width: 85%;
     }

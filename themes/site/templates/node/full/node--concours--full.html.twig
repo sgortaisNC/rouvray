@@ -72,7 +72,7 @@
 #}
 <div class="content-page">
     <article{{ attributes }}>
-        <div class="d-flex justify-content-between align-items-center my-4">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center my-4">
             <div>
                 <small>Publié le {{ content.field_date }}</small>
             </div>
@@ -81,39 +81,39 @@
             </div>
         </div>
 
-        <div class="d-flex align-items-start flex-row flex-nowrap">
-            <div class="w-25"><h2 class="m-0">Nombre de postes	</h2></div>
-            <div class="w-75">{{ content.field_quantite }}</div>
+        <div class="row">
+            <div class="col-md-3"><h2 class="m-0">Nombre de postes </h2></div>
+            <div class="col-md-9">{{ content.field_quantite }}</div>
         </div>
         <hr>
-        <div class="d-flex align-items-start flex-row flex-nowrap">
-            <div class="w-25"> <h2 class="m-0">Description de l'épreuve</h2></div>
-            <div class="w-75">{{ content.body }}</div>
+        <div class="row">
+            <div class="col-md-3"><h2 class="m-0">Description de l'épreuve</h2></div>
+            <div class="col-md-9">{{ content.body }}</div>
         </div>
         <hr>
-        <div class="d-flex align-items-start flex-row flex-nowrap">
-            <div class="w-25"><h2 class="m-0">Conditions d'accès</h2></div>
-            <div class="w-75">{{ content.field_conditions }}</div>
+        <div class="row">
+            <div class="col-md-3"><h2 class="m-0">Conditions d'accès</h2></div>
+            <div class="col-md-9">{{ content.field_conditions }}</div>
         </div>
         <hr>
-        <div class="d-flex align-items-start flex-row flex-nowrap">
-            <div class="w-25"><h2 class="m-0">Grade visé</h2></div>
-            <div class="w-75">{{ content.field_grade }}</div>
+        <div class="row">
+            <div class="col-md-3"><h2 class="m-0">Grade visé</h2></div>
+            <div class="col-md-9">{{ content.field_grade }}</div>
         </div>
         <hr>
-        <div class="d-flex align-items-start flex-row flex-nowrap">
-            <div class="w-25"><h2 class="m-0">Types de concours</h2></div>
-            <div class="w-75">{{ content.field_concours }}</div>
+        <div class="row">
+            <div class="col-md-3"><h2 class="m-0">Types de concours</h2></div>
+            <div class="col-md-9">{{ content.field_concours }}</div>
         </div>
         <hr>
-        <div class="d-flex align-items-start flex-row flex-nowrap">
-            <div class="w-25"><h2 class="m-0">Adresse postale pour répondre</h2></div>
-            <div class="w-75">{{ content.field_adresse_postale }}</div>
+        <div class="row">
+            <div class="col-md-3"><h2 class="m-0">Adresse postale pour répondre</h2></div>
+            <div class="col-md-9">{{ content.field_adresse_postale }}</div>
         </div>
         <hr>
-        <div class="d-flex align-items-start flex-row flex-nowrap">
-            <div class="w-25"><h2 class="m-0">Liste des pièces à fournir</h2></div>
-            <div class="w-75">{{ content.field_liste }}</div>
+        <div class="row">
+            <div class="col-md-3"><h2 class="m-0">Liste des pièces à fournir</h2></div>
+            <div class="col-md-9">{{ content.field_liste }}</div>
         </div>
 
         {% if content.field_tags is not empty %}

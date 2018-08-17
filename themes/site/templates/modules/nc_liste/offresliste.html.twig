@@ -3,11 +3,11 @@
         <div class="result p-4">
             <div class="teaser">
                 <a href="{{ offre.url }}"><h4>{{ offre.title }}</h4></a>
-                <div class="d-flex justify-content-start align-items-center my-2">
-                    <div class="w-25">
+                <div class="row my-2">
+                    <div class="col-md-3">
                         <img src="{{ offre.image.url }}" alt="{{ offre.image.alt }}" class="img-fluid">
                     </div>
-                    <div class="w-75 px-3">
+                    <div class="col-md-9 px-3">
                         <div class="row">
                             <div class="col-md-12 isField my-3">
                                 {% if offre.date_deb is not empty %}

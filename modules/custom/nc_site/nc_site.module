@@ -12,7 +12,7 @@ function nc_site_preprocess_node( &$variables ) {
 				$user = \Drupal::currentUser();
 				if  ($user->getRoles()[0] == 'anonymous'){
 					global $base_url;
-					$response = new Symfony\Component\HttpFoundation\RedirectResponse($base_url."/node/2");
+					$response = new Symfony\Component\HttpFoundation\RedirectResponse($base_url."login");
 					$response->send(); // don't send the response yourself inside controller and form.
 					return;
 				}
