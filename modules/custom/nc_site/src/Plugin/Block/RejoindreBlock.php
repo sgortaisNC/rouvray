@@ -78,7 +78,7 @@ class RejoindreBlock extends BlockBase {
 					'nb'  => (int) $result,
 				],
 				'candidature' => [
-					'url' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/1' ),
+					'url' => "/form/deposer-une-candidature",
 				],
 			];
 		}
