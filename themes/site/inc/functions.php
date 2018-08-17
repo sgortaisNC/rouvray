@@ -30,6 +30,7 @@ function site_preprocess_search_result( &$variables ) {
 			"offre"        => "briefcase",
 			"page"         => "file-alt",
 			"secured"      => "lock",
+			"public"       => "file-pdf"
 		];
 
 		$correpondanceT = [
@@ -40,6 +41,7 @@ function site_preprocess_search_result( &$variables ) {
 			"offre"        => "Offre d'emploi",
 			"page"         => "Page",
 			"secured"      => "Page securisée",
+			"public"       => "Publication"
 		];
 
 		$variables['info_split']['icon'] = $correpondance[ $variables['result']['node']->getType() ];
