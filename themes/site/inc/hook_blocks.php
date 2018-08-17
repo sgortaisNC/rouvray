@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Messenger\MessengerInterface;
+
 function site_preprocess_block(&$variables){
     $variables['isEmpty'] = false;
     if(isset($variables['content']) && isset($variables['content']['#type'])){
@@ -27,4 +29,13 @@ function site_preprocess_block(&$variables){
         }
 
     }
+}
+
+function site_theme_suggestions_block_alter( array &$suggestions, array $variables ) {
+	$node = \Drupal::routeMatch()->getParameter('node');
+	if ($node) {
+		// You can get nid and anything else you need from the node object.
+		$bundle = $node->getType();
+		$suggestions[] = 'block__' . $bundle.'__'.$variables["elements"]["#base_plugin_id"];
+	}
 }
