@@ -9,6 +9,10 @@ body {
     font-family: 'Noto Serif', serif;
 }
 
+a{
+    color: #0071CE;
+}
+
 .hamburger,
 .removeMenu {
     display: none;
@@ -156,7 +160,7 @@ button.c-around {
     border: none;
     padding: 5px 0 0;
     margin-top: 15px;
-    color: #0071ce;
+    color: #0071CE;
 }
 
 .seachForm.content-page button.c-around {
@@ -311,7 +315,7 @@ textarea {
 h1 {
     font-family: 'Noto Serif', serif;
     font-size: 30px;
-    color: #0071ce;
+    color: #0071CE;
 }
 
 i.reverse {
@@ -647,7 +651,7 @@ main .acces-rapide .d-lg-flex a .op0 {
 
 main .acces-rapide .d-lg-flex a:hover {
     min-width: 200px;
-    background: #2f3853 !important;
+    background: #0071CE !important;
 }
 
 main .acces-rapide .d-lg-flex a:hover::after {
@@ -828,7 +832,7 @@ main .key_figure img {
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bold;
-    color: #0071ce;
+    color: #0071CE;
 }
 
 .actu .top_actu .date.with-end {
@@ -838,7 +842,7 @@ main .key_figure img {
     text-align: left;
     padding-top: 2px;
     padding-bottom: 2px;
-    background: #0071ce;
+    background: #0071CE;
 }
 
 .actu .top_actu .date.with-end span {
@@ -865,7 +869,7 @@ main .key_figure img {
 }
 
 .actu a {
-    color: #2f3853;
+    color: #0071CE;
     display: block;
     margin-top: 10px;
     line-height: 20px;
@@ -946,7 +950,7 @@ main .key_figure img {
 }
 
 .bloc h3 {
-    color: #0071ce;
+    color: #0071CE;
     font-size: 21px;
     margin-bottom: 35px;
 }
@@ -958,7 +962,7 @@ main .key_figure img {
 }
 
 .bloc h4 {
-    color: #0071ce;
+    color: #0071CE;
     font-size: 18px;
     font-family: Hind, sans-serif;
     font-weight: 600;
@@ -971,7 +975,7 @@ main .key_figure img {
 }
 
 .bloc ul li a {
-    color: #2f3853;
+    color: #0071CE;
     line-height: 2;
     font-family: Hind, sans-serif;
 }
@@ -1058,6 +1062,10 @@ main .key_figure img {
     font-size: 14px;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background: #0071CE;
+}
+
 .bloc #memeTheme .carousel-caption a {
     color: #2f3853;
 }
@@ -1090,7 +1098,7 @@ main .key_figure img {
 }
 
 footer .bg-info {
-    height: 420px;
+    height: 490px;
     padding-top: 40px;
     padding-bottom: 0;
 }
@@ -1606,9 +1614,17 @@ a:hover {
     left: -15px;
 }
 
+
+a.bg-danger{
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    -ms-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    transition: all 0.1s;
+}
 a.bg-danger:hover {
-    color: #FFF;
-    background: #e03906 !important;
+    color: #e03906;
+    background: #FFF !important;
 }
 
 .fab {
