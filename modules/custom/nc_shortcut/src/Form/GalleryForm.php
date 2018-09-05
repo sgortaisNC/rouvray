@@ -122,7 +122,7 @@ class GalleryForm extends ConfigFormBase {
                 ],
             ],
 
-            /*'link4' => [
+            'link4' => [
                 '#type' => 'fieldset',
                 '#title' => "Lien rapide 4",
                 '#tree' => TRUE,
@@ -149,7 +149,7 @@ class GalleryForm extends ConfigFormBase {
                     '#default_value' => $config->get('link4.link'),
                     '#required' => TRUE,
                 ],
-            ],*/
+            ],
         ];
 
         return parent::buildForm($form, $form_state);
@@ -208,7 +208,7 @@ class GalleryForm extends ConfigFormBase {
             ->save();
 
         //Lien 4
-        /*$image = $form_state->getValue('link4')['image'];
+        $image = $form_state->getValue('link4')['image'];
         if(!empty($image)) {
             $file = File::load($image[0]);
             $file->setPermanent();
@@ -218,6 +218,6 @@ class GalleryForm extends ConfigFormBase {
             ->set('link4.image', $form_state->getValue('link4')['image'])
             ->set('link4.title', $form_state->getValue('link4')['title'])
             ->set('link4.link', $form_state->getValue('link4')['link'])
-            ->save();*/
+            ->save();
     }
 }

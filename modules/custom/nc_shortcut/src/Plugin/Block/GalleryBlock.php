@@ -2,7 +2,6 @@
 namespace Drupal\nc_shortcut\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Cache\Cache;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
@@ -21,7 +20,6 @@ class GalleryBlock extends BlockBase {
      * {@inheritdoc}
      */
     public function build() {
-        $data = [];
         $config = \Drupal::config('ncshortcut.config.gallery');
 
         $url1 = '';
@@ -45,12 +43,12 @@ class GalleryBlock extends BlockBase {
             $url3 = ImageStyle::load('detail')->buildUrl($path);
         }
 
-        /*$url4 = '';
+        $url4 = '';
         $file4 = File::load($config->get('link4.image')[0]);
         if(!empty($file4)){
             $path = $file4->getFileUri();
             $url4 = ImageStyle::load('detail')->buildUrl($path);
-        }*/
+        }
 
         $data = [
             'link1' => [
@@ -68,11 +66,11 @@ class GalleryBlock extends BlockBase {
                 'title' => $config->get('link3.title'),
                 'link' => $config->get('link3.link'),
             ],
-            /*'link4' => [
+            'link4' => [
                 'image' => $url4,
                 'title' => $config->get('link4.title'),
                 'link' => $config->get('link4.link'),
-            ],*/
+            ],
         ];
 
         if(count($data) > 0){

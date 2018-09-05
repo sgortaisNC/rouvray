@@ -57,21 +57,25 @@ class ShortcutBlock extends BlockBase {
                 'image' => $url1,
                 'title' => $config->get('link1.title'),
                 'link' => $config->get('link1.link'),
+                'hide' => $config->get('link1.hide'),
             ],
             'link2' => [
                 'image' => $url2,
                 'title' => $config->get('link2.title'),
                 'link' => $config->get('link2.link'),
+                'hide' => $config->get('link2.hide'),
             ],
             'link3' => [
                 'image' => $url3,
                 'title' => $config->get('link3.title'),
                 'link' => $config->get('link3.link'),
+                'hide' => $config->get('link3.hide'),
             ],
             'link4' => [
                 'image' => $url4,
                 'title' => $config->get('link4.title'),
                 'link' => $config->get('link4.link'),
+                'hide' => $config->get('link4.hide'),
             ],
         ];
 

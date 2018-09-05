@@ -68,7 +68,7 @@ class ConsultationsBlock extends BlockBase {
 				],
 			],
 			'form2' => [
-				'title'  => 'Consultation spécialisée',
+				'title'  => 'Consultations spécialisées',
 				'action' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/108' ),
 				'form'   => [
 					'pathologie' => [
