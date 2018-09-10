@@ -1098,7 +1098,7 @@ main .key_figure img {
 }
 
 footer .bg-info {
-    height: 490px;
+    height: 190px;
     padding-top: 40px;
     padding-bottom: 0;
 }
@@ -1123,16 +1123,6 @@ footer .bg-info .logo_footer {
     position: relative;
 }
 
-footer .bg-info .logo_footer::after {
-    content: '';
-    display: block;
-    bottom: 0;
-    left: 0;
-    width: 165px;
-    height: 1px;
-    background: #ffffff;
-    position: absolute;
-}
 
 footer .bg-info .submenu {
     margin-bottom: 28px;
