@@ -1,24 +1,29 @@
 <div class="col-md-7">
-    <div class="posr">
-        <img src="{{ data.formation.image.url }}" alt="{{ data.formation.image.alt }}" class="img-fluid">
-        <div class="bg-white">
-            <h5 class="text-info"><a href="{{ data.formation.link }}">{{ data.formation.title }}</a></h5>
-            <p class="mb-0">{{ data.formation.summary | raw }}</p>
-        </div>
+    <div class="sliderSlick">
+        {% for cle, slide in data.slider  %}
+            <div class="posr">
+                <img src="{{ slide.image }}" alt="{{ slide.titre }}" class="img-fluid">
+                <div class="bg-white">
+                    <h5 class="text-info"><a href="{{ slide.url }}">{{ slide.titre }}</a></h5>
+                    <p class="mb-0">{{ slide.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
     </div>
+
 </div>
 <div class="col-md-5">
     <div class="d-flex flex-column justify-content-around h-100">
-        <a href="{{ data.formation.url }}">
+        <a href="{{ data.formation.url }}" class="navSlideHome" data-toslide="0">
 
             <span class="text-uppercase d-block">Se former au Rouvray</span>
             <span>Découvrez toutes nos formations</span>
         </a>
-        <a href="{{ data.offre.url }}">
+        <a href="{{ data.offre.url }}" class="navSlideHome" data-toslide="1">
             <span class="text-uppercase d-block">Offres d'emploi</span>
             <span>Actuellement {{ data.offre.nb }} offre{% if data.offre.nb > 1 %}s{% endif %} d'emploi</span>
         </a>
-        <a href="{{ data.candidature.url }}">
+        <a href="{{ data.candidature.url }}" class="navSlideHome" data-toslide="2">
             <i class="fas fa-plus-circle text-warning d-block"></i>
             <span class="text-uppercase">Déposez votre candidature</span>
         </a>

@@ -12,11 +12,19 @@ jQuery(window).on("load", function () {
 
 jQuery(document).ready(function ($) {
 
+    if ($(".sliderSlick").length > 0){
+        $(".sliderSlick").slick({
+                arrows: false,
+            speed: 0
+            }
+        );
+        $(".navSlideHome").mouseenter(function () {
+            $(".sliderSlick").slick("slickGoTo", parseInt($(this).data("toslide")));
+        })
+    }
+
     $('[data-toggle="tooltip"]').tooltip();
 
-    $(".tozero").click(function () {
-        $('body').css('font-size', "16px");
-    });
     $("#search-block-form .input-group, #search-form .input-group").append('<div class="form-actions js-form-wrapper form-wrapper">' +
         '<div class="input-group-append">' +
         '<button class="btn btn-white" type="submit">' +

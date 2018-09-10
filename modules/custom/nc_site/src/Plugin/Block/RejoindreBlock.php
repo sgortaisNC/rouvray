@@ -24,78 +24,72 @@ class RejoindreBlock extends BlockBase {
 	 * {@inheritdoc}
 	 */
 	public function build() {
-		$data      = [];
-		$config    = \Drupal::config( 'ncsite.config.rejoindre' );
-		$formation = Node::load( $config->get( 'formation' ) );
+		$data   = [];
+		$config = \Drupal::config( 'ncsite.config.rejoindre' );
 
-		//Image
-		$urlImage = $altImage = '';
-		if ( ! empty( $formation ) ) {
-			if ( count( $formation->get( 'field_image' )->getValue() ) > 0 ) {
-				$file = File::load( $formation->get( 'field_image' )->getValue()[0]['target_id'] );
+		$slider = [
+			[
+				"image"       => $config->get( "slide1.image" ),
+				"titre"       => $config->get( "slide1.title" ),
+				"url"         => $config->get( "slide1.url" ),
+				"description" => strip_tags( $config->get( "slide1.description" ) )
+			],
+			[
+				"image"       => $config->get( "slide2.image" ),
+				"titre"       => $config->get( "slide2.title" ),
+				"url"         => $config->get( "slide2.url" ),
+				"description" => strip_tags( $config->get( "slide2.description" ) )
+			],
+			[
+				"image"       => $config->get( "slide3.image" ),
+				"titre"       => $config->get( "slide3.title" ),
+				"url"         => $config->get( "slide3.url" ),
+				"description" => strip_tags( $config->get( "slide3.description" ) )
+			],
+		];
+
+		foreach ( $slider as $key => $slide ) {
+			if ( ! empty( $slide["image"] ) ) {
+				$file = File::load( $slide["image"][0] );
 				if ( ! empty( $file ) ) {
-					$path     = $file->getFileUri();
-					$urlImage = file_create_url( ImageStyle::load( 'detail' )->buildUrl( $path ) );
-					if ( count( $formation->get( 'field_image' )->getValue() ) > 0 ) {
-						$altImage = $formation->get( 'field_image' )->getValue()[0]['alt'];
-					} else {
-						$altImage = $formation->getTitle();
-					}
-				}
-			} else {
-				$fileUuid = $formation->get( 'field_image' )->getSetting( 'default_image' )['uuid'];
-				$file     = \Drupal::service( 'entity.repository' )->loadEntityByUuid( 'file', $fileUuid );
-				if ( ! empty( $file ) ) {
-					$path     = $file->getFileUri();
-					$urlImage = file_create_url( ImageStyle::load( 'detail' )->buildUrl( $path ) );
-					$altImage = $formation->getTitle();
+					$path                    = $file->getFileUri();
+					$urlImage                = file_create_url( ImageStyle::load( 'detail' )->buildUrl( $path ) );
+					$slider[ $key ]["image"] = $urlImage;
 				}
 			}
-
-
-			//Summary
-			$summary = Html::normalize( Unicode::truncate( strip_tags( $formation->get( 'body' )->getValue()[0]['value'] ), 150 ) . '...' );
-
-			//Offres d'emploi
-			$query  = \Drupal::entityQuery( 'node' )
-			                 ->condition( 'status', '1' )
-			                 ->condition( 'type', 'offre' );
-			$result = $query->count()->execute();
-
-			$data = [
-				'formation'   => [
-					'title'   => $formation->getTitle(),
-					'summary' => $summary,
-					'image'   => [
-						'url' => $urlImage,
-						'alt' => $altImage,
-					],
-					'link'    => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $formation->id() ),
-					'url'     => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/110' ),
-				],
-				'offre'       => [
-					'url' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/113' ),
-					'nb'  => (int) $result,
-				],
-				'candidature' => [
-					'url' => "/form/deposer-une-candidature",
-				],
-			];
 		}
+
+
+		//Offres d'emploi
+		$query  = \Drupal::entityQuery( 'node' )
+		                 ->condition( 'status', '1' )
+		                 ->condition( 'type', 'offre' );
+		$result = $query->count()->execute();
+
+		$data = [
+			'slider'      => $slider,
+			'offre'       => [
+				'url' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/113' ),
+				'nb'  => (int) $result,
+			],
+			'candidature' => [
+				'url' => "/form/deposer-une-candidature",
+			],
+		];
+
 
 		if ( count( $data ) > 0 ) {
 			$build = [
 				'#theme' => 'rejoindre',
 				'#data'  => $data,
 			];
-		} else {
-			$build = [];
 		}
 
 		return $build;
 	}
 
-	public function getCacheTags() {
+	public
+	function getCacheTags() {
 		//With this when your node change your block will rebuild
 		if ( $node = \Drupal::routeMatch()->getParameter( 'node' ) ) {
 			//if there is node add its cachetag
@@ -106,7 +100,8 @@ class RejoindreBlock extends BlockBase {
 		}
 	}
 
-	public function getCacheContexts() {
+	public
+	function getCacheContexts() {
 		//if you depends on \Drupal::routeMatch()
 		//you must set context of this block with 'route' context tag.
 		//Every new route this block will rebuild

@@ -1745,24 +1745,6 @@ main .search_and_slide .carousel-caption:hover {
     content: '';
 }
 
-.nous-rejoindre .flex-column a:first-child:hover {
-    margin-right: -15px;
-    padding-left: 15px;
-    left: 0;
-}
-
-.nous-rejoindre .flex-column a:first-child:hover::before {
-    content: "\f100";
-    font-family: "Font Awesome 5 Free", fantasy;
-    font-weight: bold;
-    background: #FFF;
-    top: 33%;
-    left: -25px;
-    transform: translateY(-50%);
-    color: #feb602;
-    font-size: 40px;
-}
-
 .pole .pole__text h4 a {
     transition: all 0.1s;
 }
