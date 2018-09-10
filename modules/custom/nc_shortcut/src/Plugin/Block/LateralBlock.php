@@ -20,11 +20,11 @@ class LateralBlock extends BlockBase {
      */
     public function build() {
         $data = [
-            'link1' => [
+            /*'link1' => [
                 'icon' => '/themes/site/img/agenda_ico.png',
                 'title' => 'Prendre rendez-vous',
                 'link' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/1'),
-            ],
+            ],*/
             'link2' => [
                 'icon' => '/themes/site/img/notepad_ico.png',
                 'title' => 'Préparer son hospitalisation',
