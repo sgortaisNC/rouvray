@@ -29,7 +29,7 @@ class BanniereBlock extends BlockBase {
 		    if  (!empty($node->get("field_background")->getValue()[0]["target_id"])){
 			    $fid = $node->get("field_background")->getValue()[0]["target_id"];
 			    $file = File::Load($fid);
-			    $image = Url::fromUri($file->getFileUri());
+			    $image = file_create_url($file->getFileUri());
 		    }else{
 			    $fileUuid = $node->get('field_background')->getSetting('default_image')['uuid'];
 			    $file = \Drupal::service('entity.repository')->loadEntityByUuid('file', $fileUuid);
