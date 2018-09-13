@@ -982,6 +982,9 @@ main .key_figure img {
 
 .bloc.menu_contextuel li {
     position: relative;
+    display: flex;
+    height: 50px;
+    align-items: center;
 }
 
 .bloc.menu_contextuel li::before {
@@ -1000,7 +1003,7 @@ main .key_figure img {
 
 .bloc.menu_contextuel li a {
     text-transform: uppercase;
-    line-height: 2.5;
+    line-height: 14px;
 }
 
 .bloc.menu_contextuel li a:hover {
