@@ -2160,7 +2160,7 @@ footer a.round:hover {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -1px;
     display: block;
     background: rgba(254, 182, 2, 0.8);
     z-index: -1;
