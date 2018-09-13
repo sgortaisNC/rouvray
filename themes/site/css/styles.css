@@ -431,7 +431,7 @@ header .main-header .main_menu li {
     position: relative;
 }
 
-header .main-header .main_menu li a::after {
+header .main-header .main_menu > li > a::after {
     position: absolute;
     width: 1px;
     height: 15px;
