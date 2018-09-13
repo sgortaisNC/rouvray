@@ -2333,3 +2333,9 @@ ul.main_menu::after {
     height: 1px;
     background: #e7eaef;
 }
+
+#block-bannierebloc h1{
+    display: inline;
+    padding: 6px;
+    background: rgba(255,255,255,0.4);
+}

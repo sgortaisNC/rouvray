@@ -76,7 +76,7 @@ class ListecarrefourBlock extends BlockBase {
 
 					$body = "";
 					if ( ! empty( $node->get( "body" )->getValue()[0]["value"] ) ) {
-						$body = strlen( $node->get( "body" )->getValue()[0]["value"] ) > 175 ? substr( $node->get( "body" )->getValue()[0]["value"], 0, 175 ) . "..." : $node->get( "body" )->getValue()[0]["value"];
+						$body = strlen( strip_tags($node->get( "body" )->getValue()[0]["value"])) > 50 ? substr( strip_tags($node->get( "body" )->getValue()[0]["value"]), 0, 47 ) . "..." : strip_tags($node->get( "body" )->getValue()[0]["value"]);
 					}
 					$contents[] = [
 						'title' => $node->getTitle(),
