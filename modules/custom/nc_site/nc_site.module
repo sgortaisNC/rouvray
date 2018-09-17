@@ -5,15 +5,16 @@ use Drupal\Core\Database\Database;
 
 function nc_site_preprocess_node( &$variables ) {
 	if ( isset( $variables['node'] ) ) {
-		$node = \Drupal::routeMatch()->getParameter('node');
-		if ($node) {
+		$node = \Drupal::routeMatch()->getParameter( 'node' );
+		if ( $node ) {
 			// You can get nid and anything else you need from the node object.
-			if ( $node == "secured" ||  $node->id()  == 120) {
+			if ( $node == "secured" || $node->id() == 120 ) {
 				$user = \Drupal::currentUser();
-				if  ($user->getRoles()[0] == 'anonymous'){
+				if ( $user->getRoles()[0] == 'anonymous' ) {
 					global $base_url;
-					$response = new Symfony\Component\HttpFoundation\RedirectResponse($base_url."login");
+					$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "login" );
 					$response->send(); // don't send the response yourself inside controller and form.
+
 					return;
 				}
 			}
@@ -24,6 +25,8 @@ function nc_site_preprocess_node( &$variables ) {
 
 /**
  * Implements hook_entity_presave().
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
  */
 function nc_site_entity_presave( Drupal\Core\Entity\EntityInterface $entity ) {
 	switch ( $entity->bundle() ) {
@@ -49,19 +52,28 @@ function nc_site_entity_presave( Drupal\Core\Entity\EntityInterface $entity ) {
 			$url          = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=" . $address;
 			$response     = file_get_contents( $url );
 			$json         = json_decode( $response, true );
+			if ( isset( $json['results'][0] ) ) {
 
-			$lat = $json['results'][0]['geometry']['location']['lat'];
-			$lng = $json['results'][0]['geometry']['location']['lng'];
 
-			$entity->set( "field_gps_latitude", $lat );
-			$entity->set( "field_gps_longitude", $lng );
+				$lat = $json['results'][0]['geometry']['location']['lat'];
+				$lng = $json['results'][0]['geometry']['location']['lng'];
 
+				$entity->set( "field_gps_latitude", $lat );
+				$entity->set( "field_gps_longitude", $lng );
+			}
 			break;
 	}
 }
 
 /**
  * Implements hook_theme().
+ *
+ * @param $existing
+ * @param $type
+ * @param $theme
+ * @param $path
+ *
+ * @return array
  */
 function nc_site_theme( $existing, $type, $theme, $path ) {
 	return [
