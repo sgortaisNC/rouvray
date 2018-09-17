@@ -2,7 +2,10 @@
     {{ content.field_image }}
     <br>
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
+            <blockquote class="mt-4">
+                {{ content.field_texte_de_presentation }}
+            </blockquote>
             <h2>Horaires</h2>
         </div>
         <div class="col-md-9">
@@ -38,6 +41,7 @@
                     <div>
                         <b>Adresse :</b> {{ content.field_adresse }} <br>
                         <b>Ville :</b> {{ content.field_ville }} <br>
+                        <b>Fax :</b> {{ content.field_fax }} <br>
                     </div>
                 </div>
             </div>
@@ -48,24 +52,30 @@
                 <div class="d-flex justify-content-between align-items-start pt-3">
                     <img src="/themes/site/img/doc.png" alt="" class="mr-3">
                     <div>
-                        {% if content.field_unite is not empty %}<b>Unité :</b> {{ content.field_unite }} <br>{% endif %}
-                        {% if content.field_responsable is not empty %}<b>Responsable de l’unité :</b> {{ content.field_responsable }} <br>{% endif %}
-                        {% if content.field_pole is not empty %}<b>Pôle :</b> {{ content.field_pole }} <br>{% endif %}
-                        {% if content.field_secteur is not empty %}<b>Secteur :</b> {{ content.field_secteur }} <br>{% endif %}
-                        {% if content.field_prestation is not empty %}<b>Type de consultation :</b> {{ content.field_prestation }} <br>{% endif %}
-                        {% if content.field_patients is not empty %}<b>Type de patient :</b> {{ content.field_patients }}{% endif %}
+                        {% if content.field_unite.0 is not empty %}<b>Unité :</b> {{ content.field_unite }} <br>{% endif %}
+                        {% if content.field_responsable.0 is not empty %}<b>Responsable de l’unité :</b> {{ content.field_responsable }} <br>{% endif %}
+                        {% if content.field_pole.0 is not empty %}<b>Pôle :</b> {{ content.field_pole }} <br>{% endif %}
+                        {% if content.field_secteur.0 is not empty %}
+                            <b>Secteur :</b> {{ content.field_secteur.0 }}
+                            {% if content.field_secteur.1 is not empty %}, {{ content.field_secteur.1 }}{% endif %}
+                            {% if content.field_secteur.2 is not empty %}, {{ content.field_secteur.2 }}{% endif %}
+                            <br>
+                        {% endif %}
+                        {% if content.field_prestation.0 is not empty %}<b>Type de consultation :</b> {{ content.field_prestation }} <br>{% endif %}
+                        {% if content.field_patients.0 is not empty %}
+                            <b>Type de patient :</b> {{ content.field_patients.0 }}
+                            {% if content.field_patients.1 is not empty %}, {{ content.field_patients.1 }}{% endif %}
+                            {% if content.field_patients.2 is not empty %}, {{ content.field_patients.2 }}{% endif %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="marker" data-lat="{{ content.field_gps_latitude }}" data-lng="{{ content.field_gps_longitude }}"></div>
-    <div class="with_shadow">
-        <div id="mapid" class="mt-5 w-100"></div>
-    </div>
+    {% if content.field_gps_latitude.0 is not empty %}
+        <div class="marker" data-lat="{{ content.field_gps_latitude }}" data-lng="{{ content.field_gps_longitude }}"></div>
+        <div class="with_shadow">
+            <div id="mapid" class="mt-5 mb-3 w-100"></div>
+        </div>
+    {% endif %}
 </div>
-{% if content.field_tags is not empty %}
-    <hr>
-    <h3>Mots-clés : </h3>
-    {{ content.field_tags }}
-{% endif %}

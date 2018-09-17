@@ -48,7 +48,7 @@ function nc_site_entity_presave( Drupal\Core\Entity\EntityInterface $entity ) {
 				$cp     = $hasZero . $ville->cp;
 			}
 			$node_address = $entity->get( "field_adresse" )->getValue()[0]["value"];
-			$address      = urlencode( $node_address . ", " . $cp . " " . $nville . ", france" );
+			$address      = urlencode( $node_address . ", " . $nville . ", france" );
 			$url          = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=" . $address;
 			$response     = file_get_contents( $url );
 			$json         = json_decode( $response, true );
