@@ -1,0 +1,9 @@
+{{ content.body.0 }}
+
+<div class="gallerie">
+    <div class="row">
+        {% for key in content.field_images %}
+            <div class="col-md-4">{{ key }}</div>
+        {% endfor %}
+    </div>
+</div>

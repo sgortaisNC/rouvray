@@ -50,6 +50,7 @@ jQuery(document).ready(function ($) {
             $(this).addClass("img-fluid");
         }
     });
+
     $('input[type=search]').each(function () {
         if (!$(this).hasClass("form-control")) {
             $(this).addClass("form-control");
