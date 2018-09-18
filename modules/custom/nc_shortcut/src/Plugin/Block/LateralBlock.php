@@ -38,12 +38,12 @@ class LateralBlock extends BlockBase {
             'link4' => [
                 'icon' => '/themes/site/img/map_ico.png',
                 'title' => 'Plan d\'accès',
-                'link' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/1'),
+                'link' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/391'),
             ],
             'link5' => [
                 'icon' => '/themes/site/img/mail_ico.png',
                 'title' => 'Contactez-nous',
-                'link' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/1'),
+                'link' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/389'),
             ],
         ];
 
