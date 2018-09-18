@@ -4,10 +4,11 @@
 
 <div class="gallerie">
     <div class="row">
-        {% for key,p in gallerie  %}
+        {{ dump(gallerie) }}
+        {% for p in gallerie  %}
             <div class="col-md-4">
-                <img src="{{ p.url }}" alt="{{ p.alt }}">
-                <a href="{{ p.url }}" data-lightbox="image-{{ key }}" data-title="{{ p.alt }}"><img
+                
+                <a href="{{ p.url }}" data-lightbox="image-1" data-title="{{ p.alt }}"><img
                             src="{{ p.url }}" class="my-2"
                             alt="{{ p.alt }}"></a>
             </div>

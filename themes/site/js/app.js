@@ -12,16 +12,21 @@ jQuery(window).on("load", function () {
 
 jQuery(document).ready(function ($) {
 
-    if ($(".sliderSlick").length > 0){
+    if ($(".sliderSlick").length > 0) {
         $(".sliderSlick").slick({
                 arrows: false,
-            speed: 0
+                speed: 0
             }
         );
         $(".navSlideHome").mouseenter(function () {
             $(".sliderSlick").slick("slickGoTo", parseInt($(this).data("toslide")));
         })
     }
+    $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+        event.preventDefault();
+        $(this).lightbox();
+    });
+
 
     $('[data-toggle="tooltip"]').tooltip();
 
