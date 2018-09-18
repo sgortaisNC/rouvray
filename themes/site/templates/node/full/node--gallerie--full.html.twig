@@ -1,9 +1,16 @@
 {{ content.body.0 }}
 
+
+
 <div class="gallerie">
     <div class="row">
-        {% for key in content.field_images %}
-            <div class="col-md-4">{{ key }}</div>
+        {% for key,p in gallerie  %}
+            <div class="col-md-4">
+                <img src="{{ p.url }}" alt="{{ p.alt }}">
+                <a href="{{ p.url }}" data-lightbox="image-{{ key }}" data-title="{{ p.alt }}"><img
+                            src="{{ p.url }}" class="my-2"
+                            alt="{{ p.alt }}"></a>
+            </div>
         {% endfor %}
     </div>
 </div>
