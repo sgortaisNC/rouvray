@@ -14,7 +14,6 @@ function site_preprocess_node( &$variables ) {
 		if ( $node->bundle() == "gallerie" ) {
 			$gallerie = $node->get( 'field_images' )->getValue();
 			$variables["gallerie"] = [];
-			ksm($gallerie);
 			foreach ( $gallerie as $photo ) {
 				$file = File::load( $photo['target_id'] );
 				if ( ! empty( $file ) ) {

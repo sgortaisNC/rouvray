@@ -1,13 +1,10 @@
 {{ content.body.0 }}
 
-
-
 <div class="gallerie">
     <div class="row">
-        {{ dump(gallerie) }}
         {% for p in gallerie  %}
             <div class="col-md-4">
-                
+
                 <a href="{{ p.url }}" data-lightbox="image-1" data-title="{{ p.alt }}"><img
                             src="{{ p.url }}" class="my-2"
                             alt="{{ p.alt }}"></a>
