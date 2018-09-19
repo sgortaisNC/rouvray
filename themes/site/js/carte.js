@@ -13,17 +13,28 @@ if ($("#mapConsult").length > 0 ){
         iconAnchor:   [25, 47],
     });
 
+    var markerArray = [];
+    var markers = L.markerClusterGroup();
+
     $(".markerConsult").each(function () {
-        L.marker([$(this).data("lat"), $(this).data("lng")], {icon: hIcon})
-            .bindPopup($(this).data("titre")
-                +"<br>"+$(this).data("adress")
-                +"<br>"+$(this).data("ville")
-                +"<br>"+$(this).data("tel")
-                +"<br>"+$(this).data("horaire")
-                +"<br><a href=\""+$(this).data("url")+"\">Voir le détail</a>"
-            )
-            .addTo(map);
+        console.log([$(this).data("lat"), $(this).data("lng")]);
+        if  ($(this).data("lat") !== "" && $(this).data("lng") !== "") {
+            var marker = L.marker([$(this).data("lat"), $(this).data("lng")], {icon: hIcon})
+                .bindPopup($(this).data("titre")
+                    + "<br>" + $(this).data("adress")
+                    + "<br>" + $(this).data("ville")
+                    + "<br>" + $(this).data("tel")
+                    + "<br>" + $(this).data("horaire")
+                    + "<br><a href=\"" + $(this).data("url") + "\">Voir le détail</a>"
+                );
+            markers.addLayer(marker);
+            markerArray.push(marker);
+        }
     });
+
+    map.addLayer(markers);
+    var group = L.featureGroup(markerArray);
+    map.fitBounds(group.getBounds(), {padding: [25, 25]});
 
 }
 

@@ -71,6 +71,7 @@ jQuery(document).ready(function ($) {
         $(this).parent().parent().toggleClass("is-open");
     });
     if ($('#mapmultiple').length > 0) {
+
         var map = L.map('mapmultiple').setView([49.05, 1.35], 11);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -79,14 +80,23 @@ jQuery(document).ready(function ($) {
             accessToken: 'your.mapbox.access.token'
         }).addTo(map);
 
+        var markerArray = [];
+        var markers = L.markerClusterGroup();
+
         var hIcon = L.icon({
             iconUrl: 'img/marker.png',
             iconSize: [52, 51],
             iconAnchor: [25, 47],
         });
         $(".marker").each(function () {
-            L.marker([$(this).data("lat"), $(this).data("lng")], {icon: hIcon}).addTo(map);
+            var marker = L.marker([$(this).data("lat"), $(this).data("lng")], {icon: hIcon}).addTo(map);
+            marker.addTo(map);
+            markers.addLayer(marker);
+            markerArray.push(marker);
         });
+        map.addLayer(markers);
+        var group = L.featureGroup(markerArray);
+        map.fitBounds(group.getBounds(), {padding: [25, 25]});
     }
     if ($('#mapid').length > 0) {
         var map = L.map('mapid').setView([$(".marker").data("lat"), $(".marker").data("lng")], 13);
