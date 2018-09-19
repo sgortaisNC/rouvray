@@ -75,7 +75,7 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center my-2">
             <div><i class="fas fa-map-marker text-warning"></i> {{ content.field_lieu }}</div>
             <div>
-                <i class="fas fa-calendar-alt text-warning"></i> {{ content.field_date }} {% if content.field_date_other is not empty %}
+                <i class="fas fa-calendar-alt text-warning"></i> {{ content.field_date }} {% if content.field_date_other.0 is not empty %}
                     - {{ content.field_date_other }}
                 {% endif %}
             </div>
@@ -85,7 +85,7 @@
             {{ content.field_image }}
         </div>
         {{ content.body }}
-        {% if content.field_tags is not empty %}
+        {% if content.field_tags.0 is not empty %}
             <hr>
             <h3>Mots-clés : </h3>
             {{ content.field_tags }}
