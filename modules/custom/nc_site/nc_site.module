@@ -7,13 +7,12 @@ function nc_site_preprocess_node( &$variables ) {
 	if ( isset( $variables['node'] ) ) {
 		$node = \Drupal::routeMatch()->getParameter( 'node' );
 		if ( $node ) {
-			// You can get nid and anything else you need from the node object.
 			if ( $node == "secured" || $node->id() == 120 ) {
 				$user = \Drupal::currentUser();
 				if ( $user->getRoles()[0] == 'anonymous' ) {
 					global $base_url;
-					$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "login" );
-					$response->send(); // don't send the response yourself inside controller and form.
+					$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "/user" );
+					$response->send();
 
 					return;
 				}
@@ -102,4 +101,14 @@ function nc_site_theme( $existing, $type, $theme, $path ) {
 			],
 		],
 	];
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function nc_site_user_login( $account ) {
+	global $base_url;
+	$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "/professionnels/espace-securise" );
+	$response->send();
+	return;
 }

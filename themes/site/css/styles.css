@@ -2342,3 +2342,7 @@ ul.main_menu::after {
     padding: 6px;
     background: rgba(255,255,255,0.7);
 }
+
+#sliding-popup .decline-button{
+    display: none !important;
+}

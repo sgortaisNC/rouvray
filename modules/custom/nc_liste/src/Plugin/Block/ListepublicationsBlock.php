@@ -44,9 +44,12 @@ class ListepublicationsBlock extends BlockBase {
 						$body = strlen( $nodeContent->get( "body" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "body" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "body" )->getValue()[0]["value"];
 					}
 
+					$url = "";
 
-					$uri = File::load($nodeContent->get( "field_files" )->getValue()[0]["target_id"])->getFileUri();
-					$url = file_create_url($uri);
+					if ( ! empty( $nodeContent->get( "field_files" )->getValue() ) ) {
+						$uri = File::load( $nodeContent->get( "field_files" )->getValue()[0]["target_id"] )->getFileUri();
+						$url = file_create_url( $uri );
+					}
 
 					$contents[] = [
 						'title' => $nodeContent->getTitle(),
