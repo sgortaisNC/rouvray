@@ -680,8 +680,9 @@ main #main-info .caption {
 }
 
 main #main-info .caption h1 {
-    max-width: 300px;
+    max-width: 475px;
     width: 100%;
+    background: rgba(255,255,255,0.7);
 }
 
 main #main-info .caption .bg-white {
@@ -2337,8 +2338,7 @@ ul.main_menu::after {
     background: #e7eaef;
 }
 
-#block-bannierebloc h1 ,
-#block-homevisuelbloc h1{
+#block-bannierebloc h1{
     display: inline;
     padding: 6px;
     background: rgba(255,255,255,0.7);
