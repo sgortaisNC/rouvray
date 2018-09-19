@@ -78,27 +78,34 @@
         </div>
 
         <div class="d-flex flex-column flex-md-row justify-content-around align-items-center align-items-md-start text-align-center my-3">
-            <div>
-                <i class="fas fa-2x text-warning fa-map-marker text-warning"></i> <br>{{ content.field_lieu }}
-            </div>
-            <div>
-                <i class="fas fa-2x text-warning fa-briefcase text-warning"></i> <br>{{ content.field_quantite }} postes
-            </div>
-            <div>
-                <i class="fas fa-2x text-warning fa-clipboard"></i>
-                <br>
-                Type de contrat <br>
-                {{ content.field_contrat }}
-            </div>
+            {% if content.field_quantite_oe.0 is not empty %}
+                <div>
+                    <i class="fas fa-2x text-warning fa-briefcase text-warning"></i> <br>{{ content.field_quantite_oe }}
+                    postes
+                </div>
+            {% endif %}
 
-            <div>
-                <i class="fas fa-2x text-warning fa-calendar-plus"></i>
-                <br>
-                Début de contrat <br>
-                {{ content.field_date }}
-            </div>
+            {% if content.field_contrat.0 is not empty %}
+                <div>
+                    <i class="fas fa-2x text-warning fa-clipboard"></i>
+                    <br>
+                    Type de contrat <br>
+                    {{ content.field_contrat }}
+                </div>
+            {% endif %}
 
-            {% if content.field_date_other %}
+
+            {% if content.field_date.0 is not empty %}
+                <div>
+                    <i class="fas fa-2x text-warning fa-calendar-plus"></i>
+                    <br>
+                    Début de contrat <br>
+                    {{ content.field_date }}
+                </div>
+            {% endif %}
+
+
+            {% if content.field_date_other.0 is not empty %}
                 <div>
                     <i class="fas fa-2x text-warning fa-calendar-minus"></i>
                     <br>
@@ -106,16 +113,32 @@
                     {{ content.field_date_other }}
                 </div>
             {% endif %}
-            <div>
-                <i class="fas fa-2x text-warning fa-calendar-times"></i>
-                <br>
-                Date limite de candidature <br>
-                {{ content.field_date_limite }}
-            </div>
+            {% if content.field_date_limite.0 is not empty %}
+                <div>
+                    <i class="fas fa-2x text-warning fa-calendar-times"></i>
+                    <br>
+                    Date limite de candidature <br>
+                    {{ content.field_date_limite }}
+                </div>
+            {% endif %}
         </div>
 
-        {{ content.body }}
-        {% if content.field_tags %}
+        {{ content.field_fiche }}
+
+        {% if content.field_affectation.0 is not empty %}
+            <div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h2 class="mt-0">Affectation : </h2>
+                    </div>
+                    <div class="col-md-9">
+                        {{ content.field_affectation }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if content.field_tags.0 is not empty %}
             <hr>
             <h3>Mots clés</h3>
             {{ content.field_tags }}
