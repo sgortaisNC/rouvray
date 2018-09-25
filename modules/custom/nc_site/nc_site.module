@@ -107,10 +107,8 @@ function nc_site_theme( $existing, $type, $theme, $path ) {
  * Implements hook_user_login().
  */
 function nc_site_user_login( $account ) {
-	var_dump( $account->getRoles() );
-	die();
 	global $base_url;
-	$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "/professionnels/espace-securise" );
+	$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "/admin/content" );
 	$response->send();
 
 	return;
