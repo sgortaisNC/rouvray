@@ -10,7 +10,7 @@ function nc_site_preprocess_node( &$variables ) {
 			if ( $node == "secured" || $node->id() == 120 ) {
 				$user = \Drupal::currentUser();
 				if ( $user->getRoles()[0] == 'anonymous' ) {
-					if ( in_array( $user->getRols()[0], [ 'drh', 'administrator', "webmaster"]) ) {
+					if ( in_array( $user->getRoles()[0], [ 'drh', 'administrator', "webmaster"]) ) {
 						global $base_url;
 						$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "/admin/content" );
 						$response->send();
