@@ -116,7 +116,7 @@
             <div class="col-md-9">{{ content.field_liste }}</div>
         </div>
 
-        {% if content.field_tags is not empty %}
+        {% if content.field_tags.0 is not empty %}
             <hr>
             <h3>Mots-clés : </h3>
             {{ content.field_tags }}
