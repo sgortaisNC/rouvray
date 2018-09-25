@@ -9,21 +9,17 @@ function nc_site_preprocess_node( &$variables ) {
 		if ( $node ) {
 			if ( $node == "secured" || $node->id() == 120 ) {
 				$user = \Drupal::currentUser();
-				var_dump($user->getRoles());
 				if ( $user->getRoles()[0] == 'anonymous' ) {
-					if  (in_array($user->getRols()[0],['drh','administrator',"webmaster"))
-					{
+					if ( in_array( $user->getRols()[0], [ 'drh', 'administrator', "webmaster"]) ) {
 						global $base_url;
 						$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "/admin/content" );
 						$response->send();
-
 						return;
 					}
 					global $base_url;
 					$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "/user" );
 					$response->send();
-
-						return;
+					return;
 				}
 			}
 		}
@@ -119,5 +115,6 @@ function nc_site_user_login( $account ) {
 	global $base_url;
 	$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "/professionnels/espace-securise" );
 	$response->send();
+
 	return;
 }
