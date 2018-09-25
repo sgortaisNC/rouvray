@@ -9,6 +9,7 @@ function nc_site_preprocess_node( &$variables ) {
 		if ( $node ) {
 			if ( $node == "secured" || $node->id() == 120 ) {
 				$user = \Drupal::currentUser();
+				var_dump($user->getRoles());
 				if ( $user->getRoles()[0] == 'anonymous' ) {
 					global $base_url;
 					$response = new Symfony\Component\HttpFoundation\RedirectResponse( $base_url . "/user" );
