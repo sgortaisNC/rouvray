@@ -19,8 +19,9 @@ function site_preprocess_node( &$variables ) {
 				if ( ! empty( $file ) ) {
 					$path     = $file->getFileUri();
 					$urlImage = file_create_url( ImageStyle::load( 'large' )->buildUrl( $path ) );
+					$urlImageOrignal = file_create_url($path);
 					$altImage = $photo['alt'];
-					$variables["gallerie"][] = ["url" => $urlImage, "alt" => $altImage];
+					$variables["gallerie"][] = ["url" => $urlImage, "alt" => $altImage, "urlOrig" => $urlImageOrignal];
 				}
 			}
 		}
