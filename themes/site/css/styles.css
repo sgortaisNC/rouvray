@@ -1354,6 +1354,35 @@ footer .bg-warning a {
     background: #feb602;
 }
 
+.content-page .ckeditor-accordion-container > dl dt > a {
+    background-color: #e7eaef;
+    color: #0071ce;
+    border-bottom: 1px solid #feb602;
+}
+.content-page .ckeditor-accordion-container > dl dt.active > a {
+    background-color: #feb602;
+    color: #fff;
+    border-bottom: 1px solid #feb602;
+}
+.content-page .ckeditor-accordion-container > dl dt:last-of-type > a{
+    border-bottom: 0;
+}
+.content-page .ckeditor-accordion-container > dl dt > .ckeditor-accordion-toggle:before,
+.content-page .ckeditor-accordion-container > dl dt > .ckeditor-accordion-toggle:after {
+    background: #0071ce;
+}
+.content-page .ckeditor-accordion-container > dl dt.active > .ckeditor-accordion-toggle:before,
+.content-page .ckeditor-accordion-container > dl dt.active > .ckeditor-accordion-toggle:after {
+    background: #fff;
+}
+.content-page .ckeditor-accordion-container > dl {
+    position: relative;
+    border: 1px solid #feb602;
+}
+.content-page .ckeditor-accordion-container > dl dd{
+    padding-top: 15px;
+}
+
 .content-page .shadow {
     font-family: Hind, sans-serif;
 }
