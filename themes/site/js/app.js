@@ -22,6 +22,9 @@ jQuery(document).ready(function ($) {
             $(".sliderSlick").slick("slickGoTo", parseInt($(this).data("toslide")));
         })
     }
+    lightbox.option({
+        "albumLabel" : "Image %1 sur %2"
+    });
     $(document).on('click', '[data-toggle="lightbox"]', function (event) {
         event.preventDefault();
         $(this).lightbox();
