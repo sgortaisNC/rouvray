@@ -1,35 +1,35 @@
-<div class="fload-right">
+<div class="float-right">
     Partager sur :
     {% if data.print.active == '1' %}
-        <span class="share-btn" id="share-print" data-url="{{ data.print.url }}"><i class="fas fa-print"></i></span>
+        <span class="share-btn mx-2" id="share-print" data-url="{{ data.print.url }}"><i class="fas fa-print"></i></span>
     {% endif %}
 
     {% if data.email.active == '1' %}
-        <span class="share-btn" id="share-email" data-url="{{ data.email.url }}" data-toggle="modal" data-target="#share-email-container"><i class="fas fa-envelope"></i></span>
+        <span class="share-btn mx-2" id="share-email" data-url="{{ data.email.url }}" data-toggle="modal" data-target="#share-email-container"><i class="fas fa-envelope"></i></span>
     {% endif %}
 
     {% if data.facebook.active == '1' %}
-        <span class="share-btn" id="share-facebook" data-url="{{ data.facebook.url }}"><i class="fab fa-facebook-f"></i></span>
+        <span class="share-btn mx-2" id="share-facebook" data-url="{{ data.facebook.url }}"><i class="fab fa-facebook-f"></i></span>
     {% endif %}
 
     {% if data.twitter.active == '1' %}
-        <span class="share-btn" id="share-twitter" data-url="{{ data.twitter.url }}"><i class="fab fa-twitter"></i></span>
+        <span class="share-btn mx-2" id="share-twitter" data-url="{{ data.twitter.url }}"><i class="fab fa-twitter"></i></span>
     {% endif %}
 
     {% if data.google.active == '1' %}
-        <span class="share-btn" id="share-google" data-url="{{ data.google.url }}"><i class="fab fa-google-plus-g"></i></span>
+        <span class="share-btn mx-2" id="share-google" data-url="{{ data.google.url }}"><i class="fab fa-google-plus-g"></i></span>
     {% endif %}
 
     {% if data.linkedin.active == '1' %}
-        <span class="share-btn" id="share-linkedin" data-url="{{ data.linkedin.url }}"><i class="fab fa-linkedin-in"></i></span>
+        <span class="share-btn mx-2" id="share-linkedin" data-url="{{ data.linkedin.url }}"><i class="fab fa-linkedin-in"></i></span>
     {% endif %}
 
     {% if data.pinterest.active == '1' %}
-        <span class="share-btn" id="share-pinterest" data-url="{{ data.pinterest.url }}"><i class="fab fa-pinterest-p"></i></span>
+        <span class="share-btn mx-2" id="share-pinterest" data-url="{{ data.pinterest.url }}"><i class="fab fa-pinterest-p"></i></span>
     {% endif %}
 
     {% if data.rss.active == '1' %}
-        <span class="share-btn" id="share-rss" data-url="{{ data.rss.url }}">RSS</span>
+        <span class="share-btn mx-2" id="share-rss" data-url="{{ data.rss.url }}">RSS</span>
     {% endif %}
 </div>
 
