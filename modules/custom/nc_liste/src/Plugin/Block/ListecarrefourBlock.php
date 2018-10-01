@@ -76,7 +76,7 @@ class ListecarrefourBlock extends BlockBase {
 
 					$body = "";
 					if ( ! empty( $node->get( "body" )->getValue()[0]["value"] ) ) {
-						$body = strlen( strip_tags($node->get( "body" )->getValue()[0]["value"])) > 50 ? substr( strip_tags($node->get( "body" )->getValue()[0]["value"]), 0, 47 ) . "..." : strip_tags($node->get( "body" )->getValue()[0]["value"]);
+						$body = strlen( strip_tags($node->get( "body" )->getValue()[0]["value"])) > 150 ? substr( strip_tags($node->get( "body" )->getValue()[0]["value"]), 0, 147 ) . "..." : strip_tags($node->get( "body" )->getValue()[0]["value"]);
 					}
 					$contents[] = [
 						'title' => $node->getTitle(),
@@ -100,26 +100,6 @@ class ListecarrefourBlock extends BlockBase {
 				];
 			}
 		}
-
-
 		return $build;
-	}
-
-	public function getCacheTags() {
-		//With this when your node change your block will rebuild
-		if ( $node = \Drupal::routeMatch()->getParameter( 'node' ) ) {
-			//if there is node add its cachetag
-			return Cache::mergeTags( parent::getCacheTags(), array( 'node:' . $node->id() ) );
-		} else {
-			//Return default tags instead.
-			return parent::getCacheTags();
-		}
-	}
-
-	public function getCacheContexts() {
-		//if you depends on \Drupal::routeMatch()
-		//you must set context of this block with 'route' context tag.
-		//Every new route this block will rebuild
-		return Cache::mergeContexts( parent::getCacheContexts(), array( 'route' ) );
 	}
 }
