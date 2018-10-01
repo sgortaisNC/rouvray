@@ -24,38 +24,39 @@ class ListepublicationsBlock extends BlockBase {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function blockForm($form, FormStateInterface $form_state) {
-		$form = parent::blockForm($form, $form_state);
+	public function blockForm( $form, FormStateInterface $form_state ) {
+		$form   = parent::blockForm( $form, $form_state );
 		$config = $this->getConfiguration();
 
-		$termsTree = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('type_publication');
-		$tabterm = [];
-foreach ($termsTree as $term){
-	$tabterm[$term->tid] = $term->name;
+		$termsTree = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'type_publication' );
+		$tabterm   = [];
+		foreach ( $termsTree as $term ) {
+			$tabterm[ $term->tid ] = $term->name;
 
-}
+		}
 
 		$form['nc_links'] = [
-			'#type' => 'fieldset',
+			'#type'  => 'fieldset',
 			'#title' => "Configuration",
-			'#tree' => TRUE,
+			'#tree'  => true,
 
 			'field' => [
-				'#type' => 'select',
-				'#options' => $tabterm,
-				'#title' => "Type de publication",
-				'#default_value' => isset($config['nc_links_field']) ? $config['nc_links_field'] : null,
-				'#description' => $this->t('Select the machine name of the file field'),
+				'#type'          => 'select',
+				'#options'       => $tabterm,
+				'#title'         => "Type de publication",
+				'#default_value' => isset( $config['nc_links_field'] ) ? $config['nc_links_field'] : null,
+				'#description'   => $this->t( 'Select the machine name of the file field' ),
 			],
 		];
+
 		return $form;
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function blockSubmit($form, FormStateInterface $form_state) {
-		parent::blockSubmit($form, $form_state);
+	public function blockSubmit( $form, FormStateInterface $form_state ) {
+		parent::blockSubmit( $form, $form_state );
 		$values = $form_state->getValues();
 
 		$this->configuration['nc_links_field'] = $values['nc_links']['field'];
@@ -72,9 +73,13 @@ foreach ($termsTree as $term){
 		$query->condition( 'type', [ 'public' ], 'IN' )
 		      ->condition( 'status', 1 );
 
-		$nids = $query->sort( 'changed', 'DESC' )
-		              ->pager( 25 )
-		              ->execute();
+		$config = $this->getConfiguration();
+
+		if ( ! empty( $config['nc_links_field'] ) ) {
+			$query = $query->condition("field_publication",$config['nc_links_field'], "=");
+		}
+
+		$nids = $query->sort( 'title', 'DESC' )->pager( 25 )->execute();
 
 
 		if ( count( $nids ) > 0 ) {
