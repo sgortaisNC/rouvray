@@ -9,7 +9,7 @@
                     <b>Horaires</b> : {{ consultation.horaires | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
                 </p>
             </div>
-            <a href="{{ consultation.url }}" class="align-self-center btn btn-outline-light">Détail de la consultation</a>
+            <a href="{{ consultation.url }}" class="align-self-center btn btn-outline-light">Détails</a>
         </div>
     {% endfor %}
 </div>

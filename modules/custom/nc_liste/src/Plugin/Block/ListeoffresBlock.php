@@ -4,8 +4,6 @@ namespace Drupal\nc_liste\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
-use Drupal\file\Entity\File;
-use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Term;
 
@@ -53,26 +51,9 @@ class ListeoffresBlock extends BlockBase {
 			foreach ( $nids as $nid ) {
 				$nodeContent = Node::load( $nid );
 				if ( ! empty( $nodeContent ) ) {
-					$image = '';
-					if  (!empty($nodeContent->get( "field_image" )->getValue()[0]['target_id'])){
-						$image      = file_create_url( File::load( $nodeContent->get( "field_image" )->getValue()[0]['target_id'] )->getFileUri() );
-					}
-					else{
-						$fileUuid = $nodeContent->get('field_image')->getSetting('default_image')['uuid'];
-						$file = \Drupal::service('entity.repository')->loadEntityByUuid('file', $fileUuid);
-						if(!empty($file)){
-							$path = $file->getFileUri();
-							$image = file_create_url(ImageStyle::load('detail')->buildUrl($path));
-						}
-					}
-
-					$fiche      = strlen( $nodeContent->get( "field_fiche" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "field_fiche" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "field_fiche" )->getValue()[0]["value"];
+										$fiche      = strlen( $nodeContent->get( "field_fiche" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "field_fiche" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "field_fiche" )->getValue()[0]["value"];
 					$contents[] = [
 						'title'        => $nodeContent->getTitle(),
-						"image"        => [
-							"url" => $image,
-							"alt" => ! empty( $nodeContent->get( "field_image" )->getValue()[0]['alt'] ) ? $nodeContent->get( "field_image" )->getValue()[0]['alt'] : ""
-						],
 						"statut"       => ! empty( $nodeContent->get( 'field_statut' )->getValue()[0]["target_id"] ) ? Term::Load( $nodeContent->get( 'field_statut' )->getValue()[0]["target_id"] )->getName() : "",
 						"grade"        => ! empty( $nodeContent->get( 'field_grade' )->getValue()[0]["target_id"] ) ? Term::Load( $nodeContent->get( 'field_grade' )->getValue()[0]["target_id"] )->getName() : "",
 						"fiche"        => $fiche,
@@ -163,25 +144,5 @@ class ListeoffresBlock extends BlockBase {
 		];
 
 		return $build;
-	}
-
-	public
-	function getCacheTags() {
-		//With this when your node change your block will rebuild
-		if ( $node = \Drupal::routeMatch()->getParameter( 'node' ) ) {
-			//if there is node add its cachetag
-			return Cache::mergeTags( parent::getCacheTags(), array( 'node:' . $node->id() ) );
-		} else {
-			//Return default tags instead.
-			return parent::getCacheTags();
-		}
-	}
-
-	public
-	function getCacheContexts() {
-		//if you depends on \Drupal::routeMatch()
-		//you must set context of this block with 'route' context tag.
-		//Every new route this block will rebuild
-		return Cache::mergeContexts( parent::getCacheContexts(), array( 'route' ) );
 	}
 }

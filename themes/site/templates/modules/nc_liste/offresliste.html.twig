@@ -4,10 +4,7 @@
             <div class="teaser">
                 <a href="{{ offre.url }}"><h4>{{ offre.title }}</h4></a>
                 <div class="row my-2">
-                    <div class="col-md-3">
-                        <img src="{{ offre.image.url }}" alt="{{ offre.image.alt }}" class="img-fluid">
-                    </div>
-                    <div class="col-md-9 px-3">
+                    <div class="col-md-12 px-3">
                         <div class="row">
                             <div class="col-md-12 isField my-3">
                                 {% if offre.date_deb is not empty %}
@@ -64,7 +61,7 @@
                     {{ offre.fiche | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
                 </div>
             </div>
-            <a href="{{ offre.url }}" class="align-self-center btn btn-outline-light">En savoir plus</a>
+            <a href="{{ offre.url }}" class="align-self-center btn btn-outline-light">Détails</a>
         </div>
     {% endfor %}
 </div>
