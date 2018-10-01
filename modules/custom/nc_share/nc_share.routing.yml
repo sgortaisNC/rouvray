@@ -1,0 +1,14 @@
+nc_share.share_email:
+  path: '/share/email'
+  defaults:
+    _title: 'Share Email'
+    _controller: '\Drupal\nc_share\Controller\NcShareController::sendEmail'
+  requirements:
+    _access: 'TRUE'
+nc_share.admin_settings:
+  path: '/admin/nc-share/settings'
+  defaults:
+    _form: '\Drupal\nc_share\Form\NcShareSettingsForm'
+    _title: 'Share Buttons management'
+  requirements:
+    _permission: 'administer nc_share'

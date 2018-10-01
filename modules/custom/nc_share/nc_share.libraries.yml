@@ -1,0 +1,7 @@
+share:
+  version: 1.1.0
+  css:
+    layout:
+      css/share.css: {}
+  js:
+    js/share.js: {}

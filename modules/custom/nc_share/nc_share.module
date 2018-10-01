@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function nc_share_theme($existing, $type, $theme, $path) {
+  return [
+    'nc_share_buttons' => [
+      'template' => 'nc-share-buttons',
+      'variables' => [
+        'data' => NULL,
+      ]
+    ],
+    'nc_share_mail' => [
+      'template' => 'nc-share-mail',
+      'variables' => [
+          'data' => NULL,
+      ],
+    ],
+  ];
+}
+
+function nc_share_mail($key, &$message, $params) {
+    //URL du site
+    $params['host'] = Drupal::request()->getSchemeAndHttpHost();
+    //Logo du site
+    $params['logo'] = theme_get_setting('logo.url');
+    switch ($key) {
+        case 'share_node':
+            $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+            $message['from'] = Drupal::config('system.site')->get('mail');
+            $message['subject'] = $params['subject'];
+            $body_data = [
+               '#theme' => 'nc_share_mail',
+               '#data' => $params
+            ];
+            $message['body'] = [
+                Drupal::service('renderer')->render($body_data),
+            ];
+         break;
+    }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function nc_share_node_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display)
+{
+    if (empty($build['#attached']['html_head_link'])) {
+        return;
+    }
+
+    $tags = [
+        'canonical',
+        'shortlink',
+        'delete-form',
+        'edit-form',
+        'version-history',
+        'revision',
+        'devel-load',
+        'devel-render',
+        'devel-definition',
+    ];
+
+    foreach ($build['#attached']['html_head_link'] as $key => $tag) {
+        if (empty($tag[0]['rel'])) {
+            continue;
+        }
+        if (!in_array($tag[0]['rel'], $tags)) {
+            continue;
+        }
+        // Hide tag.
+        if(isset($build['#attached']['html_head_link'][$key])){
+            unset($build['#attached']['html_head_link'][$key]);
+        }
+    }
+}

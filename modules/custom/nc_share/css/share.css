@@ -1,0 +1,13 @@
+/*Modal*/
+#share-email-container {
+    display: none;
+}
+
+#share-email-container .alert {
+    display: none;
+}
+
+/*Buttons*/
+.share-btn {
+    cursor: pointer;
+}

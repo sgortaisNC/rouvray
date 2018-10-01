@@ -1,0 +1,4 @@
+field: field_tags
+sort: title
+sortOrder: ASC
+display: teaser

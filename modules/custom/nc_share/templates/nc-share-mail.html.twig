@@ -1,0 +1,43 @@
+<style type="text/css">
+    html, body {
+        margin:0;
+        padding:0;
+        font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serifserif;
+    }
+    .header nav li, .footer nav li  {
+        margin: auto;
+    }
+
+    a {
+        color: #000;
+    }
+</style>
+<table width="100%" align="center" cellspacing="0" cellpadding="0" style="font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serifserif; background-color: #fff;
+">
+    <tr>
+        <td style="background-color: #0877C6; background-repeat: repeat-x; padding: 20px;">
+            <table width="700" style="width:700px;" align="center" cellspacing="0" cellpadding="0" class="header">
+                <tr>
+                    <td align="center">
+                        <a href="{{ data.host }}" title="Accueil" rel="home">
+                            <img src="{{ data.host }}{{ data.logo }}" alt="Accueil" style="margin: 10px 0 40px 0;border:none;">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <table width="700" style="width:700px;" align="center" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <br>
+                        {{ data.message | raw }}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

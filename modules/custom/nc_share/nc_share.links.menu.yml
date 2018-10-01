@@ -1,0 +1,5 @@
+nc_share.admin_settings:
+  title: 'Share Buttons management'
+  parent: system.admin_config_system
+  route_name: nc_share.admin_settings
+  weight: 100

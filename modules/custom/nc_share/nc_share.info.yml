@@ -1,0 +1,8 @@
+name: Share Buttons NC
+type: module
+description: "Share Buttons management - By Net.Com"
+package: Net.Com
+core: '8.x'
+version: 8.x-1.0
+
+configure: nc_share.admin_settings
