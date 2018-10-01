@@ -4,9 +4,12 @@ namespace Drupal\nc_liste\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\Entity\Vocabulary;
 
 /**
  * Provides a 'Liste - Publications' Block.
@@ -17,6 +20,46 @@ use Drupal\node\Entity\Node;
  * )
  */
 class ListepublicationsBlock extends BlockBase {
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function blockForm($form, FormStateInterface $form_state) {
+		$form = parent::blockForm($form, $form_state);
+		$config = $this->getConfiguration();
+
+		$termsTree = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('type_publication');
+		$tabterm = [];
+foreach ($termsTree as $term){
+	$tabterm[$term->tid] = $term->name;
+
+}
+
+		$form['nc_links'] = [
+			'#type' => 'fieldset',
+			'#title' => "Configuration",
+			'#tree' => TRUE,
+
+			'field' => [
+				'#type' => 'select',
+				'#options' => $tabterm,
+				'#title' => "Type de publication",
+				'#default_value' => isset($config['nc_links_field']) ? $config['nc_links_field'] : null,
+				'#description' => $this->t('Select the machine name of the file field'),
+			],
+		];
+		return $form;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function blockSubmit($form, FormStateInterface $form_state) {
+		parent::blockSubmit($form, $form_state);
+		$values = $form_state->getValues();
+
+		$this->configuration['nc_links_field'] = $values['nc_links']['field'];
+	}
 
 	/**
 	 * {@inheritdoc}
