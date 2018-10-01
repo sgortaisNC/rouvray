@@ -62,6 +62,11 @@ class GalleryForm extends ConfigFormBase {
                     '#default_value' => $config->get('link1.link'),
                     '#required' => TRUE,
                 ],
+                'hide' => [
+	                '#type' => 'checkbox',
+	                '#title' => "Cacher l'élément",
+	                '#default_value' =>  $config->get('link1.hide'),
+                ],
             ],
 
             'link2' => [
@@ -90,6 +95,11 @@ class GalleryForm extends ConfigFormBase {
                     '#title' => 'Lien',
                     '#default_value' => $config->get('link2.link'),
                     '#required' => TRUE,
+                ],
+                'hide' => [
+	                '#type' => 'checkbox',
+	                '#title' => "Cacher l'élément",
+	                '#default_value' =>  $config->get('link2.hide'),
                 ],
             ],
 
@@ -120,6 +130,11 @@ class GalleryForm extends ConfigFormBase {
                     '#default_value' => $config->get('link3.link'),
                     '#required' => TRUE,
                 ],
+                'hide' => [
+	                '#type' => 'checkbox',
+	                '#title' => "Cacher l'élément",
+	                '#default_value' =>  $config->get('link3.hide'),
+                ],
             ],
 
             'link4' => [
@@ -148,6 +163,11 @@ class GalleryForm extends ConfigFormBase {
                     '#title' => 'Lien',
                     '#default_value' => $config->get('link4.link'),
                     '#required' => TRUE,
+                ],
+                'hide' => [
+	                '#type' => 'checkbox',
+	                '#title' => "Cacher l'élément",
+	                '#default_value' =>  $config->get('link4.hide'),
                 ],
             ],
         ];
@@ -179,6 +199,7 @@ class GalleryForm extends ConfigFormBase {
             ->set('link1.image', $form_state->getValue('link1')['image'])
             ->set('link1.title', $form_state->getValue('link1')['title'])
             ->set('link1.link', $form_state->getValue('link1')['link'])
+            ->set('link1.hide', $form_state->getValue('link1')['hide'])
             ->save();
 
         //Lien 2
@@ -192,6 +213,7 @@ class GalleryForm extends ConfigFormBase {
             ->set('link2.image', $form_state->getValue('link2')['image'])
             ->set('link2.title', $form_state->getValue('link2')['title'])
             ->set('link2.link', $form_state->getValue('link2')['link'])
+            ->set('link2.hide', $form_state->getValue('link2')['hide'])
             ->save();
 
         //Lien 3
@@ -205,6 +227,7 @@ class GalleryForm extends ConfigFormBase {
             ->set('link3.image', $form_state->getValue('link3')['image'])
             ->set('link3.title', $form_state->getValue('link3')['title'])
             ->set('link3.link', $form_state->getValue('link3')['link'])
+            ->set('link3.hide', $form_state->getValue('link3')['hide'])
             ->save();
 
         //Lien 4
@@ -218,6 +241,7 @@ class GalleryForm extends ConfigFormBase {
             ->set('link4.image', $form_state->getValue('link4')['image'])
             ->set('link4.title', $form_state->getValue('link4')['title'])
             ->set('link4.link', $form_state->getValue('link4')['link'])
+            ->set('link4.hide', $form_state->getValue('link4')['hide'])
             ->save();
     }
 }

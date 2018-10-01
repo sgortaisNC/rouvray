@@ -55,21 +55,25 @@ class GalleryBlock extends BlockBase {
                 'image' => $url1,
                 'title' => $config->get('link1.title'),
                 'link' => $config->get('link1.link'),
+                'hide' => $config->get('link1.hide')
             ],
             'link2' => [
                 'image' => $url2,
                 'title' => $config->get('link2.title'),
                 'link' => $config->get('link2.link'),
+                'hide' => $config->get('link2.hide')
             ],
             'link3' => [
                 'image' => $url3,
                 'title' => $config->get('link3.title'),
                 'link' => $config->get('link3.link'),
+                'hide' => $config->get('link3.hide')
             ],
             'link4' => [
                 'image' => $url4,
                 'title' => $config->get('link4.title'),
                 'link' => $config->get('link4.link'),
+                'hide' => $config->get('link4.hide')
             ],
         ];
 
@@ -83,23 +87,5 @@ class GalleryBlock extends BlockBase {
         }
 
         return $build;
-    }
-
-    public function getCacheTags() {
-        //With this when your node change your block will rebuild
-        if ($node = \Drupal::routeMatch()->getParameter('node')) {
-            //if there is node add its cachetag
-            return Cache::mergeTags(parent::getCacheTags(), array('node:' . $node->id()));
-        } else {
-            //Return default tags instead.
-            return parent::getCacheTags();
-        }
-    }
-
-    public function getCacheContexts() {
-        //if you depends on \Drupal::routeMatch()
-        //you must set context of this block with 'route' context tag.
-        //Every new route this block will rebuild
-        return Cache::mergeContexts(parent::getCacheContexts(), array('route'));
     }
 }
