@@ -1,0 +1,77 @@
+<div class="fload-right">
+    Partager sur :
+    {% if data.print.active == '1' %}
+        <span class="share-btn" id="share-print" data-url="{{ data.print.url }}"><i class="fas fa-print"></i></span>
+    {% endif %}
+
+    {% if data.email.active == '1' %}
+        <span class="share-btn" id="share-email" data-url="{{ data.email.url }}" data-toggle="modal" data-target="#share-email-container"><i class="fas fa-envelope"></i></span>
+    {% endif %}
+
+    {% if data.facebook.active == '1' %}
+        <span class="share-btn" id="share-facebook" data-url="{{ data.facebook.url }}"><i class="fab fa-facebook-f"></i></span>
+    {% endif %}
+
+    {% if data.twitter.active == '1' %}
+        <span class="share-btn" id="share-twitter" data-url="{{ data.twitter.url }}"><i class="fab fa-twitter"></i></span>
+    {% endif %}
+
+    {% if data.google.active == '1' %}
+        <span class="share-btn" id="share-google" data-url="{{ data.google.url }}"><i class="fab fa-google-plus-g"></i></span>
+    {% endif %}
+
+    {% if data.linkedin.active == '1' %}
+        <span class="share-btn" id="share-linkedin" data-url="{{ data.linkedin.url }}"><i class="fab fa-linkedin-in"></i></span>
+    {% endif %}
+
+    {% if data.pinterest.active == '1' %}
+        <span class="share-btn" id="share-pinterest" data-url="{{ data.pinterest.url }}"><i class="fab fa-pinterest-p"></i></span>
+    {% endif %}
+
+    {% if data.rss.active == '1' %}
+        <span class="share-btn" id="share-rss" data-url="{{ data.rss.url }}">RSS</span>
+    {% endif %}
+</div>
+
+{% if data.email.active == '1' %}
+    <div id="share-email-container" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% trans %}Share by email{% endtrans %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{% trans %}Close{% endtrans %}">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div id="share-email-alerte" class="modal-body">
+                    <div class="alert alert-success">
+                        <p>
+                            {% trans %}Your share has been sent!{% endtrans %}
+                        </p>
+                    </div>
+                    <div class="alert alert-warning">
+                        <p>
+                            {% trans %}An error has occurred, check that all fields are filled or try again later.{% endtrans %}
+                        </p>
+                    </div>
+
+                    <div id="share-email-body">
+                        <label for="name">
+                            {% trans %}Your name:{% endtrans %} <input name="name" id="name" type="text" required="required">
+                        </label><br>
+
+                        <label for="email">
+                            {% trans %}Recipient email:{% endtrans %} <input name="email" id="email" type="email" placeholder="xxxxxxxxx@xxxxxx.xx" required="required">
+                        </label><br>
+                    </div>
+                </div>
+
+                <div id="share-email-footer" class="modal-footer">
+                    <button id="share-email-send" class="btn btn-success">{% trans %}Send{% endtrans %}</button>
+                    <button id="share-email-close" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
