@@ -94,11 +94,12 @@
                 <br>
                 {{ content.field_organisation }}
             </div>
-            {% if content.field_pastille %}
+
+            {% if content.field_pastille.0 is not empty%}
                 <div>
                     <i class="fas fa-2x text-warning fa-check"></i>
                     <br>
-                    DPC
+                    {{ content.field_pastille }}
                 </div>
             {% endif %}
         </div>
