@@ -522,7 +522,7 @@ header .main-header .main_menu li a {
     min-width: 250px;
     width: auto;
     position: absolute;
-    top: calc(134%);
+    top: calc(131%);
     left: 0;
     padding-left: 0;
     background: #0071ce;
@@ -1255,6 +1255,10 @@ footer .bg-warning a {
 
 .content-page table tr:nth-child(even) {
     background: #e7eaef;
+}
+
+.content-page table p{
+    margin-bottom: 0;
 }
 
 .content-page .accordion {
