@@ -102,7 +102,8 @@ class ListepublicationsBlock extends BlockBase {
 					$contents[] = [
 						'title' => $nodeContent->getTitle(),
 						"body"  => $body,
-						'url'   => $url
+						'url'   => $url,
+						'video'=> $nodeContent->get("field_video")->getValue()[0],
 					];
 				}
 			}

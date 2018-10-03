@@ -5,7 +5,11 @@
                 <a href="{{ secured.url }}" target="_blank"><h4>{{ secured.title }}</h4></a>
                 {{ secured.body | striptags('<b><strong><ul><li><a><img><ol><u><i>') | raw }}
             </div>
+            {% if secured.video is not empty %}
+                <a href="{{ secured.video }}" target="_blank" class="align-self-center btn btn-outline-light">Voir</a>
+            {% else %}
             <a href="{{ secured.url }}" target="_blank" class="align-self-center btn btn-outline-light">Télécharger</a>
+            {% endif %}
         </div>
     {% endfor %}
 </div>
