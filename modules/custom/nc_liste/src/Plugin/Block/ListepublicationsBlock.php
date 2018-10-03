@@ -103,7 +103,7 @@ class ListepublicationsBlock extends BlockBase {
 						'title' => $nodeContent->getTitle(),
 						"body"  => $body,
 						'url'   => $url,
-						'video'=> $nodeContent->get("field_video")->getValue()[0],
+						'video'=> $nodeContent->get("field_video")->getValue()[0]["value"],
 					];
 				}
 			}
