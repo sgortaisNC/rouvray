@@ -8,10 +8,10 @@
             </blockquote>
             <h2>Horaires</h2>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <p>{{ content.field_horaires }}</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <a href="tel:{{ content.field_telephone }}" class="btn btn-outline-info d-inline-flex">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.98 32">
                     <defs>
@@ -54,7 +54,11 @@
                     <div>
                         {% if content.field_unite.0 is not empty %}<b>Unité :</b> {{ content.field_unite }} <br>{% endif %}
                         {% if content.field_responsable.0 is not empty %}<b>Responsable de l’unité :</b> {{ content.field_responsable }} <br>{% endif %}
-                        {% if content.field_pole.0 is not empty %}<b>Pôle :</b> {{ content.field_pole }} <br>{% endif %}
+                        {% if content.field_pole.0 is not empty %}<b>Pôle :</b> {{ content.field_pole.0 }}
+                            {% if content.field_pole.1 is not empty %}, {{ content.field_pole.1 }}{% endif %}
+                            {% if content.field_pole.2 is not empty %}, {{ content.field_pole.2 }}{% endif %}
+                            <br>
+                        {% endif %}
                         {% if content.field_secteur.0 is not empty %}
                             <b>Secteur :</b> {{ content.field_secteur.0 }}
                             {% if content.field_secteur.1 is not empty %}, {{ content.field_secteur.1 }}{% endif %}
