@@ -3,9 +3,11 @@
     <br>
     <div class="row">
         <div class="col-md-12">
-            <blockquote class="mt-4">
-                {{ content.field_texte_de_presentation }}
-            </blockquote>
+            {% if content.field_texte_de_presentation.0 is not empty  %}
+                <blockquote class="mt-4">
+                    {{ content.field_texte_de_presentation }}
+                </blockquote>
+            {% endif %}
             <h2>Horaires</h2>
         </div>
         <div class="col-md-7">
@@ -41,7 +43,7 @@
                     <div>
                         <b>Adresse :</b> {{ content.field_adresse }} <br>
                         <b>Ville :</b> {{ content.field_ville }} <br>
-                        <b>Fax :</b> {{ content.field_fax }} <br>
+                        {% if content.field_fax.0 is not empty %}<b>Fax :</b> {{ content.field_fax }} <br>{% endif %}
                     </div>
                 </div>
             </div>
