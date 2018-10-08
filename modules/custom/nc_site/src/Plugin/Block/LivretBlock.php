@@ -28,7 +28,7 @@ class LivretBlock extends BlockBase {
         $file = File::load($config->get('image')[0]);
         if(!empty($file)){
             $path = $file->getFileUri();
-            $url = ImageStyle::load('detail')->buildUrl($path);
+            $url = file_create_url($path);
         }
         $urlPdf = '';
         $filePdf = File::load($config->get('file')[0]);
@@ -72,5 +72,9 @@ class LivretBlock extends BlockBase {
         //you must set context of this block with 'route' context tag.
         //Every new route this block will rebuild
         return Cache::mergeContexts(parent::getCacheContexts(), array('route'));
+    }
+
+    public function getCacheMaxAge() {
+	    return 0;
     }
 }
