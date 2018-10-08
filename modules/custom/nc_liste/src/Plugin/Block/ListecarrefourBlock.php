@@ -37,6 +37,7 @@ class ListecarrefourBlock extends BlockBase {
 
 			$current_node = $cnode->id();
 			if ( $type == 'carrefour' ) {
+
 				$contents = $nids = [];
 
 				$menu_tree  = Drupal::menuTree();
@@ -44,10 +45,13 @@ class ListecarrefourBlock extends BlockBase {
 				$menu       = $menu_tree->load( 'main', $parameters );
 				foreach ( $menu as $key => $element ) {
 					if ( $element->inActiveTrail ) {
+
 						if ( $current_node == $element->link->getUrlObject()->getRouteParameters()["node"] ) {
 							$menu_to_show = $element->subtree;
 						} else {
 							foreach ( $element->subtree as $subKey => $subelement ) {
+
+
 								if ( $current_node == $subelement->link->getUrlObject()->getRouteParameters()["node"] ) {
 									$menu_to_show = $subelement->subtree;
 								}
@@ -56,8 +60,18 @@ class ListecarrefourBlock extends BlockBase {
 					}
 				}
 
+
 				foreach ( $menu_to_show as $menu_key => $menu_item ) {
-					$nids_carrefour[] = $menu_item->link->getUrlObject()->getRouteParameters()["node"];
+					if ( ! empty( $menu_item->link->getUrlObject()->getRouteParameters()["node"] ) ) {
+						$nids_carrefour[] = $menu_item->link->getUrlObject()->getRouteParameters()["node"];
+					} else {
+						$external = [
+							[
+								"titre" => $menu_item->link->getTitle(),
+								"url"   => $menu_item->link->getUrlObject()->toString()
+							]
+						];
+					}
 				}
 
 				$pages_enfant = Node::LoadMultiple( $nids_carrefour );
@@ -76,7 +90,7 @@ class ListecarrefourBlock extends BlockBase {
 
 					$body = "";
 					if ( ! empty( $node->get( "body" )->getValue()[0]["value"] ) ) {
-						$body = strlen( strip_tags($node->get( "body" )->getValue()[0]["value"])) > 150 ? substr( strip_tags($node->get( "body" )->getValue()[0]["value"]), 0, 147 ) . "..." : strip_tags($node->get( "body" )->getValue()[0]["value"]);
+						$body = strlen( strip_tags( $node->get( "body" )->getValue()[0]["value"] ) ) > 150 ? substr( strip_tags( $node->get( "body" )->getValue()[0]["value"] ), 0, 147 ) . "..." : strip_tags( $node->get( "body" )->getValue()[0]["value"] );
 					}
 					$contents[] = [
 						'title' => $node->getTitle(),
@@ -86,6 +100,21 @@ class ListecarrefourBlock extends BlockBase {
 							'alt' => ! empty( $node->get( "field_image" )->getValue()[0]['alt'] ) ? $node->get( "field_image" )->getValue()[0]['alt'] : "",
 						],
 						'url'   => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $node->id() )
+					];
+				}
+
+				foreach ( $external as $node ) {
+					$image = ImageStyle::load( 'detail' )->buildUrl( "public://default_images/image-default_0.jpg" );
+
+
+					$contents[] = [
+						'title' => $node["titre"],
+						'body'  => "",
+						'image' => [
+							"url" => $image,
+							'alt' => ""
+						],
+						'url'   => $node["url"]
 					];
 				}
 
@@ -100,10 +129,12 @@ class ListecarrefourBlock extends BlockBase {
 				];
 			}
 		}
+
 		return $build;
 	}
 
-	public function getCacheTags() {
+	public
+	function getCacheTags() {
 		//With this when your node change your block will rebuild
 		if ( $node = \Drupal::routeMatch()->getParameter( 'node' ) ) {
 			//if there is node add its cachetag
@@ -114,10 +145,16 @@ class ListecarrefourBlock extends BlockBase {
 		}
 	}
 
-	public function getCacheContexts() {
+	public
+	function getCacheContexts() {
 		//if you depends on \Drupal::routeMatch()
 		//you must set context of this block with 'route' context tag.
 		//Every new route this block will rebuild
 		return Cache::mergeContexts( parent::getCacheContexts(), array( 'route' ) );
+	}
+
+	public
+	function getCacheMaxAge() {
+		return 0;
 	}
 }
