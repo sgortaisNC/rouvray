@@ -56,7 +56,7 @@ class LivretForm extends ConfigFormBase {
                 '#required' => TRUE,
             ],
             'code' => [
-                '#type' => 'textarea',
+                '#type' => 'textfield',
                 '#title' => 'Code',
                 '#default_value' => $config->get('code'),
                 '#required' => TRUE,
