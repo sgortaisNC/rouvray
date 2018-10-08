@@ -57,7 +57,7 @@ class LivretForm extends ConfigFormBase {
             ],
             'code' => [
                 '#type' => 'textfield',
-                '#title' => 'Code',
+                '#title' => 'Lien calaméo',
                 '#default_value' => $config->get('code'),
                 '#required' => TRUE,
             ],
