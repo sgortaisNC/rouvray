@@ -103,7 +103,7 @@ class ListepublicationsBlock extends BlockBase {
 						'title' => $nodeContent->getTitle(),
 						"body"  => $body,
 						'url'   => $url,
-						'video'=> $nodeContent->get("field_video")->getValue()[0]["value"],
+						'video'=>  !empty($nodeContent->get("field_video")->getValue()[0]) ? $nodeContent->get("field_video")->getValue()[0]["input"] : "",
 					];
 				}
 			}
@@ -138,5 +138,9 @@ class ListepublicationsBlock extends BlockBase {
 		//you must set context of this block with 'route' context tag.
 		//Every new route this block will rebuild
 		return Cache::mergeContexts( parent::getCacheContexts(), array( 'route' ) );
+	}
+
+	public function getCacheMaxAge() {
+		return 0;
 	}
 }
