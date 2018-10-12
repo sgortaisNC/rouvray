@@ -52,11 +52,12 @@ class ListeoffresBlock extends BlockBase {
 				$type_contrat_oe = [];
 
 				$nodeContent = Node::load( $nid );
-				if ( empty( $nodeContent->get( 'field_contrat' )->getValue() ) ) {
+				if ( !empty( $nodeContent->get( 'field_contrat' )->getValue() ) ) {
 					foreach ($nodeContent->get( 'field_contrat' )->getValue() as $v){
 						$type_contrat_oe[] = Term::Load( $v["target_id"] )->getName();
 					}
 				}
+				
 
 
 				if ( ! empty( $nodeContent ) ) {
