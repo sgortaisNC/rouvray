@@ -33,13 +33,13 @@ class ListeoffresBlock extends BlockBase {
 			$groupORq = $query->orConditionGroup()
 			                  ->condition( 'title', '%' . $_GET["q"] . '%', 'LIKE' )
 			                  ->condition( 'field_fiche', '%' . $_GET["q"] . '%', 'LIKE' );
-			$query->condition($groupORq);
+			$query->condition( $groupORq );
 		}
 		if ( ! empty( $_GET["statut"] ) ) {
-			$query->condition("field_statut", $_GET["statut"]);
+			$query->condition( "field_statut", $_GET["statut"] );
 		}
 		if ( ! empty( $_GET["grade"] ) ) {
-			$query->condition("field_grade", $_GET["grade"]);
+			$query->condition( "field_grade", $_GET["grade"] );
 		}
 
 
@@ -49,27 +49,36 @@ class ListeoffresBlock extends BlockBase {
 
 		if ( count( $nids ) > 0 ) {
 			foreach ( $nids as $nid ) {
+				$type_contrat_oe = [];
+
 				$nodeContent = Node::load( $nid );
+				if ( empty( $nodeContent->get( 'field_contrat' )->getValue() ) ) {
+					foreach ($nodeContent->get( 'field_contrat' )->getValue() as $v){
+						$type_contrat_oe[] = Term::Load( $v["target_id"] )->getName();
+					}
+				}
+
+
 				if ( ! empty( $nodeContent ) ) {
-										$fiche      = strlen( $nodeContent->get( "field_fiche" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "field_fiche" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "field_fiche" )->getValue()[0]["value"];
+					$fiche      = strlen( $nodeContent->get( "field_fiche" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "field_fiche" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "field_fiche" )->getValue()[0]["value"];
 					$contents[] = [
 						'title'        => $nodeContent->getTitle(),
 						"statut"       => ! empty( $nodeContent->get( 'field_statut' )->getValue()[0]["target_id"] ) ? Term::Load( $nodeContent->get( 'field_statut' )->getValue()[0]["target_id"] )->getName() : "",
 						"grade"        => ! empty( $nodeContent->get( 'field_grade' )->getValue()[0]["target_id"] ) ? Term::Load( $nodeContent->get( 'field_grade' )->getValue()[0]["target_id"] )->getName() : "",
 						"fiche"        => $fiche,
-						"date_limite"  => ! empty( $nodeContent->get( 'field_date_limite' )->getValue()[0]["value"] ) ? \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( "field_date_limite" )->getValue()[0]["value"]),"long") : '',
-						"date_fin"     => ! empty( $nodeContent->get( 'field_date_other' )->getValue()[0]["value"] ) ? \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( "field_date_other" )->getValue()[0]["value"]),"long") : "",
-						"date_deb"     => ! empty( $nodeContent->get( 'field_date' )->getValue()[0]["value"] ) ? \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( "field_date" )->getValue()[0]["value"]),"long") : "",
-						"type_contrat" => ! empty( $nodeContent->get( 'field_contrat' )->getValue()[0]["target_id"] ) ? Term::Load( $nodeContent->get( 'field_contrat' )->getValue()[0]["target_id"] )->getName() : "",
-						'url'          => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
+						"date_limite"  => ! empty( $nodeContent->get( 'field_date_limite' )->getValue()[0]["value"] ) ? \Drupal::service( 'date.formatter' )->format( strtotime( $nodeContent->get( "field_date_limite" )->getValue()[0]["value"] ), "long" ) : '',
+						"date_fin"     => ! empty( $nodeContent->get( 'field_date_other' )->getValue()[0]["value"] ) ? \Drupal::service( 'date.formatter' )->format( strtotime( $nodeContent->get( "field_date_other" )->getValue()[0]["value"] ), "long" ) : "",
+						"date_deb"     => ! empty( $nodeContent->get( 'field_date' )->getValue()[0]["value"] ) ? \Drupal::service( 'date.formatter' )->format( strtotime( $nodeContent->get( "field_date" )->getValue()[0]["value"] ), "long" ) : "",
+						"type_contrat" => implode(", ",$type_contrat_oe),
+							'url'          => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
 					];
 				}
 
 			}
 		}
 
-		$tabStatut = ["" => "Sélectionnez un statut"];
-		$tabGrade = ["" => "Sélectionnez un grade"];
+		$tabStatut = [ "" => "Sélectionnez un statut" ];
+		$tabGrade  = [ "" => "Sélectionnez un grade" ];
 
 		$statuts = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'statuts' );
 		foreach ( $statuts as $statut ) {
@@ -86,33 +95,33 @@ class ListeoffresBlock extends BlockBase {
 			'action' => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/113' ),
 			'form'   => [
 				'titre'  => [
-					'#type'      => 'textfield',
-					'#title'     => 'Mot clé :',
-					'#size'      => 60,
-					'#name'      => "q",
-					'#maxlength' => 128,
-					'#required'  => true,
+					'#type'       => 'textfield',
+					'#title'      => 'Mot clé :',
+					'#size'       => 60,
+					'#name'       => "q",
+					'#maxlength'  => 128,
+					'#required'   => true,
 					'#attributes' => [
-						'class' => ['form-control'],
+						'class' => [ 'form-control' ],
 					],
 				],
 				'statut' => [
-					'#type'      => 'select',
-					'#title'     => 'Statut du poste :',
-					'#name'      => "statut",
+					'#type'       => 'select',
+					'#title'      => 'Statut du poste :',
+					'#name'       => "statut",
 					'#attributes' => [
-						'class' => ['form-control'],
+						'class' => [ 'form-control' ],
 					],
-					'#options'   => $tabStatut,
+					'#options'    => $tabStatut,
 				],
 				'grade'  => [
-					'#type'      => 'select',
-					'#title'     => 'Grade :',
-					'#name'      => "grade",
+					'#type'       => 'select',
+					'#title'      => 'Grade :',
+					'#name'       => "grade",
 					'#attributes' => [
-						'class' => ['form-control'],
+						'class' => [ 'form-control' ],
 					],
-					'#options'   => $tabGrade,
+					'#options'    => $tabGrade,
 				]
 			]
 		];
