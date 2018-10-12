@@ -62,7 +62,7 @@ class ListeconcoursBlock extends BlockBase {
 			}
 		}
 
-		$tabGrade = [ "" => "Sélectionnez un grade" ];
+		$tabGrade = [ "" => "---" ];
 
 		$grades = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'grades' );
 		foreach ( $grades as $grade ) {

@@ -78,8 +78,8 @@ class ListeoffresBlock extends BlockBase {
 			}
 		}
 
-		$tabStatut = [ "" => "Sélectionnez un statut" ];
-		$tabGrade  = [ "" => "Sélectionnez un grade" ];
+		$tabStatut = [ "" => "---" ];
+		$tabGrade  = [ "" => "---" ];
 
 		$statuts = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'statuts' );
 		foreach ( $statuts as $statut ) {

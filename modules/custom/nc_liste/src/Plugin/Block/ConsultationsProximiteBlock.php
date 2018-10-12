@@ -120,19 +120,19 @@ class ConsultationsProximiteBlock extends BlockBase {
 				}
 			}
 		}
-		$tabPatients = ["" => "Sélectionnez un type de patient"];
+		$tabPatients = ["" => "---"];
 		$patients    = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'types_patient' );
 		foreach ( $patients as $patient ) {
 			$tabPatients[ $patient->tid ] = $patient->name;
 		}
 
-		$tabPatho = ["" => "Sélectionnez une pathologie ou un type de prestation"];
+		$tabPatho = ["" => "---"];
 		$pathos    = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'types_prestation' );
 		foreach ( $pathos as $patho ) {
 			$tabPatho[ $patho->tid ] = $patho->name;
 		}
 
-    $tabVilles  = ["" => "Sélectionnez la ville la plus proche de chez vous"];
+    $tabVilles  = ["" => "---"];
     $connection = Database::getConnection();
     $result = $connection->query("SELECT DISTINCT field_ville_value, libelle, cp FROM node__field_ville LEFT JOIN nc_villes ON id = field_ville_value WHERE bundle = 'consultation' ORDER BY libelle ASC")
       ->fetchAll();
