@@ -57,11 +57,11 @@ class ListeoffresBlock extends BlockBase {
 						$type_contrat_oe[] = Term::Load( $v["target_id"] )->getName();
 					}
 				}
-				
+
 
 
 				if ( ! empty( $nodeContent ) ) {
-					$fiche      = strlen( $nodeContent->get( "field_fiche" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "field_fiche" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "field_fiche" )->getValue()[0]["value"];
+					$fiche      = strip_tags(strlen( $nodeContent->get( "field_fiche" )->getValue()[0]["value"] ) > 175 ? substr( $nodeContent->get( "field_fiche" )->getValue()[0]["value"], 0, 175 ) . "..." : $nodeContent->get( "field_fiche" )->getValue()[0]["value"]);
 					$contents[] = [
 						'title'        => $nodeContent->getTitle(),
 						"statut"       => ! empty( $nodeContent->get( 'field_statut' )->getValue()[0]["target_id"] ) ? Term::Load( $nodeContent->get( 'field_statut' )->getValue()[0]["target_id"] )->getName() : "",
