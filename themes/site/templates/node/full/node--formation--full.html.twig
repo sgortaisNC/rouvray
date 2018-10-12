@@ -75,19 +75,25 @@
     <div class="content-page">
         <div class="d-flex flex-column flex-md-row justify-content-around align-items-center align-items-md-start text-align-center my-3">
             <div>
-                <i class="fas fa-2x text-warning fa-hourglass-start"></i>
-                <br>
-                {{ content.field_duree }}
+                {% if content.field_duree.0 is not empty %}
+                    <i class="fas fa-2x text-warning fa-hourglass-start"></i>
+                    <br>
+                    {{ content.field_duree }}
+                {% endif %}
             </div>
             <div>
-                <i class="fas fa-2x text-warning fa-money-bill"></i>
-                <br>
-                {{ content.field_prix }}
+                {% if content.field_prix.0 is not empty %}
+                    <i class="fas fa-2x text-warning fa-money-bill"></i>
+                    <br>
+                    {{ content.field_prix }}
+                {% endif %}
             </div>
             <div>
-                <i class="fas fa-2x text-warning fa-user-graduate"></i>
-                <br>
-                {{ content.field_publics }}
+                {% if content.field_publics.0 is not empty %}
+                    <i class="fas fa-2x text-warning fa-user-graduate"></i>
+                    <br>
+                    {{ content.field_publics }}
+                {% endif %}
             </div>
             <div>
                 <i class="fas fa-2x text-warning fa-users"></i>
@@ -95,7 +101,7 @@
                 {{ content.field_organisation }}
             </div>
 
-            {% if content.field_pastille.0 is not empty%}
+            {% if content.field_pastille.0 is not empty %}
                 <div>
                     <i class="fas fa-2x text-warning fa-check"></i>
                     <br>
@@ -103,21 +109,28 @@
                 </div>
             {% endif %}
         </div>
-        {{ content.body }}
-        <h2>Objectifs de la formation</h2>
-        {{ content.field_objectifs }}
-        <h2>Pré-requis</h2>
-        {{ content.field_liste }}
-        <h2>Points forts</h2>
-        {{ content.field_points }}
-        <h2>Intervenants</h2>
-        {{ content.field_intervenants }}
-        <h2>Programme</h2>
-        {{ content.field_horaires }}
-        {% if content.field_tags.0 is not empty %}
-            <hr>
-            <h3>Mots-clés : </h3>
-            {{ content.field_tags }}
+        {% if content.body.0 is not empty %}
+            {{ content.body }}
+        {% endif %}
+        {% if content.field_objectifs.0 is not empty %}
+            <h2>Objectifs de la formation</h2>
+            {{ content.field_objectifs }}
+        {% endif %}
+        {% if content.field_liste.0 is not empty %}
+            <h2>Pré-requis</h2>
+            {{ content.field_liste }}
+        {% endif %}
+        {% if content.field_points.0 is not empty %}
+            <h2>Points forts</h2>
+            {{ content.field_points }}
+        {% endif %}
+        {% if content.field_intervenants.0 is not empty %}
+            <h2>Intervenants</h2>
+            {{ content.field_intervenants }}
+        {% endif %}
+        {% if content.field_horaires.0 is not empty %}
+            <h2>Programme</h2>
+            {{ content.field_horaires }}
         {% endif %}
         <hr>
     </div>

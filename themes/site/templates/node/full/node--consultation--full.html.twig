@@ -3,34 +3,40 @@
     <br>
     <div class="row">
         <div class="col-md-12">
-            {% if content.field_texte_de_presentation.0 is not empty  %}
+            {% if content.field_texte_de_presentation.0 is not empty %}
                 <blockquote class="mt-4">
                     {{ content.field_texte_de_presentation }}
                 </blockquote>
             {% endif %}
-            <h2>Horaires</h2>
+            {% if content.field_horaires.0 is not empty %}
+                <h2>Horaires</h2>
+            {% endif %}
         </div>
         <div class="col-md-7">
-            <p>{{ content.field_horaires }}</p>
+            {% if content.field_horaires.0 is not empty %}
+                <p>{{ content.field_horaires }}</p>
+            {% endif %}
         </div>
         <div class="col-md-5">
-            <a href="tel:{{ content.field_telephone }}" class="btn btn-outline-info d-inline-flex">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.98 32">
-                    <defs>
-                        <style>.cls-1 {
-                                fill: #4970b4;
-                            }</style>
-                    </defs>
-                    <title>ico-phone</title>
-                    <g id="Calque_2" data-name="Calque 2">
-                        <g id="Calque_1-2" data-name="Calque 1">
-                            <path class="cls-1"
-                                  d="M22.7,0H9.28A2.35,2.35,0,0,0,6.93,2.35v27.3A2.35,2.35,0,0,0,9.28,32H22.7a2.35,2.35,0,0,0,2.35-2.35V2.35A2.35,2.35,0,0,0,22.7,0ZM24,29.65a1.28,1.28,0,0,1-1.28,1.28H9.28A1.28,1.28,0,0,1,8,29.65v-4H24Zm0-5.12H8V4.27H24ZM24,3.2H8V2.35A1.28,1.28,0,0,1,9.28,1.07H22.7A1.28,1.28,0,0,1,24,2.35ZM16,30.4a2.14,2.14,0,1,0-2.13-2.13A2.14,2.14,0,0,0,16,30.4Zm0-3.2a1.07,1.07,0,1,1-1.07,1.07A1.06,1.06,0,0,1,16,27.2ZM16,1.6H13.86a.54.54,0,1,0,0,1.07H16A.54.54,0,0,0,16,1.6Zm2.13,0h-.53a.54.54,0,1,0,0,1.07h.53a.54.54,0,0,0,0-1.07Zm12.05.84a.53.53,0,0,0-.75.75,5.12,5.12,0,0,1,0,7.23.53.53,0,0,0,0,.75.5.5,0,0,0,.37.16.51.51,0,0,0,.38-.16A6.17,6.17,0,0,0,30.17,2.44Zm-3,1.21a.53.53,0,0,0,0,.75,3.51,3.51,0,0,1,0,4.95.54.54,0,0,0,0,.76.56.56,0,0,0,.76,0,4.59,4.59,0,0,0,0-6.46A.54.54,0,0,0,27.17,3.65ZM2.56,2.44a.53.53,0,0,0-.75,0,6.17,6.17,0,0,0,0,8.73.5.5,0,0,0,.37.16.54.54,0,0,0,.38-.91,5.12,5.12,0,0,1,0-7.23A.53.53,0,0,0,2.56,2.44ZM3.78,6.73a3.47,3.47,0,0,1,1-2.47.54.54,0,0,0,0-.76.53.53,0,0,0-.75,0,4.59,4.59,0,0,0,0,6.46.52.52,0,0,0,.75,0,.53.53,0,0,0,0-.75A3.48,3.48,0,0,1,3.78,6.73Z"/>
+            {% if content.field_telephone.0 is not empty %}
+                <a href="tel:{{ content.field_telephone }}" class="btn btn-outline-info d-inline-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.98 32">
+                        <defs>
+                            <style>.cls-1 {
+                                    fill: #4970b4;
+                                }</style>
+                        </defs>
+                        <title>ico-phone</title>
+                        <g id="Calque_2" data-name="Calque 2">
+                            <g id="Calque_1-2" data-name="Calque 1">
+                                <path class="cls-1"
+                                      d="M22.7,0H9.28A2.35,2.35,0,0,0,6.93,2.35v27.3A2.35,2.35,0,0,0,9.28,32H22.7a2.35,2.35,0,0,0,2.35-2.35V2.35A2.35,2.35,0,0,0,22.7,0ZM24,29.65a1.28,1.28,0,0,1-1.28,1.28H9.28A1.28,1.28,0,0,1,8,29.65v-4H24Zm0-5.12H8V4.27H24ZM24,3.2H8V2.35A1.28,1.28,0,0,1,9.28,1.07H22.7A1.28,1.28,0,0,1,24,2.35ZM16,30.4a2.14,2.14,0,1,0-2.13-2.13A2.14,2.14,0,0,0,16,30.4Zm0-3.2a1.07,1.07,0,1,1-1.07,1.07A1.06,1.06,0,0,1,16,27.2ZM16,1.6H13.86a.54.54,0,1,0,0,1.07H16A.54.54,0,0,0,16,1.6Zm2.13,0h-.53a.54.54,0,1,0,0,1.07h.53a.54.54,0,0,0,0-1.07Zm12.05.84a.53.53,0,0,0-.75.75,5.12,5.12,0,0,1,0,7.23.53.53,0,0,0,0,.75.5.5,0,0,0,.37.16.51.51,0,0,0,.38-.16A6.17,6.17,0,0,0,30.17,2.44Zm-3,1.21a.53.53,0,0,0,0,.75,3.51,3.51,0,0,1,0,4.95.54.54,0,0,0,0,.76.56.56,0,0,0,.76,0,4.59,4.59,0,0,0,0-6.46A.54.54,0,0,0,27.17,3.65ZM2.56,2.44a.53.53,0,0,0-.75,0,6.17,6.17,0,0,0,0,8.73.5.5,0,0,0,.37.16.54.54,0,0,0,.38-.91,5.12,5.12,0,0,1,0-7.23A.53.53,0,0,0,2.56,2.44ZM3.78,6.73a3.47,3.47,0,0,1,1-2.47.54.54,0,0,0,0-.76.53.53,0,0,0-.75,0,4.59,4.59,0,0,0,0,6.46.52.52,0,0,0,.75,0,.53.53,0,0,0,0-.75A3.48,3.48,0,0,1,3.78,6.73Z"/>
+                            </g>
                         </g>
-                    </g>
-                </svg>
-                <span>{{ content.field_telephone }}</span>
-            </a>
+                    </svg>
+                    <span>{{ content.field_telephone }}</span>
+                </a>
+            {% endif %}
         </div>
     </div>
     <hr>
@@ -41,8 +47,8 @@
                 <div class="d-flex justify-content-between align-items-start pt-3">
                     <img src="/themes/site/img/minimap.png" alt="" class="mr-3">
                     <div>
-                        <b>Adresse :</b> {{ content.field_adresse }} <br>
-                        <b>Ville :</b> {{ content.field_ville }} <br>
+                        {% if content.field_adresse.0 is not empty %}<b>Adresse :</b> {{ content.field_adresse }} <br>{% endif %}
+                        {% if content.field_ville.0 is not empty %}<b>Ville :</b> {{ content.field_ville }} <br>{% endif %}
                         {% if content.field_fax.0 is not empty %}<b>Fax :</b> {{ content.field_fax }} <br>{% endif %}
                     </div>
                 </div>
@@ -54,8 +60,10 @@
                 <div class="d-flex justify-content-center align-items-start pt-3">
                     <img src="/themes/site/img/doc.png" alt="" class="mr-3">
                     <div>
-                        {% if content.field_unite.0 is not empty %}<b>Unité :</b> {{ content.field_unite }} <br>{% endif %}
-                        {% if content.field_responsable.0 is not empty %}<b>Responsable de l’unité :</b> {{ content.field_responsable }} <br>{% endif %}
+                        {% if content.field_unite.0 is not empty %}<b>Unité :</b> {{ content.field_unite }}
+                            <br>{% endif %}
+                        {% if content.field_responsable.0 is not empty %}<b>Responsable de l’unité
+                            :</b> {{ content.field_responsable }} <br>{% endif %}
                         {% if content.field_pole.0 is not empty %}<b>Pôle :</b> {{ content.field_pole.0 }}
                             {% if content.field_pole.1 is not empty %}, {{ content.field_pole.1 }}{% endif %}
                             {% if content.field_pole.2 is not empty %}, {{ content.field_pole.2 }}{% endif %}
@@ -67,7 +75,8 @@
                             {% if content.field_secteur.2 is not empty %}, {{ content.field_secteur.2 }}{% endif %}
                             <br>
                         {% endif %}
-                        {% if content.field_prestation.0 is not empty %}<b>Type de consultation :</b> {{ content.field_prestation }} <br>{% endif %}
+                        {% if content.field_prestation.0 is not empty %}<b>Type de consultation
+                            :</b> {{ content.field_prestation }} <br>{% endif %}
                         {% if content.field_patients.0 is not empty %}
                             <b>Type de patient :</b> {{ content.field_patients.0 }}
                             {% if content.field_patients.1 is not empty %}, {{ content.field_patients.1 }}{% endif %}
@@ -79,7 +88,8 @@
         </div>
     </div>
     {% if content.field_gps_latitude.0 is not empty %}
-        <div class="marker" data-lat="{{ content.field_gps_latitude }}" data-lng="{{ content.field_gps_longitude }}"></div>
+        <div class="marker" data-lat="{{ content.field_gps_latitude }}"
+             data-lng="{{ content.field_gps_longitude }}"></div>
         <div class="with_shadow">
             <div id="mapid" class="mt-5 mb-3 w-100"></div>
         </div>

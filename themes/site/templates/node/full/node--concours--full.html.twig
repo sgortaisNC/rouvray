@@ -74,52 +74,64 @@
     <article{{ attributes }}>
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center my-4">
             <div>
-                <small>Publié le {{ content.field_date }}</small>
+                {% if content.field_date.0 is not empty %}
+                    <small>Publié le {{ content.field_date }}</small>
+                {% endif %}
             </div>
             <div>
-                <b>Limite de dépôt de dossier : </b>{{ content.field_date_limite }}
+                {% if content.field_date_limite.0 is not empty %}
+                    <b>Limite de dépôt de dossier : </b>{{ content.field_date_limite }}
+                {% endif %}
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-3"><h2 class="m-0">Nombre de postes </h2></div>
-            <div class="col-md-9">{{ content.field_quantite }}</div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-3"><h2 class="m-0">Description de l'épreuve</h2></div>
-            <div class="col-md-9">{{ content.body }}</div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-3"><h2 class="m-0">Conditions d'accès</h2></div>
-            <div class="col-md-9">{{ content.field_conditions }}</div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-3"><h2 class="m-0">Grade visé</h2></div>
-            <div class="col-md-9">{{ content.field_grade }}</div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-3"><h2 class="m-0">Types de concours</h2></div>
-            <div class="col-md-9">{{ content.field_concours }}</div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-3"><h2 class="m-0">Adresse postale pour répondre</h2></div>
-            <div class="col-md-9">{{ content.field_adresse_postale }}</div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-3"><h2 class="m-0">Liste des pièces à fournir</h2></div>
-            <div class="col-md-9">{{ content.field_liste }}</div>
-        </div>
-
-        {% if content.field_tags.0 is not empty %}
+        {% if content.field_quantite.0 is not empty %}
+            <div class="row">
+                <div class="col-md-3"><h2 class="m-0">Nombre de postes </h2></div>
+                <div class="col-md-9">{{ content.field_quantite }}</div>
+            </div>
             <hr>
-            <h3>Mots-clés : </h3>
-            {{ content.field_tags }}
+        {% endif %}
+        {% if content.body.0 is not empty %}
+            <div class="row">
+                <div class="col-md-3"><h2 class="m-0">Description de l'épreuve</h2></div>
+                <div class="col-md-9">{{ content.body }}</div>
+            </div>
+            <hr>
+        {% endif %}
+        {% if content.field_conditions.0 is not empty %}
+            <div class="row">
+                <div class="col-md-3"><h2 class="m-0">Conditions d'accès</h2></div>
+                <div class="col-md-9">{{ content.field_conditions }}</div>
+            </div>
+            <hr>
+        {% endif %}
+        {% if content.field_grade.0 is not empty %}
+            <div class="row">
+                <div class="col-md-3"><h2 class="m-0">Grade visé</h2></div>
+                <div class="col-md-9">{{ content.field_grade }}</div>
+            </div>
+            <hr>
+        {% endif %}
+        {% if content.field_concours.0 is not empty %}
+            <div class="row">
+                <div class="col-md-3"><h2 class="m-0">Types de concours</h2></div>
+                <div class="col-md-9">{{ content.field_concours }}</div>
+            </div>
+            <hr>
+        {% endif %}
+        {% if content.field_adresse_postal.0 is not empty %}
+            <div class="row">
+                <div class="col-md-3"><h2 class="m-0">Adresse postale pour répondre</h2></div>
+                <div class="col-md-9">{{ content.field_adresse_postale }}</div>
+            </div>
+            <hr>
+        {% endif %}
+        {% if content.field_liste %}
+            <div class="row">
+                <div class="col-md-3"><h2 class="m-0">Liste des pièces à fournir</h2></div>
+                <div class="col-md-9">{{ content.field_liste }}</div>
+            </div>
         {% endif %}
     </article>
 </div>

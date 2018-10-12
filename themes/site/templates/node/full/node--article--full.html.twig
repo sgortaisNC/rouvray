@@ -73,17 +73,20 @@
 <div class="content-page">
     <article{{ attributes }}>
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center my-2">
-            <div><i class="fas fa-map-marker text-warning"></i> {{ content.field_lieu }}</div>
+            <div>{% if content.field_lieu.0 is not empty %}<i
+                        class="fas fa-map-marker text-warning"></i> {{ content.field_lieu }}{% endif %}</div>
             <div>
                 <i class="fas fa-calendar-alt text-warning"></i> {{ content.field_date }} {% if content.field_date_other.0 is not empty %}
                     - {{ content.field_date_other }}
                 {% endif %}
             </div>
         </div>
-
-        <div class="d-flex justify-content-center align-items-center my-2 bg-dark">
-            {{ content.field_image }}
-        </div>
+        {% if content.field_image.0 is not empty %}
+        {% if content.field_image.0 is not empty %}
+            <div class="d-flex justify-content-center align-items-center my-2 bg-dark">
+                {{ content.field_image }}
+            </div>
+        {% endif %}
         {{ content.body }}
     </article>
 </div>
