@@ -73,7 +73,7 @@ class ListeactualiteBlock extends BlockBase {
 						"date_deb"  => \Drupal::service('date.formatter')->format(strtotime($nodeContent->get( "field_date" )->getValue()[0]["value"]),"long"),
 						"date_fin"  => $date_fin,
 						"lieu"      => $lieu,
-						"body"      => $body,
+						"body"      => strip_tags($body),
 						'url'       => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
 					];
 				}
