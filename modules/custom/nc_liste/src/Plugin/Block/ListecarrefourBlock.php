@@ -104,7 +104,7 @@ class ListecarrefourBlock extends BlockBase {
 				}
 
 				foreach ( $external as $node ) {
-					$image = ImageStyle::load( 'detail' )->buildUrl( "public://default_images/image-default_0.jpg" );
+					$image = ImageStyle::load( 'detail' )->buildUrl( "public://styles/detail/public/modules/custom/nc_site/rejoindre/se-former-au-rouvray-carre.jpg" );
 
 
 					$contents[] = [
