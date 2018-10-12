@@ -132,39 +132,20 @@ class ConsultationsProximiteBlock extends BlockBase {
 			$tabPatho[ $patho->tid ] = $patho->name;
 		}
 
-		$tabVilles = ['' => 'Sélectionnez une ville'];
-		$query     = $connection->select( 'nc_villes', 'v' )
-		                        ->fields( 'v', array( 'id', 'ville', 'cp' ) )
-		                        ->orderBy( 'ville', 'ASC' );
-		$result    = $query->execute();
+    $tabVilles  = ["" => "Sélectionnez la ville la plus proche de chez vous"];
+    $connection = Database::getConnection();
+    $result = $connection->query("SELECT DISTINCT field_ville_value, libelle, cp FROM node__field_ville LEFT JOIN nc_villes ON id = field_ville_value WHERE bundle = 'consultation' ORDER BY libelle ASC")
+      ->fetchAll();
 
-		/**
-		 * Décommenter pour affiché la liste clef|label utilisé dans le champ filed_ville des consultations.
-		 * Début zone commentaire
-		 */
-
-		//echo "-------------------<br>";
-		foreach ( $result as $record ) {
-			$hasZero = "";
-			if ( strlen( $record->cp ) == 4 ) {
-				$hasZero = 0;
-			}
-			$tabVilles[ $record->id ] = $record->ville . ' (' . $hasZero . $record->cp . ')';
-
-			//echo $record->id ."|".$record->ville . ' (' . $hasZero  .$record->cp . ')<br>';
-		}
-		//echo "-------------------<br>";
-
-		/**
-		 * Fin zone commentaire
-		 */
-
+    foreach ( $result as $record ) {
+      if(!empty($record->libelle)){
+        $tabVilles[ $record->field_ville_value ] = $record->libelle." (". str_pad($record->cp, 5, '0') .")";
+      }
+    }
 
 		$form = [
 			'title'  => 'Où consulter ?',
-
-
-		];
+    ];
 
 		switch ( $config['consultation_type'] ) {
 			case "728":
@@ -172,7 +153,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 				$form['form'] = [
 					'lieu' => [
 						'#type'      => 'select',
-						'#title'     => 'Choisir votre commune :',
+						'#title'     => 'Choisir la ville la plus proche de chez vous :',
 						'#attributes' => [
 							'class' => ['form-control'],
 						],
@@ -244,8 +225,11 @@ class ConsultationsProximiteBlock extends BlockBase {
 		return $build;
 	}
 
-	public
-	function getCacheTags() {
+  public function getCacheMaxAge() {
+    return 0;
+  }
+
+	public function getCacheTags() {
 		//With this when your node change your block will rebuild
 		if ( $node = \Drupal::routeMatch()->getParameter( 'node' ) ) {
 			//if there is node add its cachetag
@@ -256,8 +240,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 		}
 	}
 
-	public
-	function getCacheContexts() {
+	public function getCacheContexts() {
 		//if you depends on \Drupal::routeMatch()
 		//you must set context of this block with 'route' context tag.
 		//Every new route this block will rebuild
