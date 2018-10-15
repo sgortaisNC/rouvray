@@ -74,6 +74,24 @@ function nc_options_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\F
                 '#title' => "URL",
                 '#default_value' => theme_get_setting('site_options.urgence.url', 'site'),
             ];
+            $form['site_options']['urgence']['bloc1'] = [
+              '#type' => 'text_format',
+              '#title' => "Bloc 1",
+              '#format' => 'full_html',
+              '#default_value' => theme_get_setting('site_options.urgence.bloc1', 'site')['value'],
+            ];
+            $form['site_options']['urgence']['bloc2'] = [
+              '#type' => 'text_format',
+              '#title' => "Bloc 2",
+              '#format' => 'full_html',
+              '#default_value' => theme_get_setting('site_options.urgence.bloc2', 'site')['value'],
+            ];
+            $form['site_options']['urgence']['bloc3'] = [
+              '#type' => 'text_format',
+              '#title' => "Bloc 3",
+              '#format' => 'full_html',
+              '#default_value' => theme_get_setting('site_options.urgence.bloc3', 'site')['value'],
+            ];
 
         $form['site_options']['contact'] = [
             '#type' => 'fieldset',

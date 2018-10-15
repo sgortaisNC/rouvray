@@ -1,3 +1,13 @@
+<div id="box-urgence" class="bg-info">
+    <div class="row">
+    {% for bloc in urgence %}
+        <div class="col-xs-12 col-sm-4">
+            {{ bloc | raw }}
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
 <header>
     {{ page.highlighted }}
     {{ page.help }}

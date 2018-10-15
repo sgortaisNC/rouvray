@@ -2387,3 +2387,21 @@ ul.main_menu::after {
 #sliding-popup .decline-button {
     display: none !important;
 }
+
+#box-urgence {
+    height: 0;
+    -webkit-transition: height .3s linear;
+    -moz-transition: height .3s linear;
+    -ms-transition: height .3s linear;
+    -o-transition: height .3s linear;
+    transition: height .3s linear;
+    overflow: hidden;
+}
+#box-urgence.box-open {
+    height: 220px;
+    -webkit-transition: height .3s linear;
+    -moz-transition: height .3s linear;
+    -ms-transition: height .3s linear;
+    -o-transition: height .3s linear;
+    transition: height .3s linear;
+}

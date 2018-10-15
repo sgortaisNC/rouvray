@@ -11,6 +11,14 @@ jQuery(window).on("load", function () {
 
 
 jQuery(document).ready(function ($) {
+    $('#btn-urgence').on('click', function(e){
+        e.preventDefault();
+        if($('#box-urgence').hasClass('box-open')){
+          $('#box-urgence').removeClass('box-open');
+        }else{
+          $('#box-urgence').addClass('box-open');
+        }
+    })
 
     if ($(".sliderSlick").length > 0) {
         $(".sliderSlick").slick({
