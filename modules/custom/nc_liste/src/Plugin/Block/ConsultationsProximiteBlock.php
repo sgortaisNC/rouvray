@@ -59,7 +59,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 		$config     = $this->getConfiguration();
 		$connection = Database::getConnection();
 
-		$contents = $nids = [];
+		$contents = $contentsMap = $nids = $nidsMap = [];
 
 		$query = \Drupal::entityQuery( 'node' );
 		$query->condition( 'type', [ 'consultation' ], 'IN' )
@@ -86,9 +86,8 @@ class ConsultationsProximiteBlock extends BlockBase {
 
 		$nids = $query->sort( 'title', 'ASC' )
 		              ->sort( 'created', 'DESC' )
-		              ->pager( 25 )
+		              ->pager( 10 )
 		              ->execute();
-
 
 		if ( count( $nids ) > 0 ) {
 			foreach ( $nids as $nid ) {
@@ -101,11 +100,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 					$result = $query->execute();
 					$nvillle = "";
 					foreach ( $result as $ville ) {
-						$hasZero = "";
-						if ( strlen( $ville->cp ) == 4 ) {
-							$hasZero = 0;
-						}
-						$nvillle = $ville->ville . " ($hasZero" . $ville->cp . ")";
+            $nvillle = $ville->ville . " (". str_pad ($ville->cp, 5, '0') .")";
 					}
 					$contents[] = [
 						'title'     => $nodeContent->getTitle(),
@@ -120,6 +115,64 @@ class ConsultationsProximiteBlock extends BlockBase {
 				}
 			}
 		}
+
+
+    /*QUERY MAP*/
+    $queryMap = \Drupal::entityQuery( 'node' );
+    $queryMap->condition( 'type', [ 'consultation' ], 'IN' )
+      ->condition( 'status', 1 )
+      ->condition( 'field_consultation', $config['consultation_type'] ); //Consultation de proximité
+
+    switch ( $config['consultation_type'] ) {
+      case "728":
+        if ( ! empty( $_GET["type"] ) ) {
+          $queryMap->condition( "field_patients", $_GET["type"] );
+        }
+        if ( ! empty( $_GET["ville"] ) ) {
+          $queryMap->condition( "field_ville", $_GET["ville"] );
+        }
+        break;
+      case "729":
+        if ( ! empty( $_GET["type"] ) ) {
+          $queryMap->condition( "field_prestation", $_GET["type"] );
+        }
+        break;
+      default:
+        break;
+    }
+
+    $nidsMap = $queryMap->sort( 'title', 'ASC' )
+      ->sort( 'created', 'DESC' )
+      ->execute();
+    if ( count( $nidsMap ) > 0 ) {
+      foreach ( $nidsMap as $nid ) {
+        $nodeContent = Node::load( $nid );
+
+        if ( ! empty( $nodeContent ) ) {
+          $query  = $connection->select( 'nc_villes', 'v' )
+            ->fields( 'v', array( 'id', 'ville', 'cp' ) )
+            ->condition( 'id', $nodeContent->get( 'field_ville' )->value )
+            ->orderBy( 'ville', 'ASC' );
+          $result = $query->execute();
+          $nvillle = "";
+          foreach ( $result as $ville ) {
+            $nvillle = $ville->ville . " (". str_pad ($ville->cp, 5, '0') .")";
+          }
+          $contentsMap[] = [
+            'title'     => $nodeContent->getTitle(),
+            'adresse'   => !empty($nodeContent->get( 'field_adresse' )->getValue()[0]) ? $nodeContent->get( 'field_adresse' )->getValue()[0]['value'] : "" ,
+            'ville'     => $nvillle,
+            'telephone' => !empty($nodeContent->get( 'field_telephone' )->getValue()) ? $nodeContent->get( 'field_telephone' )->getValue()[0]['value'] : "",
+            'horaires'  => !empty($nodeContent->get( 'field_horaires' )->getValue()) ? $nodeContent->get( 'field_horaires' )->getValue()[0]['value'] : "",
+            'lat'       => !empty($nodeContent->get( 'field_gps_latitude' )->getValue()[0]['value']) ? $nodeContent->get( 'field_gps_latitude' )->getValue()[0]['value'] : "" ,
+            'lng'       => !empty($nodeContent->get( 'field_gps_longitude' )->getValue()[0]['value']) ? $nodeContent->get( 'field_gps_longitude' )->getValue()[0]['value'] : "",
+            'url'       => \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/' . $nodeContent->id() ),
+          ];
+        }
+      }
+    }
+    /*END MAP*/
+
 		$tabPatients = ["" => "---"];
 		$patients    = \Drupal::entityTypeManager()->getStorage( 'taxonomy_term' )->loadTree( 'types_patient' );
 		foreach ( $patients as $patient ) {
@@ -153,7 +206,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 				$form['form'] = [
 					'lieu' => [
 						'#type'      => 'select',
-						'#title'     => 'Choisir la ville la plus proche de chez vous :',
+						'#title'     => 'Ville la plus proche de chez vous :',
 						'#attributes' => [
 							'class' => ['form-control'],
 						],
@@ -206,7 +259,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 			],
 			'carte' => [
 				'#theme'    => 'consultationmap',
-				'#data'     => $contents,
+				'#data'     => $contentsMap,
 				'#attached' => [
 					'library' => [
 						'nc_liste/leaflet',

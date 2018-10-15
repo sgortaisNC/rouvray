@@ -26,7 +26,7 @@ class ConsultationsBlock extends BlockBase {
 			$tabPatients[ $patient->tid ] = $patient->name;
 		}
 
-		$tabVilles  = ["" => "Choisir la ville la plus proche de chez vous"];
+		$tabVilles  = ["" => "Ville la plus proche de chez vous"];
 		$connection = Database::getConnection();
     $result = $connection->query("SELECT DISTINCT field_ville_value, libelle, cp FROM node__field_ville LEFT JOIN nc_villes ON id = field_ville_value WHERE bundle = 'consultation' ORDER BY libelle ASC")
                         ->fetchAll();
