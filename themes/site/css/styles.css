@@ -2270,6 +2270,12 @@ footer a.round:hover {
     margin-bottom: 1rem;
 }
 
+.text-cnil{
+    margin-top: 15px;
+    font-size: 14px;
+    font-style: italic;
+}
+
 .form-control {
     max-width: 100% !important;
 }
