@@ -59,6 +59,14 @@ class ConsultationsProximiteBlock extends BlockBase {
 		$config     = $this->getConfiguration();
 		$connection = Database::getConnection();
 
+    $correspondancesVilles = [];
+    $field_name = 'field_ville';
+    $definitions = \Drupal::service('entity_field.manager')->getFieldDefinitions('node', 'consultation');
+
+    if (isset($definitions[$field_name])) {
+      $correspondancesVilles = $definitions[$field_name]->getSetting('allowed_values');
+    }
+
 		$contents = $contentsMap = $nids = $nidsMap = [];
 
 		$query = \Drupal::entityQuery( 'node' );
@@ -93,19 +101,10 @@ class ConsultationsProximiteBlock extends BlockBase {
 			foreach ( $nids as $nid ) {
 				$nodeContent = Node::load( $nid );
 				if ( ! empty( $nodeContent ) ) {
-					$query  = $connection->select( 'nc_villes', 'v' )
-					                     ->fields( 'v', array( 'id', 'ville', 'cp' ) )
-					                     ->condition( 'id', $nodeContent->get( 'field_ville' )->value )
-					                     ->orderBy( 'ville', 'ASC' );
-					$result = $query->execute();
-					$nvillle = "";
-					foreach ( $result as $ville ) {
-            $nvillle = $ville->ville . " (". str_pad ($ville->cp, 5, '0') .")";
-					}
 					$contents[] = [
 						'title'     => $nodeContent->getTitle(),
 						'adresse'   => !empty($nodeContent->get( 'field_adresse' )->getValue()[0]) ? $nodeContent->get( 'field_adresse' )->getValue()[0]['value'] : "" ,
-						'ville'     => $nvillle,
+						'ville'     => (!empty($nodeContent->get( 'field_ville' )->value)) ? $correspondancesVilles[$nodeContent->get( 'field_ville' )->value] : '',
 						'telephone' => !empty($nodeContent->get( 'field_telephone' )->getValue()) ? $nodeContent->get( 'field_telephone' )->getValue()[0]['value'] : "",
 						'horaires'  => !empty($nodeContent->get( 'field_horaires' )->getValue()) ? $nodeContent->get( 'field_horaires' )->getValue()[0]['value'] : "",
 						'lat'       => !empty($nodeContent->get( 'field_gps_latitude' )->getValue()[0]['value']) ? $nodeContent->get( 'field_gps_latitude' )->getValue()[0]['value'] : "" ,
@@ -149,19 +148,10 @@ class ConsultationsProximiteBlock extends BlockBase {
         $nodeContent = Node::load( $nid );
 
         if ( ! empty( $nodeContent ) ) {
-          $query  = $connection->select( 'nc_villes', 'v' )
-            ->fields( 'v', array( 'id', 'ville', 'cp' ) )
-            ->condition( 'id', $nodeContent->get( 'field_ville' )->value )
-            ->orderBy( 'ville', 'ASC' );
-          $result = $query->execute();
-          $nvillle = "";
-          foreach ( $result as $ville ) {
-            $nvillle = $ville->ville . " (". str_pad ($ville->cp, 5, '0') .")";
-          }
           $contentsMap[] = [
             'title'     => $nodeContent->getTitle(),
             'adresse'   => !empty($nodeContent->get( 'field_adresse' )->getValue()[0]) ? $nodeContent->get( 'field_adresse' )->getValue()[0]['value'] : "" ,
-            'ville'     => $nvillle,
+            'ville'     => (!empty($nodeContent->get( 'field_ville' )->value)) ? $correspondancesVilles[$nodeContent->get( 'field_ville' )->value] : '',
             'telephone' => !empty($nodeContent->get( 'field_telephone' )->getValue()) ? $nodeContent->get( 'field_telephone' )->getValue()[0]['value'] : "",
             'horaires'  => !empty($nodeContent->get( 'field_horaires' )->getValue()) ? $nodeContent->get( 'field_horaires' )->getValue()[0]['value'] : "",
             'lat'       => !empty($nodeContent->get( 'field_gps_latitude' )->getValue()[0]['value']) ? $nodeContent->get( 'field_gps_latitude' )->getValue()[0]['value'] : "" ,
@@ -185,16 +175,29 @@ class ConsultationsProximiteBlock extends BlockBase {
 			$tabPatho[ $patho->tid ] = $patho->name;
 		}
 
-    $tabVilles  = ["" => "---"];
+    $correspondancesVilles = [];
+    $field_name = 'field_ville';
+    $definitions = \Drupal::service('entity_field.manager')->getFieldDefinitions('node', 'consultation');
+
+    if (isset($definitions[$field_name])) {
+      $correspondancesVilles= $definitions[$field_name]->getSetting('allowed_values');
+    }
+
     $connection = Database::getConnection();
-    $result = $connection->query("SELECT DISTINCT field_ville_value, libelle, cp FROM node__field_ville LEFT JOIN nc_villes ON id = field_ville_value WHERE bundle = 'consultation' ORDER BY libelle ASC")
+    $result = $connection->query("SELECT DISTINCT field_ville_value FROM node__field_ville WHERE bundle = 'consultation' ORDER BY field_ville_value ASC")
       ->fetchAll();
 
+    $villes = [];
     foreach ( $result as $record ) {
-      if(!empty($record->libelle)){
-        $tabVilles[ $record->field_ville_value ] = $record->libelle." (". str_pad($record->cp, 5, '0') .")";
+      if(!empty($correspondancesVilles[$record->field_ville_value])){
+        $villes[ $record->field_ville_value ] = $correspondancesVilles[$record->field_ville_value];
       }
     }
+    asort($villes);
+
+    $tabVilles = [
+        '' => "---"
+      ] + $villes;
 
 		$form = [
 			'title'  => 'Où consulter ?',
@@ -202,7 +205,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 
 		switch ( $config['consultation_type'] ) {
 			case "728":
-				$form['action'] = \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/107' );
+				$form['action'] = \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/194' );
 				$form['form'] = [
 					'lieu' => [
 						'#type'      => 'select',
@@ -225,7 +228,7 @@ class ConsultationsProximiteBlock extends BlockBase {
 				];
 				break;
 			case "729":
-				$form['action'] = \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/108' );
+				$form['action'] = \Drupal::service( 'path.alias_manager' )->getAliasByPath( '/node/198' );
 				$form['form'] = [
 					'type' => [
 						'#type'      => 'select',

@@ -1,5 +1,6 @@
 <div class="list-result content-page">
-{% for consultation in data %}
+{% if data is not empty %}
+    {% for consultation in data %}
         <div class="result p-4">
             <div class="teaser">
                 <a href="{{ consultation.url }}"><h4>{{ consultation.title }}</h4></a>
@@ -12,4 +13,7 @@
             <a href="{{ consultation.url }}" class="align-self-center btn btn-outline-light">Détails</a>
         </div>
     {% endfor %}
+{% else %}
+    <h4>Aucune consultation trouvée pour cette recherche</h4>
+{% endif %}
 </div>

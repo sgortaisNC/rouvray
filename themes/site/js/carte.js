@@ -17,7 +17,6 @@ if ($("#mapConsult").length > 0 ){
     var markers = L.markerClusterGroup();
 
     $(".markerConsult").each(function () {
-        console.log([$(this).data("lat"), $(this).data("lng")]);
         if  ($(this).data("lat") !== "" && $(this).data("lng") !== "") {
             var marker = L.marker([$(this).data("lat"), $(this).data("lng")], {icon: hIcon})
                 .bindPopup($(this).data("titre")
