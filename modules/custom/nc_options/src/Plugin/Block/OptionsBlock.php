@@ -66,9 +66,6 @@ class OptionsBlock extends BlockBase {
                     $data['option']['value'] = theme_get_setting($config['nc_options_option'].'.url');
                     break;
 
-                case 'site_options.urgence':
-                    break;
-
                 default:
                     $data['option']['value'] = theme_get_setting($config['nc_options_option']);
                     break;

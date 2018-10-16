@@ -1,10 +1,14 @@
 <div id="box-urgence" class="bg-info">
-    <div class="row">
-    {% for bloc in urgence %}
-        <div class="col-xs-12 col-sm-4">
-            {{ bloc | raw }}
+    <div class="container">
+        <div class="row">
+            {% for key, bloc in urgence %}
+                <div class="col-xs-12 col-md-4">
+                    <div class="box-urgence-border">
+                        {{ bloc | raw }}
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
     </div>
 </div>
 
