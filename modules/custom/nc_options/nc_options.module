@@ -69,11 +69,11 @@ function nc_options_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\F
             '#title' => "Bouton Urgence",
             '#tree' => TRUE,
         ];
-            $form['site_options']['urgence']['url'] = [
+            /*$form['site_options']['urgence']['url'] = [
                 '#type' => 'textfield',
                 '#title' => "URL",
                 '#default_value' => theme_get_setting('site_options.urgence.url', 'site'),
-            ];
+            ];*/
             $form['site_options']['urgence']['bloc1'] = [
               '#type' => 'text_format',
               '#title' => "Bloc 1",
