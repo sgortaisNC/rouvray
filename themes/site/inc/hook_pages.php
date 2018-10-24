@@ -10,6 +10,12 @@ function site_preprocess_page(&$variables) {
 	$variables['site_slogan'] = $site_config->get('slogan');
     //Logo Header
     $variables['logo_header'] = theme_get_setting('logo.url');
+
+
+  //Urgence
+  $variables['urgence'][0] = theme_get_setting('site_options.urgence.bloc1', 'site')['value'];
+  $variables['urgence'][1] = theme_get_setting('site_options.urgence.bloc2', 'site')['value'];
+  $variables['urgence'][2] = theme_get_setting('site_options.urgence.bloc3', 'site')['value'];
 }
 
 function site_page_attachments_alter(array &$attachments) {
