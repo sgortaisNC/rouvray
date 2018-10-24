@@ -1257,10 +1257,6 @@ footer .bg-warning a {
     background: #e7eaef;
 }
 
-.content-page table tbody tr td {
-    display: inline-block;
-}
-
 .content-page table p{
     margin-bottom: 0;
 }
