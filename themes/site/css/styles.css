@@ -2413,3 +2413,8 @@ ul.main_menu::after {
 #box-urgence a:hover{
     text-decoration: underline;
 }
+
+#block-sharebuttonblock .float-right{
+    position: relative;
+    z-index: 2;
+}
